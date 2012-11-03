@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="span4">
+	</div>
+	<%= render 'profile_top_center' %>
+	<div clsas="span4">
+	</div>
+</div>
+<hr class="bs-docs-separator"></hr>
+
+<div class="row">
+    <dl ><!--class="dl-horizontal"-->
+        <dt>Description:</dt>
+        <dd><%= @user.description %></dd>
+        <dt>Title:</dt>
+        <dd><%= @user.current_work %></dd>
+        <!-- <dt>Education:</dt>
+        <dd>Boğaziçi Uni. Comp. Eng. PhD (2010-...)<br>
+            Boğaziçi Uni. Comp. Eng. MS (2008-2010)<br>
+            Sabancı Uni. Comp. Eng. BS (2004-2008)<br>
+            American Collegiate Institute (2000-2004)
+        </dd>
+        <dt>Gender:</dt> <dd>Male</dd>
+        <dt>Birthday:</dt> <dd>01.01.1001</dd> -->
+    </dl>
+</div>

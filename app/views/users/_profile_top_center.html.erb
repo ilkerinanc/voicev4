@@ -1,0 +1,12 @@
+<div class="span4" align="center">
+    <h2><%= link_to "#{@user.name} #{@user.surname}", user_show_path(:user => @user.id) %></h2>
+    <img src="img/profile/alp.kindiroglu.jpg" class="img-circle"/>
+    <p class="muted"><small><%= @user.current_work %></small></p>
+    <div class="btn-group">
+        <button class="btn"><%= link_to "About", user_about_path(:user => @user.id) %></button>
+        <button class="btn"><%= link_to "Contact Info", user_contact_path(:user => @user.id) %></button>
+        <% if @user == current_user %>
+	        <button class="btn"><%= link_to "Edit Profile", edit_current_user_path %></button>
+        <% end %>
+    </div>
+</div>
