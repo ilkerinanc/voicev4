@@ -1,0 +1,38 @@
+
+<div class="row">
+  <div class="span4">
+  </div>
+  <%= render 'profile_top_center' %>
+  <div clsas="span4">
+  </div>
+</div>
+<hr class="bs-docs-separator"></hr>
+
+<h1>Pending Approval</h1>
+<div class="row">
+  <div class="span6">
+    <table class="table table-hover">
+      <caption></caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Connect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @friendship_requests.each do |r| %>
+          <% u = r.user%>
+          <tr>
+            <td><%= link_to "#{u.name} #{u.surname}", user_show_path(:user => u.id) %></td>
+            <td><%= link_to "#{u.username}", user_show_path(:user => u.id) %></td>
+            <td><%= link_to "Approve", user_pending_post_path(:friendship_id => r.id), :method => :post, :class=>'btn btn-primary btn-mini' %></td>
+            <!-- <td><%= link_to 'Approve', { :controller => 'friendships', :action => 'approve', :friend_id => u.id } %></td> -->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
