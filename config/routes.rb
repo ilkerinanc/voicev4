@@ -1,5 +1,7 @@
 Voicev4::Application.routes.draw do
-  get "home/index"
+  resources :friendships
+
+  # get "home/index"
 
   root :to => "home#index"
 
@@ -13,10 +15,15 @@ Voicev4::Application.routes.draw do
 
   # match 'profile' => 'users#profile', :as => :profile
 
+  match 'user/pending' => 'friendships#approve', :as => :user_pending_post, :via => :post
+  match 'user/pending' => 'users#pending', :as => :user_pending
   match 'user/:user' => 'users#show', :as => :user_show
+  match 'user/:user/connections' => 'users#connections', :as => :user_connections
   match 'user/:user/contact' =>'users#contact', :as => :user_contact
   match 'user/:user/about' => 'users#about', :as => :user_about
+
   match 'users' => 'users#index', :as => :users_index
+
   resources :sessions
 
   resources :users

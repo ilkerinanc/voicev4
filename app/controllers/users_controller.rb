@@ -32,10 +32,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # def profile
-  #   @user = current_user
-  # end
-
   def show
     @user = User.find(params[:user])
   end
@@ -46,6 +42,17 @@ class UsersController < ApplicationController
 
   def about
     @user = User.find(params[:user])
+  end
+
+  # to show friend request pending approval from the user.
+  def pending
+    @user = current_user
+    @friendship_requests = current_user.requested_friendships
+  end
+
+  def connections
+    @user = current_user
+    @friends = User.find(params[:user]).friends
   end
 
 end

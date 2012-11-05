@@ -4,7 +4,7 @@
             <li>
                 <div class="thumbnail">
                     <img src="img/profile/connections.jpg" alt="">
-                    <a href="connections.html">Connections</a>
+                    <%= link_to "Connections", user_connections_path(:user => current_user) %>
                 </div>
             </li>
             <li>

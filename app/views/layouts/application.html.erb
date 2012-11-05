@@ -36,6 +36,8 @@
               <% if logged_in? %>
                 <li><%= link_to "Profile", user_show_path(:user => current_user.id) %></li>
                 <li><%= link_to "Users", users_index_path %></li>
+                <li><%= link_to "Pending", user_pending_path %></li>
+                <li><%= link_to "Friends", user_connections_path(:user => current_user) %></li>
               <% end %>
 
               <!-- <li><a href="interests.html">Interests</a></li>
@@ -84,6 +86,9 @@
       </div>
     </div>
     <div class="container">
+      <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, :class => "alert alert-#{key}") %>
+          <% end %>
       <%= yield %>
       <hr>
       <footer>

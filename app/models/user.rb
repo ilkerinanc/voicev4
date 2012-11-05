@@ -1,4 +1,12 @@
 class User < ActiveRecord::Base
+  has_many :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :direct_friends, :through => :friendships, :conditions => "approved = true", :source => :friend
+  has_many :inverse_friends, :through => :inverse_friendships, :conditions => "approved = true", :source => :user
+
+  has_many :pending_friends, :through => :friendships, :conditions => "approved = false", :foreign_key => "user_id", :source => :friend
+  has_many :requested_friendships, :class_name => "Friendship", :foreign_key => "friend_id", :conditions => "approved = false"
+
   # new columns need to be added here to be writable through mass assignment
   attr_accessible :username, :email, :password, :password_confirmation, :name, :surname, :description, :current_work
 
@@ -23,6 +31,18 @@ class User < ActiveRecord::Base
     BCrypt::Engine.hash_secret(pass, password_salt)
   end
 
+  def friends
+    direct_friends | inverse_friends
+  end
+
+  def friend_request_sent?(user)
+    return self.pending_friends.include?(user)
+  end
+
+  def friends_with?(user)
+    return self.friends.include?(user)
+  end
+
   private
 
   def prepare_password
@@ -31,4 +51,6 @@ class User < ActiveRecord::Base
       self.password_hash = encrypt_password(password)
     end
   end
+
+  
 end
