@@ -1,5 +1,4 @@
 Voicev4::Application.routes.draw do
-  resources :friendships
 
   # get "home/index"
 
@@ -21,12 +20,20 @@ Voicev4::Application.routes.draw do
   match 'user/:user/connections' => 'users#connections', :as => :user_connections
   match 'user/:user/contact' =>'users#contact', :as => :user_contact
   match 'user/:user/about' => 'users#about', :as => :user_about
+  match 'user/:user/interests' => 'users#interests', :as => :user_interests
 
   match 'users' => 'users#index', :as => :users_index
 
   resources :sessions
 
   resources :users
+
+  resources :interests
+
+  resources :friendships
+
+  match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
+  match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

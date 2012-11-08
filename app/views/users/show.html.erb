@@ -3,14 +3,14 @@
         <ul class="thumbnails">
             <li>
                 <div class="thumbnail">
-                    <img src="img/profile/connections.jpg" alt="">
-                    <%= link_to "Connections", user_connections_path(:user => current_user) %>
+                    <!-- <img src="img/profile/connections.jpg" alt=""> -->
+                    <%= link_to "Connections (#{current_user.friends.count})", user_connections_path(:user => current_user) %>
                 </div>
             </li>
             <li>
                 <div class="thumbnail">
-                    <img src="img/profile/interests.jpg" alt="">
-                    <a href="interests.html">Interests</a>
+                    <!-- <img src="img/profile/interests.jpg" alt=""> -->
+                    <%= link_to "Interests (#{current_user.interests.count})", user_interests_path(:user => current_user) %>
                 </div>
             </li>
         </ul>

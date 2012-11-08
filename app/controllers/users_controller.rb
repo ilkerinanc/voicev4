@@ -55,4 +55,9 @@ class UsersController < ApplicationController
     @friends = User.find(params[:user]).friends
   end
 
+  def interests
+    @user = current_user
+    @interests = current_user.interests
+  end
+
 end

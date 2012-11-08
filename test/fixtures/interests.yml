@@ -1,0 +1,9 @@
+one:
+  name: MyString
+  description: MyText
+  in_trash: false
+
+two:
+  name: MyString
+  description: MyText
+  in_trash: false
