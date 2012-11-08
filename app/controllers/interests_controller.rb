@@ -19,8 +19,12 @@ class InterestsController < ApplicationController
   end
 
   def destroy
-    @interest = Interest.find(params[:id])
+    @interest = Interest.find(params[:interest_id])
     @interest.destroy
     redirect_to interests_url, :notice => "Successfully destroyed interest."
+  end
+
+  def show
+    @interest = Interest.find(params[:id])
   end
 end

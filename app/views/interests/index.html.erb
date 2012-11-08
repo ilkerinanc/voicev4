@@ -14,7 +14,7 @@
       <tbody>
         <% @interests.each do |interest| %>
           <tr>
-            <td><%= link_to "#{interest.name}", interest %></td>
+            <td><%= link_to "#{interest.name}", interest_path(:interest => interest.id) %></td>
             <td><%= interest.description %></td>
             <% if current_user.subscribed?(interest) %>
               <td><%= link_to "Unsubscribe", unsubscribe_path(:interest_id => interest.id), :method => :post, :class=>'btn btn-danger btn-mini' %></td>

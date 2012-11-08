@@ -4,6 +4,14 @@ Voicev4::Application.routes.draw do
 
   root :to => "home#index"
 
+  resources :sessions
+
+  resources :users
+
+  resources :interests
+
+  resources :friendships
+
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
@@ -24,14 +32,7 @@ Voicev4::Application.routes.draw do
 
   match 'users' => 'users#index', :as => :users_index
 
-  resources :sessions
-
-  resources :users
-
-  resources :interests
-
-  resources :friendships
-
+  match 'interests/:interest' => 'interests#show', :as => :interest
   match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
 
