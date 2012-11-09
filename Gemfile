@@ -22,6 +22,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'redis'
+gem 'recommendable'
+gem 'resque'
+gem 'resque-loner'
+
 gem 'jquery-rails'
 gem "nifty-generators", :group => :development
 gem "bcrypt-ruby", :require => "bcrypt"

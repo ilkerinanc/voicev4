@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  recommends :interests, :users
+
   has_many :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :direct_friends, :through => :friendships, :conditions => "approved = true", :source => :friend
