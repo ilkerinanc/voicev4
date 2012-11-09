@@ -1,9 +1,9 @@
 class TagsController < ApplicationController
   def index
-  	@tags = Tag.where("name like ?", "%#{params[:q]}%")
+  	@tags = Tag.order(:name)
     respond_to do |format|
       format.html
-      format.json { render :json => @tags.map(&:attributes) }
+      format.json { render :json => @tags.tokens(params[:q]) }
     end
   end
 end

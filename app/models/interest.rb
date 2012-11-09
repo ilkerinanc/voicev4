@@ -8,7 +8,7 @@ class Interest < ActiveRecord::Base
   has_many :taggings, :foreign_key => "interest_id", :dependent => :destroy
   has_many :tags, :through => :taggings, :source => :tag
 
-  def tag_tokens=(ids)
-  	self.tag_ids=ids.split(',')
+  def tag_tokens=(tokens)
+  	self.tag_ids = Tag.ids_from_tokens(tokens)
   end
 end
