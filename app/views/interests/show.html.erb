@@ -3,6 +3,13 @@
  	<div class="span4">
         <h2><%= link_to "#{@interest.name}", interest_path(:interest => @interest.id) %></h2>
         <p class="muted"><small><%= @interest.description %></small></p>
+        <%= link_to "Edit", interest_edit_path(:interest => @interest.id), :class=> 'btn btn-mini' %>
+        <p>Tags:</p>
+        <ul>
+            <% @interest.tags.each do |t| %>
+                <li> <%= t.name %> </li>
+            <% end %>
+        </ul>
         <hr class="bs-docs-separator"></hr>
     </div>
     <!-- Sag kisim -->

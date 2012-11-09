@@ -1,5 +1,10 @@
 Voicev4::Application.routes.draw do
 
+
+  # get "taggings/create"
+
+  # get "taggings/destroy"
+
   # get "home/index"
 
   root :to => "home#index"
@@ -33,8 +38,11 @@ Voicev4::Application.routes.draw do
   match 'users' => 'users#index', :as => :users_index
 
   match 'interests/:interest' => 'interests#show', :as => :interest
+  match 'interests/:interest/edit' => 'interests#show', :as => :interest_edit
   match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
+
+  match "tags" => 'tags#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
