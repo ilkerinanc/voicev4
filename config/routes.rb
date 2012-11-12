@@ -1,32 +1,14 @@
 Voicev4::Application.routes.draw do
 
 
-<<<<<<< HEAD
-  resources :sessions
-
-  resources :users
-
-  resources :interests
-
-  resources :friendships
-  # get "occasions/new"
-
-  # get "occasions/create"
-
-  # get "occasions/destroy"
-=======
   # get "taggings/create"
 
   # get "taggings/destroy"
->>>>>>> 47426e6a1fe48b1bd4aad01155e7c9f17be2746f
 
   # get "home/index"
 
   root :to => "home#index"
 
-<<<<<<< HEAD
-  match 'occasions/index' => 'occasions#index', :as =>:occasions
-=======
   resources :sessions
 
   resources :users
@@ -34,7 +16,6 @@ Voicev4::Application.routes.draw do
   resources :interests
 
   resources :friendships
->>>>>>> 47426e6a1fe48b1bd4aad01155e7c9f17be2746f
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -43,6 +24,7 @@ Voicev4::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
 
   match 'login' => 'sessions#new', :as => :login
+  match 'occasions/index' => 'occasions#index', :as =>:occasions
 
   # match 'profile' => 'users#profile', :as => :profile
 
@@ -56,12 +38,8 @@ Voicev4::Application.routes.draw do
 
   match 'users' => 'users#index', :as => :users_index
 
-<<<<<<< HEAD
-
-=======
   match 'interests/:interest' => 'interests#show', :as => :interest
   match 'interests/:interest/edit' => 'interests#show', :as => :interest_edit
->>>>>>> 47426e6a1fe48b1bd4aad01155e7c9f17be2746f
   match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
 
