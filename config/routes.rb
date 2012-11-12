@@ -1,6 +1,10 @@
 Voicev4::Application.routes.draw do
 
 
+  get "interest_posts/create"
+
+  get "interest_posts/destroy"
+
   # get "taggings/create"
 
   # get "taggings/destroy"
