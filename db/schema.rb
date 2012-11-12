@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108162422) do
+ActiveRecord::Schema.define(:version => 20121110232131) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(:version => 20121108162422) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "approved"
+  end
+
+  create_table "interest_posts", :force => true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.boolean  "in_trash"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "interests", :force => true do |t|

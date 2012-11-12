@@ -36,8 +36,14 @@
               <% if logged_in? %>
                 <li><%= link_to "Profile", user_show_path(:user => current_user.id) %></li>
                 <li><%= link_to "Users", users_index_path %></li>
-                <li><%= link_to "Pending (#{current_user.requested_friendships.count})", user_pending_path %></li>
-                <li><%= link_to "Friends", user_connections_path(:user => current_user) %></li>
+                <li>
+                  <%= link_to(user_pending_path) do %>
+                    Pending <% if current_user.requested_friendships.count > 0 %>
+                    <span class="badge badge-info"> <%= current_user.requested_friendships.count %></span>
+                    <% end %>
+                  <% end %>
+                </li>
+                
                 <li><%= link_to "Interests", interests_path %></li>
               <% end %>
 
