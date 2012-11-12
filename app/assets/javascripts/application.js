@@ -13,3 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function () {
+  $('#interest_tag_tokens').tokenInput('/tags.json', { 
+    crossDomain: false,
+    prePopulate: $('#interest_tag_tokens').data('load'),
+    theme: "facebook"
+  });
+});
