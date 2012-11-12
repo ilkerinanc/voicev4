@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  creator_id: 1
+  in_trash: false
+  description: MyText
+
+two:
+  name: MyString
+  creator_id: 1
+  in_trash: false
+  description: MyText

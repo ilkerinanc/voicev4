@@ -1,8 +1,24 @@
 Voicev4::Application.routes.draw do
 
+
+  resources :sessions
+
+  resources :users
+
+  resources :interests
+
+  resources :friendships
+  # get "occasions/new"
+
+  # get "occasions/create"
+
+  # get "occasions/destroy"
+
   # get "home/index"
 
   root :to => "home#index"
+
+  match 'occasions/index' => 'occasions#index', :as =>:occasions
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -24,13 +40,6 @@ Voicev4::Application.routes.draw do
 
   match 'users' => 'users#index', :as => :users_index
 
-  resources :sessions
-
-  resources :users
-
-  resources :interests
-
-  resources :friendships
 
   match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
