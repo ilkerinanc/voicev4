@@ -2,19 +2,46 @@
     <!-- Sol kisim -->
  	<div class="span4">
         <h2><%= link_to "#{@interest.name}", interest_path(:interest => @interest.id) %></h2>
+
         <p class="muted"><small><%= @interest.description %></small></p>
-        <%= link_to "Edit", interest_edit_path(:interest => @interest.id), :class=> 'btn btn-mini' %>
-        <p>Tags:</p>
-        <ul>
+        <p><span class="label label-warning">Tags:</span>
             <% @interest.tags.each do |t| %>
-                <li> <%= t.name %> </li>
+                <span class="label label-success"><%= t.name %></span>
             <% end %>
-        </ul>
+        </p>
         <hr class="bs-docs-separator"></hr>
+        <% if @interest.creator_id == current_user.id %>
+            <%= link_to "Edit", interest_edit_path(:interest => @interest.id), :class=> 'btn btn-mini' %>
+        <% end %>
     </div>
     <!-- Sag kisim -->
 	<div class="span8">
         <h3><em>Activity Feed</em></h3>
+        <form class="form-inline">
+            <div class="input-append">
+                <input class="span6" id="appendedInputButton" size="16" type="text" placeholder="Raise Your Voice!"><button class="btn" type="button">Go!</button>
+            </div>
+        </form>
+
+
+
+        <%= form_for @interest_post, :html => { :class => "form-horizontal"} do |f| %>
+          <div class="control-group">
+              <%= f.label :content, :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :content %>
+              </div>
+          </div>
+          <div class="control-group">   
+            <div class="controls">
+              <%= f.submit :class => "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+
+
+
+
         <div style="height: 75px" id="activity_feed_item">
             <a href="#">
                 <img align="left" src="img/profile/chess.jpg" class="img-circle">

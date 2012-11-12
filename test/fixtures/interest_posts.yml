@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  user_id: 1
+  interest_id: 1
+  in_trash: false
+
+two:
+  content: MyText
+  user_id: 1
+  interest_id: 1
+  in_trash: false
