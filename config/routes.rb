@@ -20,6 +20,8 @@ Voicev4::Application.routes.draw do
 
   resources :friendships
 
+  resources :occasions
+
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
@@ -27,7 +29,7 @@ Voicev4::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
 
   match 'login' => 'sessions#new', :as => :login
-  match 'occasions/index' => 'occasions#index', :as =>:occasions
+  # match 'occasions/index' => 'occasions#index', :as =>:occasions
 
   # match 'profile' => 'users#profile', :as => :profile
 
@@ -49,7 +51,9 @@ Voicev4::Application.routes.draw do
 
   match "tags" => 'tags#index'
 
-  match 'occasions/index' => 'occasions#index', :as =>:occasions
+  match 'occasions/:occasion' => 'occasions#show', :as => :occasion
+  # match 'occasions' => 'occasions#index', :as =>:occasions
+  # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
 
 
   # The priority is based upon order of creation:
