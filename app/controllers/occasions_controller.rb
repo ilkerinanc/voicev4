@@ -25,4 +25,9 @@ class OccasionsController < ApplicationController
 
   def destroy
   end
+
+  def show
+    @occasion = Occasion.find(params[:id])
+  end
+
 end
