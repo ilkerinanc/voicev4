@@ -8,6 +8,7 @@ class InterestsController < ApplicationController
   end
 
   def create
+    raise
     @interest = Interest.new(params[:interest])
     @interest.in_trash = false
     @interest.creator_id = current_user.id
