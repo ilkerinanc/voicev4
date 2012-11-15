@@ -47,9 +47,13 @@ Voicev4::Application.routes.draw do
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
 
   match "tags" => 'tags#index'
-
+  
+  match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'recommendations' => 'recommendations#index', :as => :recommendations
+
+  match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
+  match 'auth/failure', :to => redirect('/')
 
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion

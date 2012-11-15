@@ -26,8 +26,14 @@ class OccasionsController < ApplicationController
   def destroy
   end
 
+  def missed
+    @occasions = Occasion.where('time < ?', Date.today - 1.days) #gecmis ise   
+  end
+
   def show
     @occasion = Occasion.find(params[:id])
   end
+
+  
 
 end
