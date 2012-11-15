@@ -29,9 +29,6 @@ Voicev4::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
 
   match 'login' => 'sessions#new', :as => :login
-  # match 'occasions/index' => 'occasions#index', :as =>:occasions
-
-  # match 'profile' => 'users#profile', :as => :profile
 
   match 'user/pending' => 'friendships#approve', :as => :user_pending_post, :via => :post
   match 'user/pending' => 'users#pending', :as => :user_pending
@@ -52,6 +49,8 @@ Voicev4::Application.routes.draw do
   match "tags" => 'tags#index'
 
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
+  match 'recommendations' => 'recommendations#index', :as => :recommendations
+
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
 

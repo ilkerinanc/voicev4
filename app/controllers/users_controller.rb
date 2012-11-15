@@ -51,13 +51,13 @@ class UsersController < ApplicationController
   end
 
   def connections
-    @user = current_user
+    @user = User.find(params[:user])
     @friends = User.find(params[:user]).friends
   end
 
   def interests
-    @user = current_user
-    @interests = current_user.interests
+    @user = User.find(params[:user])
+    @interests = User.find(params[:user]).interests
   end
 
 end

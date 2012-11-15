@@ -8,11 +8,11 @@ namespace :db do
 end
 
 def make_users
-  99.times do |n|
+  24.times do |n|
     name  = Faker::Name.name
-    email = "example-#{n+1}@railstutorial.org"
+    email = "example-#{n+2}@railstutorial.org"
     password  = "password"
-    username = "example#{n+1}"
+    username = "example#{n+2}"
     User.create!(:name =>     name,
                  :email =>    email,
                  :password => password,

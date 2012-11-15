@@ -56,4 +56,5 @@ platforms :jruby do
 end
 
 gem "mocha", :group => :test
+gem 'faker'
 

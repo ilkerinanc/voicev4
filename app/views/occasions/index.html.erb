@@ -1,19 +1,26 @@
 <%= link_to "Create an Occasion", new_occasion_path, :class=>'btn btn-primary' %>
-<h1>Occasion List</h1>
+<h1>Upcoming Occasions</h1>
 <div class="row">
-  <div class="span6">
+  <div class="span10">
     <table class="table table-hover">
       <caption></caption>
       <thead>
         <tr>
           <th>Name</th>
           <th>Description</th>
+          <th>Date</th>
         </tr>
       </thead>
       <tbody>
         <% @occasions.each do |occasion| %>
           <tr>
-              <td><%= link_to "#{occasion.name}", occasion_path(:occasion => occasion.id) %></td>
+            <!-- Occasion.where('created_at > ?', 1.hour.ago).count -->
+              <td>
+                <% if occasion.created_at > 1.hour.ago %>
+                <span class="label label-warning">NEW!</span>
+                <% end %>
+                <%= link_to "#{occasion.name}", occasion_path(:occasion => occasion.id) %>
+              </td>
               <td><%= occasion.description %></td>
               <td><%= occasion.time %></td>
           </tr>
