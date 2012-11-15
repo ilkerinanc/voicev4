@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id], :approved => false)
     if @friendship.save
-      redirect_to root_url, :notice => "Connect request sent!"
+      redirect_to user_show_path(:user => current_user.id), :notice => "Connect request sent to #{User.find( params[:friend_id]).username}!"
     else
       render :action => 'new'
     end

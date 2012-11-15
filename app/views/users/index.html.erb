@@ -16,11 +16,13 @@
             <td><%= link_to "#{u.name} #{u.surname}", user_show_path(:user => u.id) %></td>
             <td><%= link_to "#{u.username}", user_show_path(:user => u.id) %></td>
             <% if current_user.friend_request_sent?(u) %>
-              <td>Connect request sent.</td>
+              <td><span class="label">Connect request sent.</span></td>
             <% elsif current_user.friends_with?(u) %>
-              <td>Friends</td>
+              <td><span class="label label-success">Friends</span> <span class="label label-important">x</span></td>
+            <% elsif u == current_user %>
+              <td></td>
             <% else %>
-              <td><%= link_to "Connect", friendships_path(:friend_id => u), :method => :post %></td>
+              <td><%= link_to "Connect", friendships_path(:friend_id => u), :method => :post, :class => 'label label-info' %></td>
             <% end %>
           </tr>
         <% end %>

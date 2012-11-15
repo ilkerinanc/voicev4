@@ -4,13 +4,21 @@
             <li>
                 <div class="thumbnail">
                     <!-- <img src="img/profile/connections.jpg" alt=""> -->
-                    <%= link_to "Connections (#{current_user.friends.count})", user_connections_path(:user => current_user) %>
+                    <%= link_to "Connections (#{@user.friends.count})", user_connections_path(:user => @user) %>
                 </div>
             </li>
+            <% if @user == current_user %>
+            <li>
+                <div class="thumbnail">
+                    <!-- <img src="img/profile/connections.jpg" alt=""> -->
+                    <%= link_to "Pending (#{current_user.requested_friendships.count})", user_pending_path %>
+                </div>
+            </li>
+            <% end %>
             <li>
                 <div class="thumbnail">
                     <!-- <img src="img/profile/interests.jpg" alt=""> -->
-                    <%= link_to "Interests (#{current_user.interests.count})", user_interests_path(:user => current_user) %>
+                    <%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %>
                 </div>
             </li>
         </ul>
