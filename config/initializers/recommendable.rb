@@ -2,7 +2,9 @@ require 'redis'
 
 Recommendable.configure do |config|
   # Recommendable's connection to Redis
-  config.redis = Redis.new(:host => 'localhost', :port => 6379, :db => 1)
+  # config.redis = Redis.new(:host => 'localhost', :port => 6379, :db => 1)
+  config.redis = Redis.new(:host => 'slimehead.redistogo.com', :password=>"35e0251c34a149376a8546712154548b" ,:port => 9429, :thread_safe => true)
+  # config.redis = Redis.new(:url => "redis://ilkerinanc:35e0251c34a149376a8546712154548b@slimehead.redistogo.com:9429/", :db => 1)
 
   # A prefix for all keys Recommendable uses
   config.redis_namespace = :recommendable
