@@ -22,14 +22,22 @@
 development:
   adapter: jdbcmysql
   username: root
-  password:
+<<<<<<< HEAD
+  password: 123
+=======
+  password: password
+>>>>>>> c2a7ea056cc4a67d7e020fc1f93044367b79a417
   host: localhost
   database: voicev4_development
 
 test:
   adapter: jdbcmysql
   username: root
-  password:
+<<<<<<< HEAD
+  password: 123
+=======
+  password: password
+>>>>>>> c2a7ea056cc4a67d7e020fc1f93044367b79a417
   host: localhost
   database: voicev4_test
   
