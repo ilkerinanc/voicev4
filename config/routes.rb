@@ -22,9 +22,6 @@ Voicev4::Application.routes.draw do
 
   resources :occasions
 
-  match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
-  match 'auth/failure', :to => redirect('/')
-
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
@@ -53,6 +50,9 @@ Voicev4::Application.routes.draw do
   
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'recommendations' => 'recommendations#index', :as => :recommendations
+
+  match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
+  match 'auth/failure', :to => redirect('/')
 
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
