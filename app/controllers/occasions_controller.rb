@@ -30,4 +30,8 @@ class OccasionsController < ApplicationController
     @occasion = Occasion.find(params[:id])
   end
 
+  def missed
+    @occasions = Occasion.where('time <= ?', Date.today - 1.days) #gecmis ise   
+  end
+
 end
