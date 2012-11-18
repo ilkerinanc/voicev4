@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :email, :allow_blank => true
   validates_format_of :username, :with => /^[-\w\._@]+$/i, :allow_blank => true, :message => "should only contain letters, numbers, or .-_@"
   validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
-  validates_presence_of :password, :on => :create
+  # validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4, :allow_blank => true
 
@@ -30,6 +30,40 @@ class User < ActiveRecord::Base
   def self.authenticate(login, pass)
     user = find_by_username(login) || find_by_email(login)
     return user if user && user.password_hash == user.encrypt_password(pass)
+  end
+
+  def self.from_omniauth(auth)
+    where(:email => auth.info.email).first_or_initialize.tap do |user|
+      if user.username.nil?
+        if auth.extra.raw_info.username.present?
+          user.username = auth.extra.raw_info.username
+        else
+          user.username = auth.info.email
+        end
+      end
+
+      if user.name.nil?
+        user.name = auth.info.first_name
+      end
+
+      if user.surname.nil?
+        user.surname = auth.info.last_name
+      end
+
+      if user.email.nil?
+        user.email = auth.info.email
+      end
+
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+
+      @graph = Koala::Facebook::API.new(user.oauth_token)
+      user.description = @graph.get_connections("me", "likes")
+
+      user.save!
+    end
   end
 
   def encrypt_password(pass)

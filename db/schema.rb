@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113181526) do
+ActiveRecord::Schema.define(:version => 20121118154712) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -74,14 +74,18 @@ ActiveRecord::Schema.define(:version => 20121113181526) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "name"
     t.string   "surname"
     t.text     "description"
     t.boolean  "in_trash"
     t.integer  "privilege"
     t.text     "current_work"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "oauth_expires_at"
+    t.string   "oauth_token"
   end
 
 end
