@@ -57,4 +57,6 @@ end
 
 gem "mocha", :group => :test
 gem 'faker'
+gem 'omniauth-facebook'
+gem 'koala'
 
