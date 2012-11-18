@@ -48,6 +48,7 @@ Voicev4::Application.routes.draw do
 
   match "tags" => 'tags#index'
   
+  match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'recommendations' => 'recommendations#index', :as => :recommendations
 
