@@ -1,6 +1,7 @@
 <div class="span4" align="center">
     <h2><%= link_to "#{@user.name} #{@user.surname}", user_show_path(:user => @user.id) %></h2>
-    <!-- <img src="img/profile/alp.kindiroglu.jpg" class="img-circle"/> -->
+    <!-- <img src="http://graph.facebook.com//picture?type=normal" class="img-circle"/> -->
+    <%= image_tag("http://graph.facebook.com/#{@user.uid}/picture?type=large", :class => "img-polaroid") %>
     <p class="muted"><small><%= @user.current_work %></small></p>
     <div class="btn-group">
         <button class="btn"><%= link_to "About", user_about_path(:user => @user.id) %></button>

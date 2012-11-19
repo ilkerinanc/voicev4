@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:user])
+    @connections = @user.friends
   end
 
   def contact

@@ -1,12 +1,18 @@
  <div class="row">
+    <%= render 'profile_top_center' %>
  	 <div class="span4">
+        <%= link_to "Connections (#{@user.friends.count}):", user_connections_path(:user => @user) %>
         <ul class="thumbnails">
-            <li>
-                <div class="thumbnail">
-                    <!-- <img src="img/profile/connections.jpg" alt=""> -->
-                    <%= link_to "Connections (#{@user.friends.count})", user_connections_path(:user => @user) %>
-                </div>
-            </li>
+            <% @connections.each do |c| %>
+                    <!-- <li> -->
+                        <!-- <div class="thumbnail"> -->
+                        <%= link_to image_tag("http://graph.facebook.com/#{c.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>c .id) %>
+                        <!-- </div> -->
+                    <!-- </li> -->
+            <% end %>
+        </ul>
+        <ul class="thumbnails">
+            
             <% if @user == current_user %>
             <li>
                 <div class="thumbnail">
@@ -23,7 +29,6 @@
             </li>
         </ul>
     </div>
-	<%= render 'profile_top_center' %>
 	 <div class="span4">
         <div class="well">
         <p class="text-success lead"><img src="img/profile/quote1.jpg"> Iyi tatiller herkese :) <img src="img/profile/quote2 copy.jpg"></p>
