@@ -1,31 +1,36 @@
  <div class="row">
     <%= render 'profile_top_center' %>
  	 <div class="span4">
-        <%= link_to "Connections (#{@user.friends.count}):", user_connections_path(:user => @user) %>
+        <% #link_to "Connections (#{@user.friends.count}):", user_connections_path(:user => @user) %>
+        <p>Connections:</p>
         <ul class="thumbnails">
             <% @connections.each do |c| %>
                     <!-- <li> -->
                         <!-- <div class="thumbnail"> -->
-                        <%= link_to image_tag("http://graph.facebook.com/#{c.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>c .id) %>
+                        <%= link_to image_tag("http://graph.facebook.com/#{c.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>c.id) %>
                         <!-- </div> -->
                     <!-- </li> -->
             <% end %>
         </ul>
+        <% if @user == current_user and @pending.count > 0%>
+            <!-- <p> Pending: </p> -->
+             <%= link_to "Pending (#{current_user.requested_friendships.count})", user_pending_path %>
+            <ul class="thumbnails">
+                 <% @pending.each do |p| %>
+                    <!-- <li> -->
+                        <!-- <div class="thumbnail"> -->
+                        <%= link_to image_tag("http://graph.facebook.com/#{p.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>p.id) %>
+                        <!-- </div> -->
+                    <!-- </li> -->
+                <% end %>
+            </ul>
+        <% end %>
         <ul class="thumbnails">
-            
-            <% if @user == current_user %>
             <li>
-                <div class="thumbnail">
-                    <!-- <img src="img/profile/connections.jpg" alt=""> -->
-                    <%= link_to "Pending (#{current_user.requested_friendships.count})", user_pending_path %>
-                </div>
-            </li>
-            <% end %>
-            <li>
-                <div class="thumbnail">
+                <!-- <div class="thumbnail"> -->
                     <!-- <img src="img/profile/interests.jpg" alt=""> -->
                     <%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %>
-                </div>
+                <!-- </div> -->
             </li>
         </ul>
     </div>

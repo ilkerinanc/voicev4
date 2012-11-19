@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:user])
     @connections = @user.friends
+    @pending = @user.requested_friendships.collect {|f| f.user }
   end
 
   def contact
