@@ -1,5 +1,23 @@
 Voicev4::Application.routes.draw do
 
+  #get "discussions/index"
+
+  #get "discussions/new"
+
+  #get "discussions/create"
+
+  #get "discussions/update"
+
+  #get "discussions/destroy"
+
+  #get "discussions/show"
+
+  #get "discussions/edit"
+
+  #get "discussion_posts/create"
+
+  #get "discussion_posts/destroy"
+
   # get "interest_posts/create"
 
   # get "interest_posts/destroy"
@@ -22,6 +40,7 @@ Voicev4::Application.routes.draw do
 
   resources :occasions
 
+  resources :discussions
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup

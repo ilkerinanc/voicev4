@@ -1,8 +1,44 @@
 Voicev4::Application.routes.draw do
 
+  #get "discussions/index"
+
+  #get "discussions/new"
+
+  #get "discussions/create"
+
+  #get "discussions/update"
+
+  #get "discussions/destroy"
+
+  #get "discussions/show"
+
+  #get "discussions/edit"
+
+  #get "discussion_posts/create"
+
+  #get "discussion_posts/destroy"
+
+  # get "interest_posts/create"
+
+  # get "interest_posts/destroy"
+
+  # get "taggings/create"
+
+  # get "taggings/destroy"
+
   # get "home/index"
 
-  root :to => "home#index"
+  root :to => "home#index" 
+
+  resources :sessions
+
+  resources :users
+
+  resources :interests
+
+  resources :friendships
+
+  resources :occasions
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -11,8 +47,6 @@ Voicev4::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
 
   match 'login' => 'sessions#new', :as => :login
-
-  # match 'profile' => 'users#profile', :as => :profile
 
   match 'user/pending' => 'friendships#approve', :as => :user_pending_post, :via => :post
   match 'user/pending' => 'users#pending', :as => :user_pending
@@ -24,16 +58,24 @@ Voicev4::Application.routes.draw do
 
   match 'users' => 'users#index', :as => :users_index
 
-  resources :sessions
-
-  resources :users
-
-  resources :interests
-
-  resources :friendships
+  match 'interests/:interest' => 'interests#show', :as => :interest
+  match 'interests/:interest/edit' => 'interests#show', :as => :interest_edit
 
   match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
+
+  match "tags" => 'tags#index'
+  
+  match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
+  match 'occasions/:occasion' => 'occasions#show', :as => :occasion
+  match 'recommendations' => 'recommendations#index', :as => :recommendations
+
+  match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
+  match 'auth/failure', :to => redirect('/')
+
+  # match 'occasions' => 'occasions#index', :as =>:occasions
+  # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
