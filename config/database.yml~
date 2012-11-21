@@ -25,8 +25,8 @@ development:
 <<<<<<< HEAD
   password: 123
 =======
-  password: password
->>>>>>> c2a7ea056cc4a67d7e020fc1f93044367b79a417
+  password: 
+>>>>>>> 3e884abc6d48a47590ad176ec313c1b980d7913f
   host: localhost
   database: voicev4_development
 
@@ -36,13 +36,13 @@ test:
 <<<<<<< HEAD
   password: 123
 =======
-  password: 123
->>>>>>> c2a7ea056cc4a67d7e020fc1f93044367b79a417
+  password: 
+>>>>>>> 3e884abc6d48a47590ad176ec313c1b980d7913f
   host: localhost
   database: voicev4_test
   
 production:
   adapter: jdbcmysql
   username: project4
-  password: 14dO0D
+  password: 123
   url: jdbc:mysql://titan.cmpe.boun.edu.tr:3306/database4
