@@ -1,48 +1,46 @@
- <div class="row">
+<div class="row">
     <%= render 'profile_top_center' %>
  	 <div class="span4">
-        <% #link_to "Connections (#{@user.friends.count}):", user_connections_path(:user => @user) %>
-        <p>Connections:</p>
-        <ul class="thumbnails">
-            <% @connections.each do |c| %>
-                    <!-- <li> -->
-                        <!-- <div class="thumbnail"> -->
-                        <%= link_to image_tag("http://graph.facebook.com/#{c.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>c.id) %>
-                        <!-- </div> -->
-                    <!-- </li> -->
-            <% end %>
-        </ul>
+        <br>
+        <% if current_user.friends_with?(@user) %>
+            <button type="button" class="btn btn-success disabled" disabled="disabled">Connected!</button>
+        <% elsif current_user.friend_request_pending?(@user) %>
+            <button type="button" class="btn btn-primary disabled" disabled="disabled">Approve Connection Request</button>
+        <% else %>
+        <% end %>
+        <div class="thumbnails">
+            <p>Connections:</p>
+            <!-- <ul class="thumbnails"> -->
+                <% @connections.each do |c| %>
+                    <%= link_to image_tag("http://graph.facebook.com/#{c.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>c.id) %>
+                <% end %>
+            <!-- </ul> -->
+        </div>
+
         <% if @user == current_user and @pending.count > 0%>
-            <!-- <p> Pending: </p> -->
              <%= link_to "Pending (#{current_user.requested_friendships.count})", user_pending_path %>
             <ul class="thumbnails">
                  <% @pending.each do |p| %>
-                    <!-- <li> -->
-                        <!-- <div class="thumbnail"> -->
                         <%= link_to image_tag("http://graph.facebook.com/#{p.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>p.id) %>
-                        <!-- </div> -->
-                    <!-- </li> -->
                 <% end %>
             </ul>
         <% end %>
         <ul class="thumbnails">
             <li>
-                <!-- <div class="thumbnail"> -->
-                    <!-- <img src="img/profile/interests.jpg" alt=""> -->
-                    <%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %>
-                <!-- </div> -->
+                <%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %>
             </li>
         </ul>
     </div>
 	 <div class="span4">
-        <div class="well">
+        <%= @friendship_score %>
+        <!-- <div class="well">
         <p class="text-success lead"><img src="img/profile/quote1.jpg"> Iyi tatiller herkese :) <img src="img/profile/quote2 copy.jpg"></p>
             <form class="form-inline">
                 <div class="input-append">
                     <input id="appendedInputButton" type="text" placeholder="Raise Your Voice!"><button class="btn" type="button">Go!</button></input>
                 </div>
             </form>
-		</div>
+		</div> -->
 	</div>
 </div>
 <hr class="bs-docs-separator"></hr>

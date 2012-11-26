@@ -2,6 +2,9 @@ OmniAuth.config.logger = Rails.logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, "364946123599171", "f977999f804b8fd03061dbae600a6986", {:client_options => {:ssl => {:ca_file => "certificate/certs"}}}
+  # configure do |config|
+  #   config.path_prefix = '/auth'
+  # end
 end
 
 Koala.http_service.http_options = {

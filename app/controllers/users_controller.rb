@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:user])
     @connections = @user.friends
     @pending = @user.requested_friendships.collect {|f| f.user }
+    @friendship_score = friendship_score
   end
 
   def contact
@@ -60,6 +61,14 @@ class UsersController < ApplicationController
   def interests
     @user = User.find(params[:user])
     @interests = User.find(params[:user]).interests
+  end
+
+  private
+
+  def friendship_score
+    f_ratio = (current_user.friends_in_common(@user).count.to_f / current_user.friends.count.to_f) * 10
+    i_ratio = (current_user.interests_in_common(@user).count.to_f / current_user.interests.count.to_f) * 10
+    (f_ratio + i_ratio) / 2
   end
 
 end

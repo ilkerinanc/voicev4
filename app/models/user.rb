@@ -78,12 +78,28 @@ class User < ActiveRecord::Base
     return self.pending_friends.include?(user)
   end
 
+  def friend_request_pending?(user)
+    return self.requested_friendships.include?(user)
+  end
+
   def friends_with?(user)
     return self.friends.include?(user)
   end
 
   def subscribed?(interest)
     return self.interests.include?(interest)
+  end
+
+  def friends_in_common(user)
+    return self.friends & user.friends
+  end
+
+  def interests_in_common(user)
+    return self.interests & user.interests
+  end
+
+  def friendship_score(user)
+    return (self.friends_in_common(user).count / self.friends.count).to_f
   end
 
   private

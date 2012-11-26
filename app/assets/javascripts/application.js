@@ -15,7 +15,7 @@
 //= require_tree .
 
 $(function () {
-  $('#interest_tag_tokens').tokenInput('/tags.json', { 
+  $('#interest_tag_tokens').tokenInput('/voicev4d/tags.json', { 
     crossDomain: false,
     prePopulate: $('#interest_tag_tokens').data('load'),
     theme: "facebook"
