@@ -1,0 +1,12 @@
+<% title "New Voice" %>
+
+<%= form_for @voice do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+

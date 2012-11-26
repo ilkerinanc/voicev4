@@ -1,5 +1,7 @@
 Voicev4::Application.routes.draw do
 
+  resources :voices
+
   #get "discussions/index"
 
   #get "discussions/new"
