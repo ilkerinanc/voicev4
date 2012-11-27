@@ -4,6 +4,14 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
+  <p>
+    <%= f.label :start_time %><br />
+    <%= f.date_select :start_time %>
+  </p>
+  <p>
+    <%= f.label :finish_time %><br />
+    <%= f.date_select :finish_time%>
+  </p>
   <%= f.fields_for :questions do |builder| %>
     <%= render "question_fields", :f => builder %>
   <% end %>

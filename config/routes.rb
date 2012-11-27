@@ -98,6 +98,8 @@ Voicev4::Application.routes.draw do
 
   match 'surveys/:survey' => 'surveys#show', :as => :survey
 
+  match 'discussions/:discussion' => 'discussions#show', :as => :discussion
+
   match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
   match 'auth/failure', :to => redirect('/')
 
