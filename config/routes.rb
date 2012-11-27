@@ -1,5 +1,21 @@
 Voicev4::Application.routes.draw do
 
+  #get "event_interests/create"
+
+  #get "event_interests/destroy"
+
+  #get "events/index"
+
+  #get "events/new"
+
+  #get "events/create"
+
+  #get "events/show"
+
+  #get "events/destroy"
+
+  #get "events/edit"
+
   #get "discussions/index"
 
   #get "discussions/new"
@@ -29,6 +45,10 @@ Voicev4::Application.routes.draw do
   # get "home/index"
 
   root :to => "home#index" 
+
+  resources :events
+
+  resources :event_interests
 
   resources :sessions
 
@@ -73,6 +93,12 @@ Voicev4::Application.routes.draw do
 
   match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
   match 'auth/failure', :to => redirect('/')
+
+  match 'events' => 'events#index', :as => :events_index
+  match 'events/:event' => 'events#show', :as => :event
+  match 'events/:event/destroy' => 'events#destroy', :as => :event_destroy
+  match 'events/:event/show' => 'events#show', :as => :event_show
+  match 'events/:event/edit' => 'events#edit', :as => :event_edit
 
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion

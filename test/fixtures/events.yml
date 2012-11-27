@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  time: 2012-11-27 17:01:08
+  place: MyString
+  creator_id: 1
+  in_trash: false
+
+two:
+  title: MyString
+  description: MyText
+  time: 2012-11-27 17:01:08
+  place: MyString
+  creator_id: 1
+  in_trash: false

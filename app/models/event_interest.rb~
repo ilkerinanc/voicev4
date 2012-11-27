@@ -1,0 +1,6 @@
+class EventInterest < ActiveRecord::Base
+  attr_accessible :event_id, :interest_id
+  
+  belongs_to :interest
+  belongs_to :events, :class_name => "Event", :foreign_key => "event_id"
+end

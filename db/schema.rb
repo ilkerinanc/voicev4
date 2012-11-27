@@ -11,7 +11,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118154712) do
+ActiveRecord::Schema.define(:version => 20121127170749) do
+
+  create_table "discussion_posts", :force => true do |t|
+    t.text     "content"
+    t.boolean  "in_trash"
+    t.integer  "discussion_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "discussions", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "in_trash"
+    t.integer  "creator_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "event_interests", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "interest_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "time"
+    t.string   "place"
+    t.integer  "creator_id"
+    t.boolean  "in_trash"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"

@@ -23,7 +23,7 @@ $(function () {
 });
 
 $(function () {
-  $('#event_interest_tokens').tokenInput('/interests.json', { 
+  $('#event_interest_tokens').tokenInput('/events.json', { 
     crossDomain: false,
     prePopulate: $('#event_interest_tokens').data('load'),
     theme: "facebook"
