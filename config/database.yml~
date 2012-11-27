@@ -22,19 +22,19 @@
 development:
   adapter: jdbcmysql
   username: root
-  password: 123
+  password: 
   host: localhost
   database: voicev4_development
 
 test:
   adapter: jdbcmysql
   username: root
-  password: 123
+  password: 
   host: localhost
   database: voicev4_test
   
 production:
   adapter: jdbcmysql
   username: project4
-  password: 
+  password: 14dO0D
   url: jdbc:mysql://titan.cmpe.boun.edu.tr:3306/database4

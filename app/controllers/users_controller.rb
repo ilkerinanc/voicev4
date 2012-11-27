@@ -37,6 +37,8 @@ class UsersController < ApplicationController
     @connections = @user.friends
     @pending = @user.requested_friendships.collect {|f| f.user }
     @friendship_score = friendship_score
+    @voice  = current_user.voices.build
+    @voices = @user.voices.order("created_at DESC")
   end
 
   def contact

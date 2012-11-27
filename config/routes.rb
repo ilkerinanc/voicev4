@@ -61,6 +61,11 @@ Voicev4::Application.routes.draw do
   resources :occasions
 
   resources :discussions
+  
+  resources :voices
+
+  resources :surveys
+
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
@@ -91,6 +96,8 @@ Voicev4::Application.routes.draw do
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'recommendations' => 'recommendations#index', :as => :recommendations
 
+  match 'surveys/:survey' => 'surveys#show', :as => :survey
+
   match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
   match 'auth/failure', :to => redirect('/')
 
@@ -99,7 +106,8 @@ Voicev4::Application.routes.draw do
   match 'events/:event/destroy' => 'events#destroy', :as => :event_destroy
   match 'events/:event/show' => 'events#show', :as => :event_show
   match 'events/:event/edit' => 'events#edit', :as => :event_edit
-
+  match 'friendships/destroy' => 'friendships#destroy', :as => :friendship_destroy, :via => :post
+  
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
 

@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :subscriptions, :foreign_key => "user_id", :dependent => :destroy
   has_many :interests, :through => :subscriptions, :source => :interest
 
+  has_many :voices
+
   # new columns need to be added here to be writable through mass assignment
   attr_accessible :username, :email, :password, :password_confirmation, :name, :surname, :description, :current_work
 
@@ -79,7 +81,7 @@ class User < ActiveRecord::Base
   end
 
   def friend_request_pending?(user)
-    return self.requested_friendships.include?(user)
+    return self.requested_friendships.collect(&:user_id).include?(user.id)
   end
 
   def friends_with?(user)

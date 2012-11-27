@@ -1,144 +1,90 @@
-<div class="row">
-    <%= render 'profile_top_center' %>
- 	 <div class="span4">
+<div class="span4">
+    <div class="row">
+        <%= render 'profile_top_center' %>
+    </div>
+    <div class="row">
         <br>
-        <% if current_user.friends_with?(@user) %>
-            <button type="button" class="btn btn-success disabled" disabled="disabled">Connected!</button>
-        <% elsif current_user.friend_request_pending?(@user) %>
-            <button type="button" class="btn btn-primary disabled" disabled="disabled">Approve Connection Request</button>
-        <% else %>
-        <% end %>
-        <div class="thumbnails">
-            <p>Connections:</p>
-            <!-- <ul class="thumbnails"> -->
-                <% @connections.each do |c| %>
-                    <%= link_to image_tag("http://graph.facebook.com/#{c.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>c.id) %>
+        <div align="center">
+            <% if current_user.friends_with?(@user) %>
+                <h4>You are friends!</h4>
+                <%= link_to "Disconnect", friendship_destroy_path(:friendship_id => Friendship.find_by_user_id_and_friend_id(@user.id,current_user.id).id), :method => :post, :class=>'btn btn-danger btn-mini' %>
+            <% elsif current_user.friend_request_pending?(@user) %>
+                <%= link_to "Approve", user_pending_post_path(:friendship_id => Friendship.find_by_user_id_and_friend_id(@user.id,current_user.id).id), :method => :post, :class=>'btn btn-success' %>
+            <% else %>
+                <% unless @user == current_user %>
+                    <%= link_to "Connect", friendships_path(:friend_id => @user), :method => :post, :class => 'btn btn-primary' %>
                 <% end %>
-            <!-- </ul> -->
+            <% end %>
         </div>
-
+        <div align="center">
+            <h4>Connections:</h4>
+            <% @connections.each do |c| %>
+                <%= link_to image_tag("http://graph.facebook.com/#{c.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>c.id) %>
+            <% end %>
+        </div>
         <% if @user == current_user and @pending.count > 0%>
-             <%= link_to "Pending (#{current_user.requested_friendships.count})", user_pending_path %>
-            <ul class="thumbnails">
+            <div align="center">
+                <h4><%= link_to "Pending (#{current_user.requested_friendships.count})", user_pending_path %></h4>
                  <% @pending.each do |p| %>
                         <%= link_to image_tag("http://graph.facebook.com/#{p.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>p.id) %>
                 <% end %>
-            </ul>
+            </div>
         <% end %>
+        <br>
+        <div align="center">
+            <h4><%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %></h4>
+        </div>
+    </div>
+    <!-- <div class="span4">
+        <h3><em>Social Feed</em></h3>
         <ul class="thumbnails">
             <li>
-                <%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %>
+                <div class="thumbnail">
+                    <img src="img/profile/foursquare.jpg" alt="">
+                        <h4>Foursquare check-ins</h4>
+                        <p>Find out where Alp is.</p>
+                        </div>
+            </li>
+            <li>
+                <div class="thumbnail">
+                    <img src="img/profile/instagram copy.jpg" alt="">
+                        <h4>Instagram Pictures</h4>
+                        </div>
+            </li>
+            <li>
+                <div class="thumbnail">
+                    <img src="img/profile/twitter copy.jpg" alt="">
+                        <h4>Tweets</h4>
+                        </div>
             </li>
         </ul>
-    </div>
-	 <div class="span4">
-        <%= @friendship_score %>
-        <!-- <div class="well">
-        <p class="text-success lead"><img src="img/profile/quote1.jpg"> Iyi tatiller herkese :) <img src="img/profile/quote2 copy.jpg"></p>
-            <form class="form-inline">
-                <div class="input-append">
-                    <input id="appendedInputButton" type="text" placeholder="Raise Your Voice!"><button class="btn" type="button">Go!</button></input>
-                </div>
-            </form>
-		</div> -->
-	</div>
+    </div> -->
 </div>
-<hr class="bs-docs-separator"></hr>
 
-<div class="row">
-    <div class="span8">
-        <h3><em>Activity Feed</em></h3>
-        <div style="height: 75px" id="activity_feed_item">
-            <a href="#">
-                <img align="left" src="img/profile/chess.jpg" class="img-circle">
-                    </a>
-            <a href="#">Alp Kındıroğlu</a> created an Interest page named <a href="#">Satranc Sevenler</a>.
-        </div>
-        <hr class="bs-docs-separator">
-        <div style="height: 75px" id="activity_feed_item">
-            <p>
-            <a href="#">
-                <img align="left" src="img/profile/galatasaray.jpg" class="img-circle">
-                    </a>
-            <a href="#">Alp Kındıroğlu</a> posted something in <a href="#">Galatasaray Fanlari</a>.
-            </p>
-        </div>
-        <hr class="bs-docs-separator">
-        <div style="height: 75px" id="activity_feed_item">
-            <p>
-            <a href="#">
-                <img align="left" src="img/profile/voice.jpg" class="img-circle">
-                    </a>
-            <a href="#">Alp Kındıroğlu</a> raised his voice as " <strong>Iyi tatiller herkese</strong> :) ".
-            </p>
-        </div>
-        <hr class="bs-docs-separator">
-        <div style="height: 75px" id="activity_feed_item">
-            <p>
-            <a href="#">
-                <img align="left" src="http://im.rediff.com/us/pix/04image01.jpg" class="img-circle">
-                    </a>
-            <a href="#">Alp Kındıroğlu</a> created a connection with <a href="#">Johnie Walker</a>.
-            </p>
-        </div>
-        <hr class="bs-docs-separator">
-        <div style="height: 75px" id="activity_feed_item">
-            <a href="#">
-                <img align="left" src="img/profile/chess.jpg" class="img-circle">
-                    </a>
-            <a href="#">Alp Kındıroğlu</a> created an Interest page named <a href="#">Satranc Sevenler</a>.
-        </div>
-        <hr class="bs-docs-separator">
-        <div style="height: 75px" id="activity_feed_item">
-            <p>
-            <a href="#">
-                <img align="left" src="img/profile/galatasaray.jpg" class="img-circle">
-                    </a>
-            <a href="#">Alp Kındıroğlu</a> posted something in <a href="#">Galatasaray Fanlari</a>.
-            </p>
-        </div>
-        <hr class="bs-docs-separator">
-        <div style="height: 75px" id="activity_feed_item">
-            <p>
-            <a href="#">
-                <img align="left" src="img/profile/voice.jpg" class="img-circle">
-                    </a>
-            <a href="#">Alp Kındıroğlu</a> raised his voice as " <strong>Iyi tatiller herkese</strong> :) ".
-            </p>
-        </div>
-        <hr class="bs-docs-separator">
-        <div style="height: 75px" id="activity_feed_item">
-            <p>
-            <a href="#">
-                <img align="left" src="http://im.rediff.com/us/pix/04image01.jpg" class="img-circle">
-                    </a>
-            <a href="#">Alp Kındıroğlu</a> created a connection with <a href="#">Johnie Walker</a>.
-            </p>
-        </div>
-        <hr class="bs-docs-separator">
-    </div>
-    <div class="span4">
-        <h3><em>Social Feed</em></h3>
-            <ul class="thumbnails">
-                <li>
-                    <div class="thumbnail">
-                        <img src="img/profile/foursquare.jpg" alt="">
-                            <h4>Foursquare check-ins</h4>
-                            <p>Find out where Alp is.</p>
-                            </div>
-                </li>
-                <li>
-                    <div class="thumbnail">
-                        <img src="img/profile/instagram copy.jpg" alt="">
-                            <h4>Instagram Pictures</h4>
-                            </div>
-                </li>
-                <li>
-                    <div class="thumbnail">
-                        <img src="img/profile/twitter copy.jpg" alt="">
-                            <h4>Tweets</h4>
-                            </div>
-                </li>
-            </ul>
+<div class="span7">
+    <div class="row">
+        <h3><em>Voices</em></h3>
+        <% if @user == current_user%>
+            <!-- RAISE YOUR VOICE INPUT FIELD -->
+            <%= form_for(@voice, :html => { :class => "form-inline"} ) do |f| %>
+                <div class="input-append">
+                    <%= f.text_field :content, :placeholder => "Raise your Voice!", :class =>"span6", :id =>"appendedInputButton"%>
+                    <%= f.submit "Post", :class => "btn" %>
+                </div>
+            <% end %>
+        <% end %>
+
+        <% @voices.each do |v| %>
+            <div class="row"  id="activity_feed_item">
+                <div class="span1" align="center">
+                    <%= link_to image_tag("http://graph.facebook.com/#{current_user.uid}/picture?type=square", :class => "img-circle"), user_show_path(:user =>v.user_id) %>
+                </div>
+                <div class="span6">
+                    <a href=<% user_show_path(:user => current_user) %>><%= "#{current_user.name} #{current_user.surname}" %></a> <%= v.content %>
+                    <p class="muted"><small><%= time_ago_in_words(v.created_at) %> ago</small></p>
+                </div>
+            </div>
+            <hr class="bs-docs-separator">
+        <% end %>
     </div>
 </div>

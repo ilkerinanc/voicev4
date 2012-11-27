@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127170749) do
+ActiveRecord::Schema.define(:version => 20121127204808) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "question_id"
+    t.string   "content"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "discussion_posts", :force => true do |t|
     t.text     "content"
@@ -85,11 +91,24 @@ ActiveRecord::Schema.define(:version => 20121127170749) do
     t.date     "time"
   end
 
+  create_table "questions", :force => true do |t|
+    t.integer  "survey_id"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "interest_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "surveys", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "taggings", :force => true do |t|
@@ -123,6 +142,13 @@ ActiveRecord::Schema.define(:version => 20121127170749) do
     t.string   "uid"
     t.datetime "oauth_expires_at"
     t.string   "oauth_token"
+  end
+
+  create_table "voices", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
 end
