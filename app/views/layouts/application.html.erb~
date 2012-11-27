@@ -52,7 +52,7 @@
                 </li> -->
                 
                 <li><%= link_to "Interests", interests_path %></li>
-
+		<li><%= link_to "Events", events_path %></li>
                 <li>
                   <%= link_to(occasions_path) do %>
                     <% count = Occasion.where('created_at > ?', 1.hour.ago).count %>

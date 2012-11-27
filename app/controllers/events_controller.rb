@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class EventsController < ApplicationController
   def index
 	@events = Event.all
@@ -30,7 +31,8 @@ class EventsController < ApplicationController
   end
 
   def show
-	@event = Event.find(params[:id])
+	puts (params[:id])
+	@event = Event.find(1)
   end
 
   def destroy
