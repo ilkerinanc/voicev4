@@ -15,9 +15,20 @@
 //= require_tree .
 
 $(function () {
-  $('#interest_tag_tokens').tokenInput('/voicev4d/tags.json', { 
+  $('#interest_tag_tokens').tokenInput('/tags.json', { 
     crossDomain: false,
     prePopulate: $('#interest_tag_tokens').data('load'),
     theme: "facebook"
   });
 });
+
+function remove_fields(link){
+	$(link).previous("input[type=hidden]").value = "1";
+	$(link).up(".fields").hide();
+}
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).parent().before(content.replace(regexp, new_id));
+}
