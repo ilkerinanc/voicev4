@@ -1,5 +1,6 @@
 Voicev4::Application.routes.draw do
 
+
   #get "discussions/index"
 
   #get "discussions/new"
@@ -41,6 +42,9 @@ Voicev4::Application.routes.draw do
   resources :occasions
 
   resources :discussions
+
+  resources :surveys
+
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
@@ -70,6 +74,8 @@ Voicev4::Application.routes.draw do
   match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'recommendations' => 'recommendations#index', :as => :recommendations
+
+  match 'surveys/:survey' => 'surveys#show', :as => :survey
 
   match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
   match 'auth/failure', :to => redirect('/')
