@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   end
 
   def friend_request_pending?(user)
-    return self.requested_friendships.include?(user)
+    return self.requested_friendships.collect(&:user_id).include?(user.id)
   end
 
   def friends_with?(user)

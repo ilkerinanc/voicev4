@@ -4,33 +4,38 @@
     </div>
     <div class="row">
         <br>
-        <% if current_user.friends_with?(@user) %>
-            <button type="button" class="btn btn-success disabled" disabled="disabled">Connected!</button>
-        <% elsif current_user.friend_request_pending?(@user) %>
-            <button type="button" class="btn btn-primary disabled" disabled="disabled">Approve Connection Request</button>
-        <% else %>
-        <% end %>
-        <div class="thumbnails">
-            <p>Connections:</p>
-            <!-- <ul class="thumbnails"> -->
-                <% @connections.each do |c| %>
-                    <%= link_to image_tag("http://graph.facebook.com/#{c.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>c.id) %>
+        <div align="center">
+            <% if current_user.friends_with?(@user) %>
+                <h4>You are friends!</h4>
+                <%= link_to "Disconnect", friendship_destroy_path(:friendship_id => Friendship.find_by_user_id_and_friend_id(@user.id,current_user.id).id), :method => :post, :class=>'btn btn-danger btn-mini' %>
+            <% elsif current_user.friend_request_pending?(@user) %>
+                <%= link_to "Approve", user_pending_post_path(:friendship_id => Friendship.find_by_user_id_and_friend_id(@user.id,current_user.id).id), :method => :post, :class=>'btn btn-success' %>
+            <% else %>
+                <% unless @user == current_user %>
+                    <%= link_to "Connect", friendships_path(:friend_id => @user), :method => :post, :class => 'btn btn-primary' %>
                 <% end %>
-            <!-- </ul> -->
+            <% end %>
+        </div>
+        <div align="center">
+            <h4>Connections:</h4>
+            <% @connections.each do |c| %>
+                <%= link_to image_tag("http://graph.facebook.com/#{c.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>c.id) %>
+            <% end %>
         </div>
         <% if @user == current_user and @pending.count > 0%>
-             <%= link_to "Pending (#{current_user.requested_friendships.count})", user_pending_path %>
-            <ul class="thumbnails">
+            <div align="center">
+                <h4><%= link_to "Pending (#{current_user.requested_friendships.count})", user_pending_path %></h4>
                  <% @pending.each do |p| %>
                         <%= link_to image_tag("http://graph.facebook.com/#{p.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>p.id) %>
                 <% end %>
-            </ul>
+            </div>
         <% end %>
-        <div class="thumbnails">
-            <%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %>
+        <br>
+        <div align="center">
+            <h4><%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %></h4>
         </div>
     </div>
-    <div class="span4">
+    <!-- <div class="span4">
         <h3><em>Social Feed</em></h3>
         <ul class="thumbnails">
             <li>
@@ -53,7 +58,7 @@
                         </div>
             </li>
         </ul>
-    </div>
+    </div> -->
 </div>
 
 <div class="span7">
@@ -78,8 +83,6 @@
                     <a href=<% user_show_path(:user => current_user) %>><%= "#{current_user.name} #{current_user.surname}" %></a> <%= v.content %>
                     <p class="muted"><small><%= time_ago_in_words(v.created_at) %> ago</small></p>
                 </div>
-               
-                
             </div>
             <hr class="bs-docs-separator">
         <% end %>

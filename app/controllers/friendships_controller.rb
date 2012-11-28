@@ -3,14 +3,14 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id], :approved => false)
     if @friendship.save
-      redirect_to user_show_path(:user => current_user.id), :notice => "Connect request sent to #{User.find( params[:friend_id]).username}!"
+      redirect_to user_show_path(:user => current_user.id), :notice => "Connect request sent to #{User.find(params[:friend_id]).name} #{User.find(params[:friend_id]).surname}!"
     else
       render :action => 'new'
     end
   end
 
   def destroy
-    @friendship = current_user.friendships.find(params[:id])
+    @friendship = Friendship.find(params[:friendship_id])
     # Recommendable methods begin
     if @friendship.approved?
       if current_user.id == @friendship.user.id
@@ -24,7 +24,7 @@ class FriendshipsController < ApplicationController
     # Recommendable methods end
 
     @friendship.destroy
-    redirect_to root_url, :notice => "Successfully destroyed connection."
+    redirect_to user_show_path(:user => current_user), :notice => "Successfully destroyed connection."
   end
 
   def approve
@@ -35,7 +35,7 @@ class FriendshipsController < ApplicationController
       current_user.like(@friendship.user)
       @friendship.user.like(current_user)
       # Recommendable methods end
-      redirect_to user_pending_path, :notice => "Connection approved!"
+      redirect_to user_show_path(:user => current_user), :notice => "Connection approved!"
     end
   end
 
