@@ -39,6 +39,8 @@ class InterestsController < ApplicationController
 
   def show
     @interest = Interest.find(params[:id])
+    @events = EventInterest.where(interest_id = 2).collect {|ei| ei.event}
+    # @events = EventInterest.where(interest_id: params[:id])
   end
 
   def edit
