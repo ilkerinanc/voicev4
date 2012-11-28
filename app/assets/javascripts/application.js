@@ -31,6 +31,14 @@ $(function () {
   });
 });
 
+$(function () {
+  $('#survey_interest_tokens').tokenInput('/interests.json', { 
+    crossDomain: false,
+    prePopulate: $('#survey_interest_tokens').data('load'),
+    theme: "facebook"
+  });
+});
+
 function remove_fields(link){
 	$(link).previous("input[type=hidden]").value = "1";
 	$(link).up(".fields").hide();
