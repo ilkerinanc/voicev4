@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require bootstrap-datepicker
 
 $(function () {
   $('#interest_tag_tokens').tokenInput('/tags.json', { 
