@@ -1,5 +1,33 @@
 Voicev4::Application.routes.draw do
 
+  #get "discussions/index"
+
+  #get "discussions/new"
+
+  #get "discussions/create"
+
+  #get "discussions/update"
+
+  #get "discussions/destroy"
+
+  #get "discussions/show"
+
+  #get "discussions/edit"
+
+  #get "discussion_posts/create"
+
+  #get "discussion_posts/destroy"
+
+  # get "interest_posts/create"
+
+  # get "interest_posts/destroy"
+
+  # get "taggings/create"
+
+  # get "taggings/destroy"
+
+  # get "home/index"
+
   root :to => "home#index" 
 
   resources :sessions
@@ -15,6 +43,8 @@ Voicev4::Application.routes.draw do
   resources :discussions
   
   resources :voices
+
+  resources :surveys
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -45,6 +75,8 @@ Voicev4::Application.routes.draw do
   match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'recommendations' => 'recommendations#index', :as => :recommendations
+
+  match 'surveys/:survey' => 'surveys#show', :as => :survey
 
   match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
   match 'auth/failure', :to => redirect('/')
