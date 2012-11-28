@@ -16,9 +16,4 @@ class Interest < ActiveRecord::Base
   def tag_tokens=(tokens)
   	self.tag_ids = Tag.ids_from_tokens(tokens)
   end
-
-  def self.ids_from_tokens(tokens)
-  		tokens.gsub!(/<<<(.+?)>>>/) { create!(:name => $1).id }
-  		tokens.split(',')
-  end
 end

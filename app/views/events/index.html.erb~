@@ -1,0 +1,109 @@
+<%= link_to "Create an Event", new_event_path, :class=>'btn btn-primary' %>
+
+<div class="container">
+      <div class="row">
+        <div class="span6">
+	 <h2>Your Events</h2>
+	  <form class="form-inline">
+           <% @myEvents.each do |myEvent| %>
+	   <div  id="activity_feed_item">
+            <a href="#">
+	     <%= link_to "#{myEvent.title}", event_show_path(:event => myEvent.id) %>
+            </a> created an Event named 
+            <a href="#">
+             <%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %>
+            </a>.
+	    <table>
+             <tr>
+	      <td align="left">
+               <label>Date: <%= link_to "#{myEvent.time}", event_path(:event => myEvent.id) %></label>
+              </td> <td align="left"> 
+	     </tr>
+	     <tr>
+              <td align="left">
+               <label>Place: <%= link_to "#{myEvent.place}", event_path(:event => myEvent.id) %></label>
+              </td> 
+              <td align="left"> 
+             </tr>
+	     <tr>
+              <td align="left">
+               <label>Description: <%= link_to "#{myEvent.description}", event_path(:event => myEvent.id) %></label>
+              </td>
+	     </tr>
+	     <tr>
+	      <td> <%= link_to 'delete', event_destroy_path(myEvent), :method => :post %>
+	      <td align="left">
+	       <div class="btn-group" align="right">
+                <button class="btn">Join</button>
+  		<button class="btn">Maybe</button>
+  		<button class="btn">Invite</button>
+		<button class="btn dropdown-toggle" data-toggle="dropdown">
+		 <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+		  <!-- dropdown menu links -->
+		</ul>
+	       </div>
+	      </td>
+	     </tr>
+	    </table>
+           </div>
+           <hr class="bs-docs-separator">  
+	   <% end %>
+        </form>
+     </div>
+    </div>
+	<!-- SECOND ROW WHICH SHOWS ALL RELATED EVENTS -->
+	<div class="row">
+         <div class="span6">
+	  <h2>All Events</h2>
+	   <form class="form-inline">
+	    <% @events.each do |event| %>
+	   <div  id="activity_feed_item">
+            <a href="#">
+	     <%= link_to "#{event.title}", event_path(:event => event.id) %>
+            </a> created an Event named 
+            <a href="#">
+             <%= link_to "#{event.title}", event_path(:event => event.id) %>
+            </a>.
+	    <table>
+             <tr>
+	      <td align="left">
+               <label>Date: <%= link_to "#{event.time}", event_path(:event => event.id) %></label>
+              </td> <td align="left"> 
+	     </tr>
+	     <tr>
+              <td align="left">
+               <label>Place: <%= link_to "#{event.place}", event_path(:event => event.id) %></label>
+              </td> 
+              <td align="left"> 
+             </tr>
+	     <tr>
+              <td align="left">
+               <label>Description: <%= link_to "#{event.description}", event_path(:event => event.id) %></label>
+              </td>
+	     </tr>
+	     <tr>
+	      <td> <%= link_to 'delete', event_destroy_path(event), :method => :post, :class=>'btn btn-danger btn-mini'%>
+	      <td align="left">
+	       <div class="btn-group" align="right">
+                <button class="btn">Join</button>
+  		<button class="btn">Maybe</button>
+  		<button class="btn">Invite</button>
+		<button class="btn dropdown-toggle" data-toggle="dropdown">
+		 <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+		  <!-- dropdown menu links -->
+		</ul>
+	       </div>
+	      </td>
+	     </tr>
+	    </table>
+           </div>
+           <hr class="bs-docs-separator">  
+	   <% end %>
+	   </from>
+	  </div>
+	 </div>
+   </div>

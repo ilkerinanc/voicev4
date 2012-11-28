@@ -148,5 +148,10 @@
         <p>&copy; Company 2012</p>
       </footer>
     </div>
+<<<<<<< HEAD:app/views/layouts/application.html.erb
+</body>
+</html>
+=======
     </body>
-</html> 
+</html>
+>>>>>>> 197373aa6df2ba0debb829ac4f256d1f7395555e:app/views/layouts/application.html.erb

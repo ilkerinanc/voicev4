@@ -1,6 +1,6 @@
 class InterestsController < ApplicationController
   def index
-	@interests = Interest.where("name like ?", "%#{params[:q]}%")
+	@interests = Interest.all
 	respond_to do |format|
 		format.html
 		format.json {render :json => @interests.map(&:attributes)}
