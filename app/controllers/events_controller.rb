@@ -1,8 +1,8 @@
 # encoding: UTF-8
 class EventsController < ApplicationController
   def index
-	@events = Event.all
-	@myEvents = Event.where(:creator_id => current_user.id)
+  	@events = Event.all
+  	@myEvents = Event.where(:creator_id => current_user.id)
   end
 
   def new
@@ -19,27 +19,27 @@ class EventsController < ApplicationController
   end
 
   def create
-	@event = Event.new(params[:event])
+    @event = Event.new(params[:event])
     	@event.creator_id = current_user.id
     	@event.in_trash = false
     	if @event.save
-     	 redirect_to events_url, :notice => "Successfully created event."
-   	 else
-   	   render :action => 'new'
-	 end
-  	end
+     	  redirect_to events_url, :notice => "Successfully created event."
+   	  else
+   	    render :action => 'new'
+	    end
   end
 
   def show
-	puts (params[:id])
-	@event = Event.find(1)
+	 # puts (params[:id])
+    @event = Event.find(params[:id])
   end
 
   def destroy
-	Event.find(params[:event]).destroy
-    	redirect_to events_url, :notice => "Event successfully deleted."
+    Event.find(params[:event]).destroy
+    redirect_to events_url, :notice => "Event successfully deleted."
   end
 
   def edit
-	@event = Event.find(params[:id])
+    @event = Event.find(params[:id])
   end
+end

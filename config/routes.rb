@@ -106,7 +106,7 @@ Voicev4::Application.routes.draw do
   match 'events' => 'events#index', :as => :events_index
   match 'events/:event' => 'events#show', :as => :event
   match 'events/:event/destroy' => 'events#destroy', :as => :event_destroy
-  match 'events/:event/show' => 'events#show', :as => :event_show
+  # match 'events/:event/show' => 'events#show', :as => :event_show
   match 'events/:event/edit' => 'events#edit', :as => :event_edit
   match 'friendships/destroy' => 'friendships#destroy', :as => :friendship_destroy, :via => :post
   
