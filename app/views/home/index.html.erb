@@ -8,16 +8,30 @@
                 <input class="span4" id="appendedInputButton" size="16" type="text" placeholder="Raise Your Voice!"><button class="btn" type="button">Go!</button>
               </div>
             </form>
-          <div style="height: 75px" id="activity_feed_item">
-            <!-- <p> -->
-              <a href="#">
-                <img align="left" src="http://b.vimeocdn.com/ps/360/901/3609013_75.jpg" class="img-circle">
-              </a>
-              <a href="#">Johnie Walker</a> created an Interest page named <a href="#">Satranc Sevenler</a>.
-            <!-- </p> -->
-          </div>
-          <hr class="bs-docs-separator">
-          <div style="height: 75px" id="activity_feed_item">
+            <% @activities.each do |activity| %>
+              <% activity_user = activity.user %>
+              <div class="row"  id="activity_feed_item">
+                  <div class="span1" align="center">
+                      <%= link_to image_tag("http://graph.facebook.com/#{activity_user.uid}/picture?type=square", :class => "img-circle"), user_show_path(:user => activity_user.id) %>
+                  </div>
+                  <div class="span5">
+                      <a href=<% user_show_path(:user => activity_user) %>><%= "#{activity_user.name} #{activity_user.surname}" %></a> <%= activity.action %> <%= link_to "#{activity.klass.constantize.find(activity.klass_id).title}", activity.klass.constantize.find(activity.klass_id).get_show_url %> 
+                      <p class="muted"><small><%= time_ago_in_words(activity.created_at) %> ago</small></p>
+                  </div>
+              </div>
+              <hr class="bs-docs-separator">
+
+
+        <!--       <div style="height: 75px" id="activity_feed_item">
+                <a href="#">
+                  <img align="left" src="http://b.vimeocdn.com/ps/360/901/3609013_75.jpg" class="img-circle">
+                </a>
+                <a href="#">Johnie Walker</a> created an Interest page named <a href="#">Satranc Sevenler</a>.
+              </div>
+              <hr class="bs-docs-separator"> -->
+            <% end %>
+          
+          <!-- <div style="height: 75px" id="activity_feed_item">
             <p>
               <a href="#">
                 <img align="left" src="http://im.rediff.com/us/pix/04image01.jpg" class="img-circle">
@@ -61,7 +75,7 @@
               Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
             </p>
             <hr class="bs-docs-separator">
-          </div>
+          </div> -->
         </div>
         <div class="span3">
           <div class="well">
