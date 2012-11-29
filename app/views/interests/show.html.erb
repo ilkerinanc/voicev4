@@ -1,18 +1,30 @@
  <div class="row">
     <!-- Sol kisim -->
  	<div class="span4">
-        <h2><%= link_to "#{@interest.name}", interest_path(:interest => @interest.id) %></h2>
+        <h2>
+            <%= link_to "#{@interest.name}", interest_path(:interest => @interest.id) %>
+            <% if @interest.creator_id == current_user.id %>
+                <%= link_to "Edit", interest_edit_path(:interest => @interest.id), :class=> 'btn btn-mini' %>
+            <% end %>
+        </h2>
 
         <p class="muted"><small><%= @interest.description %></small></p>
+
         <p><span class="label label-warning">Tags:</span>
             <% @interest.tags.each do |t| %>
                 <span class="label label-success"><%= t.name %></span>
             <% end %>
         </p>
         <hr class="bs-docs-separator"></hr>
-        <% if @interest.creator_id == current_user.id %>
-            <%= link_to "Edit", interest_edit_path(:interest => @interest.id), :class=> 'btn btn-mini' %>
-        <% end %>
+        <h3>Events</h3>
+        <ul>
+            <% @events.each do |event| %>
+                <li>
+                    <%= link_to "#{event.title}", event_path(:event => event.id) %>
+                </li>
+            <% end %>
+        </ul>
+        <hr class="bs-docs-separator"></hr>
     </div>
     <!-- Sag kisim -->
 	<div class="span8">
