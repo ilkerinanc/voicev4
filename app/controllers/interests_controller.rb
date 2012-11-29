@@ -1,10 +1,10 @@
 class InterestsController < ApplicationController
   def index
-	@interests = Interest.where("name like ?", "%#{params[:q]}%")
-	respond_to do |format|
-		format.html
-		format.json {render :json => @interests.map(&:attributes)}
-	end 
+  	@interests = Interest.where("name like ?", "%#{params[:q]}%")
+  	respond_to do |format|
+  		format.html
+  		format.json {render :json => @interests.map(&:attributes)}
+  	end 
   end
 
   def new
@@ -16,7 +16,13 @@ class InterestsController < ApplicationController
     @interest.in_trash = false
     @interest.creator_id = current_user.id
     if @interest.save
-      redirect_to interests_url, :notice => "Successfully created interest."
+      UserActivity.create(
+          :user_id => current_user.id,
+          :klass => "Interest",
+          :klass_id => @interest.id,
+          :action => "created interest"
+          )
+      redirect_to interest_path(@interest.id), :notice => "Successfully created interest."
     else
       render :action => 'new'
     end
