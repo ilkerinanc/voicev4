@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap-datepicker
+//= require bootstrap-timepicker
 
 $(function () {
   $('#interest_tag_tokens').tokenInput('/tags.json', { 
@@ -49,6 +50,10 @@ $(function() {
 
 $(function() {
   $("#event_time").datepicker({format: 'dd-mm-yyyy'});
+});
+
+$(function() {
+  $("#occasion_time").timepicker();
 });
 
 function remove_fields(link){

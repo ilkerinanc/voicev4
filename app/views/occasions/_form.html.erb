@@ -15,15 +15,22 @@
 
 <div class="control-group">
       <%= f.label :time, :class => "control-label" %>
-      <div class="controls">
+      <div class="controls">      
 <div class="input-append bootstrap-timepicker-component">
-    <input type="text" class="timepicker-default input-small">
+  <%= f.text_field :time, :class => "bootstrap-timepicker-component" %>
     <span class="add-on">
         <i class="icon-time"></i>
     </span>
 </div>
 </div>
 </div>
+
+<div class="control-group">
+      <%= f.label :time, :class => "control-label" %>
+      <div class="controls"> 
+        <%f.time_select :time%>
+      </div>
+    </div>
 
 <div class="control-group">
   <%= f.label :date, :class => "control-label" %>
