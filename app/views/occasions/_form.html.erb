@@ -17,15 +17,15 @@
         <%= f.text_field :time %>
       </div>
   </div>
-  <div class="control-group">
-    <label class="control-label">Date:</label>
-    <div class="controls">
-      <div class="btn-group" data-toggle="buttons-radio">
-        <button type="button" name="option" value="1" class="btn">Today</button>
-        <button type="button" name="option" value="2" class="btn">Tomorrow</button>
-      </div>
-    </div>
+
+<div class="control-group">
+  <%= f.label :date, :class => "control-label" %>
+  <div class="controls">
+    <%= f.select( "time", { "Today" => "1", "Tomorrow" => "2"}) %>
   </div>
+</div>
+
+
 
   <div class="control-group">   
     <div class="controls">
