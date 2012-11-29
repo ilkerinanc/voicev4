@@ -8,7 +8,7 @@
            <% @myEvents.each do |myEvent| %>
 	   <div  id="activity_feed_item">
             <a href="#">
-	     <%= link_to "#{myEvent.title}", event_show_path(:event => myEvent.id) %>
+	     <%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %>
             </a> created an Event named 
             <a href="#">
              <%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %>
@@ -31,7 +31,7 @@
               </td>
 	     </tr>
 	     <tr>
-	      <td> <%= link_to 'delete', event_destroy_path(myEvent), :method => :post %>
+               <td> <%= link_to 'delete', event_destroy_path(myEvent), :method => :post, :class=>'btn btn-danger btn-mini' %>
 	      <td align="left">
 	       <div class="btn-group" align="right">
                 <button class="btn">Join</button>
