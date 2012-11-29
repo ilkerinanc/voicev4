@@ -6,12 +6,19 @@
   </p>
   <p>
     <%= f.label :start_time %><br />
-    <%= f.date_select :start_time %>
+    <%= f.text_field :start_time %>
   </p>
   <p>
     <%= f.label :finish_time %><br />
-    <%= f.date_select :finish_time%>
+    <%= f.text_field :finish_time%>
   </p>
+
+  <div class="control-group">
+      <%= f.label :target_audiance, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :interest_tokens, :data => {:load => @survey.interests} %>
+      </div>
+  </div>
   <%= f.fields_for :questions do |builder| %>
     <%= render "question_fields", :f => builder %>
   <% end %>

@@ -1,1 +1,15 @@
-@event.id
+<div class="span4">
+        <h2><%= link_to "#{@event.title}", event_path(:event => @event.id) %></h2>
+
+        <p class="muted"><small><%= @event.description %></small></p>
+	<p class="muted"><small><%= @event.place %></small></p>
+	<p class="muted"><small><%= @event.time %></small></p>
+	<p class="muted"><small>
+	<% @events.interests.each do |interest| %>
+		<%= link_to "#{interest.name}", interest_path(:interest => interest.id) %>	|
+	<%end%>	
+	<hr class="bs-docs-separator"></hr>
+        <% if @event.creator_id == current_user.id %>
+            <%= link_to "Edit", event_edit_path(:event => @event.id), :class=> 'btn btn-mini' %>
+        <% end %>
+</div>

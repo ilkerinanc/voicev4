@@ -5,6 +5,9 @@ class Interest < ActiveRecord::Base
   has_many :event_interests, :foreign_key => "interest_id", :dependent => :destroy
   has_many :events, :through => :event_interests, :source => :event
 
+  has_many :survey_interests, :foreign_key => "interest_id", :dependent => :destroy
+  has_many :surveys, :through => :survey_interests, :source => :survey
+
   has_many :subscriptions, :foreign_key => "interest_id", :dependent => :destroy
   has_many :subscribers, :through => :subscriptions, :source => :subscribers
 

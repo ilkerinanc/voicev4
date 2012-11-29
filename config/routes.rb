@@ -1,5 +1,13 @@
 Voicev4::Application.routes.draw do
 
+  #get "survey_interests/index"
+
+  #get "survey_interests/new"
+
+  #get "survey_interests/create"
+
+  #get "survey_interests/destroy"
+
   #get "event_interests/create"
 
   #get "event_interests/destroy"
@@ -65,6 +73,8 @@ Voicev4::Application.routes.draw do
   resources :voices
 
   resources :surveys
+
+  resources :survey_interests
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
