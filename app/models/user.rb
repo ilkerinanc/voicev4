@@ -104,6 +104,10 @@ class User < ActiveRecord::Base
     return (self.friends_in_common(user).count / self.friends.count).to_f
   end
 
+  def get_show_url
+    Rails.application.routes.url_helpers.user_show_path(self.id)
+  end
+
   private
 
   def prepare_password

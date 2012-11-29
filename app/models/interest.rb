@@ -24,4 +24,8 @@ class Interest < ActiveRecord::Base
   		tokens.gsub!(/<<<(.+?)>>>/) { create!(:name => $1).id }
   		tokens.split(',')
   end
+
+  def get_show_url
+    Rails.application.routes.url_helpers.interest_path(self.id)
+  end
 end

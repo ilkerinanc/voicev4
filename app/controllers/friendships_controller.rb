@@ -35,6 +35,20 @@ class FriendshipsController < ApplicationController
       current_user.like(@friendship.user)
       @friendship.user.like(current_user)
       # Recommendable methods end
+      UserActivity.create(
+          :user_id => current_user.id,
+          :klass => "User",
+          :klass_id => @friendship.user.id,
+          :action => "became friends with"
+          )
+
+      UserActivity.create(
+          :user_id => @friendship.user.id,
+          :klass => "User",
+          :klass_id => current_user.id,
+          :action => "became friends with"
+          )
+      
       redirect_to user_show_path(:user => current_user), :notice => "Connection approved!"
     end
   end

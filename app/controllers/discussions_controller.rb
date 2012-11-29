@@ -12,6 +12,12 @@ class DiscussionsController < ApplicationController
     @discussion.in_trash = false
     @discussion.creator_id = current_user.id
     if @discussion.save
+      UserActivity.create(
+          :user_id => current_user.id,
+          :klass => "Discussion",
+          :klass_id => @discussion.id,
+          :action => "created discussion"
+          )
       redirect_to interests_url, :notice => "Successfully created discussion."
     else
       render :action => 'new'

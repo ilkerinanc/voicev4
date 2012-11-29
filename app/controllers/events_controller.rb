@@ -23,6 +23,12 @@ class EventsController < ApplicationController
     	@event.creator_id = current_user.id
     	@event.in_trash = false
     	if @event.save
+        UserActivity.create(
+          :user_id => current_user.id,
+          :klass => "Event",
+          :klass_id => @event.id,
+          :action => "created event"
+          )
      	  redirect_to events_url, :notice => "Successfully created event."
    	  else
    	    render :action => 'new'
