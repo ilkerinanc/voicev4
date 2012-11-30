@@ -1,5 +1,9 @@
 Voicev4::Application.routes.draw do
 
+  get "subscription_events/create"
+
+  get "subscription_events/destroy"
+
   #get "survey_interests/index"
 
   #get "survey_interests/new"

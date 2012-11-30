@@ -1,4 +1,3 @@
-# encoding: UTF-8
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +11,8 @@
   <!-- <link href="assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
   <title>Voice</title>
   <%= stylesheet_link_tag    "application","token-input-facebook", :media => "all" %>
-  <%= javascript_include_tag "application", "jquery.tokeninput" %>
+  <%= javascript_include_tag "application", "jquery.tokeninput", "bootstrap-tooltip", "bootstrap-popover" %>
+  
 
   <%= csrf_meta_tags %>
   <style type="text/css">
@@ -23,6 +23,9 @@
   </style>
   <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
   <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+  <script type="text/javascript" src="https://github.com/twitter/bootstrap/blob/master/js/bootstrap-tab.js"></script>
+  <script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
+
 
 
 </head>
@@ -148,10 +151,5 @@
         <p>&copy; Company 2012</p>
       </footer>
     </div>
-<<<<<<< HEAD:app/views/layouts/application.html.erb
-</body>
-</html>
-=======
     </body>
-</html>
->>>>>>> 197373aa6df2ba0debb829ac4f256d1f7395555e:app/views/layouts/application.html.erb
+</html> 

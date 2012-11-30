@@ -44,11 +44,11 @@ $(function() {
 });
 
 $(function() {
-  $("#event_time").datepicker({format: 'dd-mm-yyyy'});
+  $("#survey_finish_time").datepicker({format: 'dd-mm-yyyy'});
 });
 
 $(function() {
-  $("#survey_finish_time").datepicker({format: 'dd-mm-yyyy'});
+  $("#event_time").datepicker({format: 'dd-mm-yyyy'});
 });
 
 function remove_fields(link){

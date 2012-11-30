@@ -39,6 +39,10 @@ $(function () {
   });
 });
 
+$(function ()  
+ { $("#example").popover();  
+ });  
+
 $(function() {
   $("#survey_start_time").datepicker({format: 'dd-mm-yyyy'});
 });

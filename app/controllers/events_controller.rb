@@ -1,6 +1,7 @@
 # encoding: UTF-8
 class EventsController < ApplicationController
   def index
+	#@event = Event.new
   	@events = Event.all
   	@myEvents = Event.where(:creator_id => current_user.id)
   end
