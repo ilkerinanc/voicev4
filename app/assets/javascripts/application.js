@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap-datepicker
-//= require bootstrap-timepicker
 
 $(function () {
   $('#interest_tag_tokens').tokenInput('/tags.json', { 
@@ -54,6 +53,14 @@ $(function() {
 
 $(function() {
   $("#occasion_time").timepicker();
+});
+
+$(function() {
+  $(".timepicker-default").timepicker();
+});
+
+$(function() {
+  $(".timepicker").timepicker({showMeridian: true});
 });
 
 function remove_fields(link){

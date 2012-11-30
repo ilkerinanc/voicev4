@@ -1,6 +1,6 @@
 class OccasionsController < ApplicationController
   def index
-  	@occasions = Occasion.where('time > ?', Date.today - 1.days) #gecmis occasion degil ise
+  	@occasions = Occasion.where('time > ?', Date.today - 1.days).order('created_at DESC') #gecmis occasion degil ise
   end
 
   def new
@@ -8,9 +8,17 @@ class OccasionsController < ApplicationController
   end
 
   def create
-  	@occasion = Occasion.new(params[:occasion])
+    @occasion = Occasion.new
+    
+    if (params[:day] == "today")
+      @occasion.time = (Date.today + params[:hour].to_i.hour + params[:minute].to_i.minute)
+    else
+      @occasion.time = (Date.tomorrow + params[:hour].to_i.hour + params[:minute].to_i.minute)
+    end
 
-    if (@occasion.time == Date.today) || (@occasion.time == Date.today+1.days) #improve check
+    if (@occasion.time > DateTime.now)
+      @occasion.name = params[:occasion][:name]
+      @occasion.description = params[:occasion][:description]
       @occasion.in_trash = false
       @occasion.creator_id = current_user.id
       if @occasion.save
@@ -19,7 +27,7 @@ class OccasionsController < ApplicationController
         render :action => 'new'
       end
     else
-      redirect_to occasions_url, :notice => "Please enter a valid time."
+      redirect_to new_occasion_url, :notice => "Please enter a valid time."
     end
   end
 

@@ -12,35 +12,34 @@
       </div>
   </div>
 
-
 <div class="control-group">
-      <%= f.label :time, :class => "control-label" %>
-      <div class="controls">      
-<div class="input-append bootstrap-timepicker-component">
-  <%= f.text_field :time, :class => "bootstrap-timepicker-component" %>
-    <span class="add-on">
-        <i class="icon-time"></i>
-    </span>
-</div>
-</div>
-</div>
-
-<div class="control-group">
-      <%= f.label :time, :class => "control-label" %>
-      <div class="controls"> 
-        <%f.time_select :time%>
-      </div>
-    </div>
-
-<div class="control-group">
-  <%= f.label :date, :class => "control-label" %>
+  <%= f.label :day, :class => "control-label" %>
   <div class="controls">
-    <%= f.select( "time", { "Today" => "1", "Tomorrow" => "2"}) %>
+   <%= select_tag :day, options_for_select([["Today", "today"], ["Tomorrow", "tomorrow"]]) %>
   </div>
 </div>
 
-
-
+<div class="control-group">
+  <%= f.label :hour, :class => "control-label" %>
+  <div class="controls">
+    <%= select_tag :hour, options_for_select(Array(0..23)) %> : 
+    <%= select_tag :minute, options_for_select(Array(0..59)) %>
+  </div>
+</div>
+<!-- 
+<div class="control-group">
+  <%= f.label "Time",  :class => "control-label" %>
+  <div class="controls">
+    <div class="input-append bootstrap-timepicker-component ">
+      <%= f.text_field :time, :class => "timepicker-default input-small" %>
+      <span class="add-on"> -->
+        <!-- <i class="icon-time"></i> -->
+<!--         Choose
+      </span>
+    </div>
+  </div>
+</div>
+ -->
   <div class="control-group">   
     <div class="controls">
       <%= f.submit :class => "btn btn-primary" %>

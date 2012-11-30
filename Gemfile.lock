@@ -46,6 +46,8 @@ GEM
     bcrypt-ruby (3.0.1-java)
     bootstrap-datepicker-rails (0.6.24)
       railties (>= 3.0)
+    bootstrap-timepicker-rails (0.1.2)
+      railties (>= 3.0)
     bouncy-castle-java (1.5.0146.1)
     builder (3.0.4)
     coffee-rails (3.2.2)
@@ -192,6 +194,7 @@ DEPENDENCIES
   activerecord-jdbcmysql-adapter
   bcrypt-ruby
   bootstrap-datepicker-rails
+  bootstrap-timepicker-rails
   coffee-rails (~> 3.2.1)
   faker
   jquery-rails

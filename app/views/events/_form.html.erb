@@ -16,19 +16,22 @@
       <div class="controls">
         <%= f.text_field :place %>
       </div>
-  </div class="control-group">
+  </div>
+
   <div class="control-group">
-      <%= f.label :interest_tokens, "Interests", :class => "control-label" %>
-	<div class="controls">
-        <%= f.text_field :interest_tokens, :data => {:load => @event.interests} %>
+    <%= f.label :interest_tokens, "Interests", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :interest_tokens, :data => {:load => @event.interests} %>
+    </div>
+  </div class="control-group">
+  
+  <div class="control-group">
+    <%= f.label :time, "Time", :class => "control-label"%>
+      <div class="controls">
+        <%= f.text_field :time%>
       </div>
   </div class="control-group">
-  <div class="control-group">
-     <%= f.label :time, "Time", :class => "control-label"%>
-     <div class="controls">
-    	<%= f.text_field :time%>
-     </div>
-  </div class="control-group">
+  
   <div class="control-group">   
     <div class="controls">
       <%= f.submit :class => "btn btn-primary" %>
