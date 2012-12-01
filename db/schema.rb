@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129215845) do
+ActiveRecord::Schema.define(:version => 20121201165958) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(:version => 20121129215845) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "approved"
+  end
+
+  create_table "interest_activities", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.string   "action"
+    t.string   "klass"
+    t.integer  "klass_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "interest_posts", :force => true do |t|

@@ -45,6 +45,13 @@ class InterestsController < ApplicationController
 
   def show
     @interest = Interest.find(params[:id])
+
+    @subscribers = @interest.subscribers.limit(10)
+
+    @interest_post  = InterestPost.new
+    @interest_post.interest_id = params[:id]
+
+    @interest_posts = @interest.interest_posts.order("created_at DESC")
     @events = EventInterest.where(interest_id = 2).collect {|ei| ei.event}
     # @events = EventInterest.where(interest_id: params[:id])
   end

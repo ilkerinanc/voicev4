@@ -787,13 +787,13 @@
     }
 
     $.fn.timepicker.defaults = {
-      minuteStep: 15
+      minuteStep: 5 // changed the default from 15 to 5
     , secondStep: 15
     , disableFocus: false
     , defaultTime: 'current'
     , showSeconds: false
     , showInputs: true
-    , showMeridian: true
+    , showMeridian: false // changed the default from true to false
     , template: 'dropdown'
     , modalBackdrop: false
     , templates: {} // set custom templates

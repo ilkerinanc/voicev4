@@ -20,26 +20,16 @@
 </div>
 
 <div class="control-group">
-  <%= f.label :hour, :class => "control-label" %>
-  <div class="controls">
-    <%= select_tag :hour, options_for_select(Array(0..23)) %> : 
-    <%= select_tag :minute, options_for_select(Array(0..59)) %>
-  </div>
-</div>
-<!-- 
-<div class="control-group">
   <%= f.label "Time",  :class => "control-label" %>
   <div class="controls">
-    <div class="input-append bootstrap-timepicker-component ">
-      <%= f.text_field :time, :class => "timepicker-default input-small" %>
-      <span class="add-on"> -->
-        <!-- <i class="icon-time"></i> -->
-<!--         Choose
-      </span>
+    <div class="input-append bootstrap-timepicker-component">
+      <%= f.text_field :time, :class => "timepicker-default input-small"%>
+      <span class="add-on">
+        <i class="icon-time"></i>
+        </span>
+      </div>
     </div>
   </div>
-</div>
- -->
   <div class="control-group">   
     <div class="controls">
       <%= f.submit :class => "btn btn-primary" %>
