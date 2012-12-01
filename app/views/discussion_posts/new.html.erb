@@ -1,0 +1,12 @@
+<% title "New Post" %>
+
+<%= form_for @discussion_post do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+
