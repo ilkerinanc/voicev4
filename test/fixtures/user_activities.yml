@@ -2,12 +2,12 @@
 
 one:
   user_id: 1
-  type: 
-  type_id: 1
+  klass: 
+  klass: 1
   action: MyString
 
 two:
   user_id: 1
-  type: 
-  type_id: 1
+  klass: 
+  klass_id: 1
   action: MyString
