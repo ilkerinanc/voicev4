@@ -46,7 +46,8 @@ class InterestsController < ApplicationController
   def show
     @interest = Interest.find(params[:id])
 
-    # @interest_post  = @interest.interest_posts.build(:interest_id => @interest.id)
+    @subscribers = @interest.subscribers.limit(10)
+
     @interest_post  = InterestPost.new
     @interest_post.interest_id = params[:id]
 

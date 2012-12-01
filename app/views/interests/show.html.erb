@@ -16,6 +16,13 @@
             <% end %>
         </p>
         <hr class="bs-docs-separator"></hr>
+        <div>
+            <h3>Subscribers:</h4>
+            <% @subscribers.each do |subscriber| %>
+                <%= link_to image_tag("http://graph.facebook.com/#{subscriber.uid}/picture?type=square", :class => "img-rounded"), user_show_path(:user =>subscriber.id) %>
+            <% end %>
+        </div>
+        <hr class="bs-docs-separator"></hr>
         <h3>Events</h3>
         <ul>
             <% @events.each do |event| %>

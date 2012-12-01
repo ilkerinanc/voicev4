@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   end
 
   def new
-	@event = Event.new
+	  @event = Event.new
   end
 
   def update
@@ -29,6 +29,17 @@ class EventsController < ApplicationController
           :klass_id => @event.id,
           :action => "created event"
           )
+
+        @event.interests.each do |i|
+          InterestActivity.create(
+            :user_id => current_user.id,
+            :interest_id => i.id,
+            :klass => "Event",
+            :klass_id => @event.id,
+            :action => "created event"
+          )
+        end
+
      	  redirect_to events_url, :notice => "Successfully created event."
    	  else
    	    render :action => 'new'
