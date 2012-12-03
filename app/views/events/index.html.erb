@@ -6,9 +6,10 @@
 	 <h2>Your Events</h2>
 	  <form class="form-inline">
            <% @myEvents.each do |myEvent| %>
+           <% @creator = User.find(myEvent.creator_id) %>
 	   <div  id="activity_feed_item">
             <a href="#">
-	     <%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %>
+	     <%= link_to "#{@creator.name} #{@creator.surname}", user_show_path(:user => myEvent.creator_id) %>
             </a> created an Event named 
             <a href="#">
              <%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %>
@@ -59,9 +60,10 @@
 	  <h2>All Events</h2>
 	   <form class="form-inline">
 	    <% @events.each do |event| %>
+	    <% @creator = User.find(event.creator_id) %>
 	   <div  id="activity_feed_item">
             <a href="#">
-	     <%= link_to "#{event.title}", event_path(:event => event.id) %>
+	     <%= link_to "#{@creator.name} #{@creator.surname}", user_show_path(:user => event.creator_id) %>
             </a> created an Event named 
             <a href="#">
              <%= link_to "#{event.title}", event_path(:event => event.id) %>

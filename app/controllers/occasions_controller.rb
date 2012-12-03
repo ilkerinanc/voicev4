@@ -40,8 +40,6 @@ class OccasionsController < ApplicationController
     end
   end
 
-
-
   def destroy
     Occasion.find(params[:occasion]).destroy
     redirect_to occasions_url, :notice => "Successfully destroyed occasion."

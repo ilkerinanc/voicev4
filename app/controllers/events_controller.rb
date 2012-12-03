@@ -19,7 +19,13 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event])
+    # @event = Event.new(params[:event])
+    # :interest_tokens
+      @event = Event.new
+      @event.description = params[:event][:description]
+      @event.place = params[:event][:place]
+      @event.title = params[:event][:title]
+      #@event.time = DateTime.new(params[:time][6..7],params[:time][3..4],params[:time][0..1])#, params[:when][0..1].to_i, params[:when][3..4].to_i)
     	@event.creator_id = current_user.id
     	@event.in_trash = false
     	if @event.save
