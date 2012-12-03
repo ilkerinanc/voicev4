@@ -108,6 +108,7 @@ Voicev4::Application.routes.draw do
   match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'occasions/:occasion/edit' => 'occasions#show', :as => :occasion_edit
+  match 'occasions/:occasion/destroy' => 'occasions#destroy', :as => :occasion_destroy
   # ----------------------------------------------------------------------------
 
   match 'recommendations' => 'recommendations#index', :as => :recommendations
