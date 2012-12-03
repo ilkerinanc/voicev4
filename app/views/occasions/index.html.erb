@@ -22,7 +22,7 @@
                 <%= link_to "#{occasion.name}", occasion_path(:occasion => occasion.id) %>
               </td>
               <td><%= occasion.description %></td>
-              <td><%= occasion.time %> <%= occasion.time.hour %> <%= occasion.time.min %></td>
+              <td><%= occasion.time %></td>
           </tr>
         <% end %>
       </tbody>
