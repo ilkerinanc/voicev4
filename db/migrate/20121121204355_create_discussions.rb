@@ -1,5 +1,7 @@
 class CreateDiscussions < ActiveRecord::Migration
-  def change
+
+
+ def change
     create_table :discussions do |t|
       t.string :name
       t.text :description
@@ -8,5 +10,9 @@ class CreateDiscussions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+
+
+
   end
 end

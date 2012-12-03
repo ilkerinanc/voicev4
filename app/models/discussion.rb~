@@ -1,0 +1,14 @@
+class Discussion < ActiveRecord::Base
+  attr_accessible :creator_id, :description, :in_trash, :name:questions_attributes, :answers_attributes, :interest_tokens
+has_many :questions, :dependent => :destroy
+  accepts_nested_attributes_for :questions, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
+
+attr_reader :interest_tokens
+	
+	def interest_tokens=(tokens)
+  		self.interest_ids = Interest.ids_from_tokens(tokens)
+  end
+
+
+
+end
