@@ -25,8 +25,9 @@ class EventsController < ApplicationController
       @event.description = params[:event][:description]
       @event.place = params[:event][:place]
       @event.title = params[:event][:title]
-      #@event.time = DateTime.new(params[:time][6..7],params[:time][3..4],params[:time][0..1])#, params[:when][0..1].to_i, params[:when][3..4].to_i)
-    	@event.creator_id = current_user.id
+      @event.time =  Date.parse('2012-11-23') + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
+      #@event.time =  Date.parse(params[:time]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
+      @event.creator_id = current_user.id
     	@event.in_trash = false
     	if @event.save
         UserActivity.create(
