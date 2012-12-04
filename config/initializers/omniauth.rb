@@ -16,7 +16,7 @@ Koala.http_service.http_options = {
     :ca_file => "certificate/certs",
     # :ca_path => path,z
     # SSL verify defaults to true unless you explicitly set it to false
-    :verify => true
+    # :verify => true
   },
   # see below for links to info on Faraday options
 }

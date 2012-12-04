@@ -5,6 +5,7 @@ class EventInterestsController < ApplicationController
 		redirect_to :back, :notice => "Successfully subscribed!"
 	else
 		render :action => 'new'
+  	end
   end
 
   def destroy

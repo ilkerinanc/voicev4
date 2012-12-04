@@ -1,7 +1,7 @@
 <%= form_for @event, :html => { :class => "form-horizontal", :multipart => true } do |f| %>
   <div class="control-group">
       <div class="controls">
-	<%= f.file_field : eventphoto%>
+	<%= f.file_field :eventphoto%>
       </div>
   </div>
   <div class="control-group">
@@ -21,18 +21,35 @@
       <div class="controls">
 	<%= f.text_field :place%>
       </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :interest_tokens, "Interests", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :interest_tokens, :data => {:load => @event.interests} %>
+    </div>
   </div class="control-group">
+  
   <div class="control-group">
       <%= f.label :interest_tokens, "Interests", :class => "control-label" %>
 	<div class="controls">
 	<%= f.text_field :interest_tokens,  :data => {:load => @event.interests}%>
+    <%= f.label "Date", :class => "control-label"%>
+      <div class="controls">
+        <%= f.text_field :time%>
       </div>
-  </div>
+  </div class="control-group">
+
   <div class="control-group">
-     <%= f.label :time, "Time", :class => "control-label"%>
-     <div class="controls">
-    	<%= f.text_field :time%>
-     </div>
+  <%= f.label "Time",  :class => "control-label" %>
+  <div class="controls">
+    <div class="input-append bootstrap-timepicker-component">
+      <%= f.text_field :time, :class => "timepicker-default input-small"%>
+      <span class="add-on">
+        <i class="icon-time"></i>
+        </span>
+      </div>
+    </div>
   </div>
   <div class="control-group">   
     <div class="form-actions">

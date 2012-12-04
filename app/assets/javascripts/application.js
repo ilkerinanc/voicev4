@@ -16,7 +16,7 @@
 //= require bootstrap-datepicker
 
 $(function () {
-  $('#interest_tag_tokens').tokenInput('/tags.json', { 
+  $('#interest_tag_tokens').tokenInput('/voicev4g/tags.json', { 
     crossDomain: false,
     prePopulate: $('#interest_tag_tokens').data('load'),
     theme: "facebook"
@@ -24,7 +24,7 @@ $(function () {
 });
 
 $(function () {
-  $('#event_interest_tokens').tokenInput('/interests.json', { 
+  $('#event_interest_tokens').tokenInput('/voicev4g/interests.json', { 
     crossDomain: false,
     prePopulate: $('#event_interest_tokens').data('load'),
     theme: "facebook"
@@ -32,7 +32,7 @@ $(function () {
 });
 
 $(function () {
-  $('#survey_interest_tokens').tokenInput('/interests.json', { 
+  $('#survey_interest_tokens').tokenInput('/voicev4g/interests.json', { 
     crossDomain: false,
     prePopulate: $('#survey_interest_tokens').data('load'),
     theme: "facebook"
@@ -53,6 +53,18 @@ $(function() {
 
 $(function() {
   $("#event_time").datepicker({format: 'dd-mm-yyyy'});
+});
+
+$(function() {
+  $("#occasion_time").timepicker();
+});
+
+$(function() {
+  $(".timepicker-default").timepicker();
+});
+
+$(function() {
+  $(".timepicker").timepicker({showMeridian: true});
 });
 
 function remove_fields(link){

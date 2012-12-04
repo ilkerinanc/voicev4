@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(:version => 20121203082414) do
     t.boolean  "approved"
   end
 
+  create_table "interest_activities", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.string   "action"
+    t.string   "klass"
+    t.integer  "klass_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "interest_posts", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -93,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20121203082414) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.date     "time"
+    t.datetime "time"
   end
 
   create_table "questions", :force => true do |t|
@@ -144,6 +154,15 @@ ActiveRecord::Schema.define(:version => 20121203082414) do
     t.boolean  "in_trash"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_activities", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "klass"
+    t.integer  "klass_id"
   end
 
   create_table "users", :force => true do |t|

@@ -11,5 +11,9 @@ class Survey < ActiveRecord::Base
 	
 	def interest_tokens=(tokens)
   		self.interest_ids = Interest.ids_from_tokens(tokens)
-  	end
+  end
+
+  def get_show_url
+    Rails.application.routes.url_helpers.survey_path(self.id)
+  end
 end

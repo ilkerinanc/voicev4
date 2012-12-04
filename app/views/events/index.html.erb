@@ -15,17 +15,18 @@
 			<div class="span6">
 			  <form class="form-inline">
 			   <% current_user.events.each do |event| %>
+			   <% @creator = User.find(event.creator_id) %>
 			   <div  id="activity_feed_item">
 					<table>
 						<td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200">
 							<p align="center">
 						        <div class="btn-group" align="center">
 							<button type="button" class="btn btn-primary" disabled="disabled">Join</button>
-					  		<%= link_to "Leave", event_unsubscribe_path(:event_id => event.id), :method => :post, :class=>'btn btn-warning' %>
+					  		<%= link_to "Leave", event_unsubscribe_path(:event_id => event.id), :method => :post, :class=>'btn btn-warning' %>	
 						  	</div>
 						      </p>
 						</td>
-						<td><p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
+						<td><p><a href="#"><%= link_to "#{@creator.name} #{@creator.surname}", user_show_path(:user => event.creator_id) %></a>
 							created an Event named 
 						    	<p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
 							<p><label>Date: <%= link_to "#{event.time}", event_path(:event => event.id) %></label>
@@ -48,6 +49,7 @@
 			<div class="span6">
 			  <form class="form-inline">
 			   <% @newevents.each do |event| %>
+			   <% @creator = User.find(event.creator_id) %>
 			   <div  id="activity_feed_item">
 					<table>
 						<td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200">
@@ -57,7 +59,7 @@
 						  	</div>
 						      </p>
 						</td>
-						<td><p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
+						<td><p><a href="#"><%= link_to "#{@creator.name} #{@creator.surname}", user_show_path(:user => event.creator_id) %></a>
 							created an Event named 
 						    	<p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
 							<p><label>Date: <%= link_to "#{event.time}", event_path(:event => event.id) %></label>
@@ -79,37 +81,38 @@
 			       <div class="row">
 				<div class="span6">
 				  <form class="form-inline">
-				   <% @myEvents.each do |myEvent| %>
+				   <% @myEvents.each do |event| %>
+				   <% @creator = User.find(event.creator_id) %>
 				   	<div  id="activity_feed_item">
 						<table>						
-						    <td width="250" align="center"><img src=<%= myEvent.eventphoto.url%> class="img-polaroid" width="200">
-							 <% if current_user.event_subscribed?(myEvent) %>
+						    <td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200">
+							 <% if current_user.event_subscribed?(event) %>
 							<p align="center>
 						       		<div class="btn-group" align="center">
-									<%= link_to 'Edit', event_edit_path(myEvent), :method => :post, :class => "btn btn-mini"%>
+									<%= link_to 'Edit', event_edit_path(event), :method => :post, :class => "btn btn-mini"%>
               								<button type="button" class="btn btn-primary btn-mini" disabled="disabled">Join</button>
-						  			<%= link_to "Leave", event_unsubscribe_path(:event_id => myEvent.id), :method => :post, :class => "btn btn-warning btn-mini" %>
-									<%= link_to 'Delete', event_destroy_path(myEvent), :method => :post, :class => "btn btn-danger btn-mini" %>
+						  			<%= link_to "Leave", event_unsubscribe_path(:event_id => event.id), :method => :post, :class => "btn btn-warning btn-mini" %>
+									<%= link_to 'Delete', event_destroy_path(event), :method => :post, :class => "btn btn-danger btn-mini" %>
 								
 								</div>
 							</p>
             						  <% else %>
 							<p align="center>
 								<div class="btn-group" align="center">
-									<%= link_to 'Edit', event_edit_path(myEvent), :method => :post, :class => "btn btn-mini"%>
-									<%= link_to "Join", event_subscribe_path(:event_id => myEvent.id), :method => :post, :type => "button", :class => "btn btn-primary btn-mini" %>
+									<%= link_to 'Edit', event_edit_path(event), :method => :post, :class => "btn btn-mini"%>
+									<%= link_to "Join", event_subscribe_path(:event_id => event.id), :method => :post, :type => "button", :class => "btn btn-primary btn-mini" %>
 									<button type="button" class="btn btn-warning btn-mini" disabled="disabled">Leave</button>
-									<%= link_to 'delete', event_destroy_path(myEvent), :method => :post, :type => "button", :class => "btn btn-danger btn-mini" %>
+									<%= link_to 'delete', event_destroy_path(event), :method => :post, :type => "button", :class => "btn btn-danger btn-mini" %>
 								</div>
 						      </p>
 							<% end %>
 						    </td>
-						    <td><p><a href="#"><%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %></a>
+						    <td><p><a href="#"><%= link_to "#{@creator.name} #{@creator.surname}", user_show_path(:user => event.creator_id) %></a>
 							created an Event named 
-						    	<p><a href="#"><%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %></a>
-							<p><label>Date: <%= link_to "#{myEvent.time}", event_path(:event => myEvent.id) %></label>
-							<p><label>Place: <%= link_to "#{myEvent.place}", event_path(:event => myEvent.id) %></label>
-						       	<p><label>Description: <%= link_to "#{myEvent.description}", event_path(:event => myEvent.id) %></label>
+						    	<p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
+							<p><label>Date: <%= link_to "#{event.time}", event_path(:event => event.id) %></label>
+							<p><label>Place: <%= link_to "#{event.place}", event_path(:event => event.id) %></label>
+						       	<p><label>Description: <%= link_to "#{event.description}", event_path(:event => event.id) %></label>
 						      	
 						    </td>  
 						</table>
@@ -127,6 +130,7 @@
 			 <div class="span6">
 			   <form class="form-inline">
 			    <% @events.each do |event| %>
+			    <% @creator = User.find(event.creator_id) %>
 			   <div  id="activity_feed_item">
 				<table>
 					<td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200" >
@@ -167,6 +171,5 @@
 	</div>
 </div>
 <div class="container">
-      
-	
-   </div>
+
+</div>

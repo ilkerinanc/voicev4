@@ -82,6 +82,8 @@ Voicev4::Application.routes.draw do
 
   resources :survey_interests
 
+  resources :interest_posts
+
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
@@ -112,8 +114,13 @@ Voicev4::Application.routes.draw do
 
   match "tags" => 'tags#index'
   
+  # OCCASIONS RELATED PATHS ----------------------------------------------------
   match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
+  match 'occasions/:occasion/edit' => 'occasions#show', :as => :occasion_edit
+  match 'occasions/:occasion/destroy' => 'occasions#destroy', :as => :occasion_destroy
+  # ----------------------------------------------------------------------------
+
   match 'recommendations' => 'recommendations#index', :as => :recommendations
 
   match 'surveys/:survey' => 'surveys#show', :as => :survey

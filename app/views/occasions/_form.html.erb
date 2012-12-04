@@ -11,22 +11,25 @@
         <%= f.text_area :description, :rows => 3 %>
       </div>
   </div>
-  <div class="control-group">
-      <%= f.label :time, :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :time %>
-      </div>
+
+<div class="control-group">
+  <%= f.label :day, :class => "control-label" %>
+  <div class="controls">
+   <%= select_tag :day, options_for_select([["Today", "today"], ["Tomorrow", "tomorrow"]]) %>
   </div>
-  <div class="control-group">
-    <label class="control-label">Date:</label>
-    <div class="controls">
-      <div class="btn-group" data-toggle="buttons-radio">
-        <button type="button" name="option" value="1" class="btn">Today</button>
-        <button type="button" name="option" value="2" class="btn">Tomorrow</button>
-      </div>
+</div>
+
+<div class="control-group">
+  <%= f.label "Time",  :class => "control-label" %>
+  <div class="controls">
+    <div class="input-append bootstrap-timepicker-component">
+      <%= f.text_field :time, :class => "timepicker-default input-small"%>
+      <span class="add-on">
+        <i class="icon-time"></i>
+      </span>
     </div>
   </div>
-
+</div>
   <div class="control-group">   
     <div class="controls">
       <%= f.submit :class => "btn btn-primary" %>

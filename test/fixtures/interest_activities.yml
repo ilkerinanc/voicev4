@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  interest_id: 1
+  action: MyString
+  klass: MyString
+  klass_id: 1
+
+two:
+  user_id: 1
+  interest_id: 1
+  action: MyString
+  klass: MyString
+  klass_id: 1
