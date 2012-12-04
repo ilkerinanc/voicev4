@@ -37,16 +37,15 @@ class EventsController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD:app/controllers/events_controller.rb
-    @event = Event.new(params[:event])
-    @event.creator_id = current_user.id
-    @event.in_trash = false
-    if @event.save
-    	redirect_to events_url, :notice => "Successfully created event."
-    else
-   	render :action => 'new'		
-    end
-=======
+    #@event = Event.new(params[:event])
+    #@event.creator_id = current_user.id
+    #@event.in_trash = false
+    #if @event.save
+    #	redirect_to events_url, :notice => "Successfully created event."
+    #else
+    #	render :action => 'new'		
+    #end
+    ##Burası ilkerin
     # @event = Event.new(params[:event])
     # :interest_tokens
       @event = Event.new
@@ -76,10 +75,9 @@ class EventsController < ApplicationController
         end
 
      	  redirect_to events_url, :notice => "Successfully created event."
-   	  else
+   	else
    	    render :action => 'new'
-	    end
->>>>>>> 509402cd3f624ba9687d2f049d58a44bb2fa0081:app/controllers/events_controller.rb
+      end
   end
 
   def show

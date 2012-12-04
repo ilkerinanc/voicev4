@@ -6,8 +6,8 @@ class EventsController < ApplicationController
   	@myEvents = Event.where(:creator_id => current_user.id)
         @user = current_user
     	@tempevents = Array.new
-    	@interests = @user.interests
-    	@interests.each do |i|
+    	@tempinterests = @user.interests
+    	@tempinterests.each do |i|
 		if i.events.count > 0
 			
 			#@tempevents = @tempevents + i.events

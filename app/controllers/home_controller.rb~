@@ -25,6 +25,6 @@ class HomeController < ApplicationController
 			end
 		end
 	end
-    	@newevents = @tempevents.last(5)
+    	@newevents = @tempevents
   end
 end

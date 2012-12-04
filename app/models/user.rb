@@ -124,6 +124,4 @@ class User < ActiveRecord::Base
       self.password_hash = encrypt_password(password)
     end
   end
-
-  
 end

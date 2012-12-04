@@ -63,7 +63,7 @@
           <div class="well">
             <h2>Events</h2>
             <ul>
-                <% @newevents.each do |event| %>
+                <% @events.each do |event| %>
                   <li> <%= link_to "#{event.title}", event_path(:event => event.id) %></li>
                 <% end %>
             </ul>

@@ -16,7 +16,7 @@
 //= require bootstrap-datepicker
 
 $(function () {
-  $('#interest_tag_tokens').tokenInput('/voicev4g/tags.json', { 
+  $('#interest_tag_tokens').tokenInput('/tags.json', { 
     crossDomain: false,
     prePopulate: $('#interest_tag_tokens').data('load'),
     theme: "facebook"
@@ -24,7 +24,7 @@ $(function () {
 });
 
 $(function () {
-  $('#event_interest_tokens').tokenInput('/voicev4g/interests.json', { 
+  $('#event_interest_tokens').tokenInput('/interests.json', { 
     crossDomain: false,
     prePopulate: $('#event_interest_tokens').data('load'),
     theme: "facebook"
@@ -32,12 +32,16 @@ $(function () {
 });
 
 $(function () {
-  $('#survey_interest_tokens').tokenInput('/voicev4g/interests.json', { 
+  $('#survey_interest_tokens').tokenInput('/interests.json', { 
     crossDomain: false,
     prePopulate: $('#survey_interest_tokens').data('load'),
     theme: "facebook"
   });
 });
+
+$(function ()  {
+ $(".popover-with-html").popover({ html: true });
+ });  
 
 $(function ()  
  { $("#example").popover();  
@@ -52,7 +56,7 @@ $(function() {
 });
 
 $(function() {
-  $("#event_time").datepicker({format: 'dd-mm-yyyy'});
+  $("#event_date").datepicker({format: 'dd-mm-yyyy'});
 });
 
 $(function() {
