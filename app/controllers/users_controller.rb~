@@ -3,6 +3,17 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @user = current_user
+    @tempevents ||= Array.new
+    @interests = @user.interests
+    @interests.each do |i|
+	if i.events.count > 0
+		i.events.each do |e|
+			@tempeevents.push(e)
+		end
+	end
+    end
+    @newevents = @tempevents
   end
 
   def new
@@ -36,6 +47,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:user])
     @connections = @user.friends
     @pending = @user.requested_friendships.collect {|f| f.user }
+    @friendship_score = friendship_score
+    @voice  = current_user.voices.build
+    @voices = @user.voices.order("created_at DESC")
   end
 
   def contact
@@ -57,9 +71,27 @@ class UsersController < ApplicationController
     @friends = User.find(params[:user]).friends
   end
 
+  def events
+    @user = User.find(params[:user])
+    @events = User.find(params[:user]).events
+  end
+
+  def new_events
+    
+  end
+  helper_method :new_events
+
   def interests
     @user = User.find(params[:user])
     @interests = User.find(params[:user]).interests
+  end
+
+  private
+
+  def friendship_score
+    f_ratio = (current_user.friends_in_common(@user).count.to_f / current_user.friends.count.to_f) * 10
+    i_ratio = (current_user.interests_in_common(@user).count.to_f / current_user.interests.count.to_f) * 10
+    (f_ratio + i_ratio) / 2
   end
 
 end

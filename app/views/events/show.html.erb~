@@ -1,11 +1,11 @@
 <div class="span4">
         <h2><%= link_to "#{@event.title}", event_path(:event => @event.id) %></h2>
-
+	<img src=<%= @event.eventphoto.url%> class="img-polaroid" width="50" height="50">
         <p class="muted"><small><%= @event.description %></small></p>
 	<p class="muted"><small><%= @event.place %></small></p>
 	<p class="muted"><small><%= @event.time %></small></p>
 	<p class="muted"><small>
-	<% @events.interests.each do |interest| %>
+	<% @event.interests.each do |interest| %>
 		<%= link_to "#{interest.name}", interest_path(:interest => interest.id) %>	|
 	<%end%>	
 	<hr class="bs-docs-separator"></hr>

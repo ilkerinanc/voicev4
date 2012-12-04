@@ -1,137 +1,160 @@
 <%= link_to "Create an Event", new_event_path, :class=>'btn btn-primary' %>
 <p></p>
-<%= link_to "Create an Event with Modal", new_event_path, :class=>'btn btn-primary', :data => {:toggle => "modal", :target => "#newEventModal"} , :remote => true %>
-
-<div id="newEventModal" class="modal hide fade" >
-    <button type="button" class="close" data-dismiss="modal">×</button></h1>
-    <div class="page-header">
-        <h1>New Event </h1>
-    </div>
-
-    <%= render :partial => 'form' %>
-</div>
-
-<p></p>
-
-<a href="new.html" role="button" class="btn" data-toggle="modal" remote="true">Launch Demo</a>
-
-<div id="myModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-	
-</div>
-
-<a href="#" data-placement="top" data-original-title="Tooltip on Top" title="POP" rel="tooltip" >POPOVERS</a>
-<a id="example" data-trigger="hover" data-content="her" href="#" data-placement="bottom" data-original-title="Tooltip on Top" title="POP" rel="popover" >POPOVERS</a>
-
 <div class="tabbable">
 <ul class="nav nav-tabs" id="myTab">
- <li class="active"><a href="#yourEvents" data-toggle="tab">Your Events</a></li>
+ <li class="active"><a href="#joinedEvents" data-toggle="tab">Joined Events</a></li>
+ <li><a href="#newEvents" data-toggle="tab">new Events</a></li>
+ <li><a href="#yourEvents" data-toggle="tab">Created Events</a></li>
  <li><a href="#allEvents" data-toggle="tab">All Events</a></li>
 </ul>
 
 <div class="tab-content">
-              <div class="tab-pane in active" id="yourEvents">
+		<div class="tab-pane in active" id="joinedEvents">
                 <p>
 		       <div class="row">
 			<div class="span6">
-			 <h2>Your Events</h2>
 			  <form class="form-inline">
-			   <% @myEvents.each do |myEvent| %>
+			   <% current_user.events.each do |event| %>
 			   <div  id="activity_feed_item">
-			    <a href="#">
-			     <%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %>
-			    </a> created an Event named 
-			    <a href="#">
-			     <%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %>
-			    </a>.
-			    <table>
-			     <tr>
-			      <td align="left">
-			       <label>Date: <%= link_to "#{myEvent.time}", event_path(:event => myEvent.id) %></label>
-			      </td> <td align="left"> 
-			     </tr>
-			     <tr>
-			      <td align="left">
-			       <label>Place: <%= link_to "#{myEvent.place}", event_path(:event => myEvent.id) %></label>
-			      </td> 
-			      <td align="left"> 
-			     </tr>
-			     <tr>
-			      <td align="left">
-			       <label>Description: <%= link_to "#{myEvent.description}", event_path(:event => myEvent.id) %></label>
-			      </td>
-			     </tr>
-			     <tr>
-			       <td> <%= link_to 'delete', event_destroy_path(myEvent), :method => :post, :class=>'btn btn-danger btn-mini' %>
-			      <td align="left">
-			       <div class="btn-group" align="right">
-				<button class="btn">Join</button>
-		  		<button class="btn">Maybe</button>
-		  		<button class="btn">Invite</button>
-				<button class="btn dropdown-toggle" data-toggle="dropdown">
-				 <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-				  <!-- dropdown menu links -->
-				</ul>
-			       </div>
-			      </td>
-			     </tr>
-			    </table>
+					<table>
+						<td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200">
+							<p align="center">
+						        <div class="btn-group" align="center">
+							<button type="button" class="btn btn-primary" disabled="disabled">Join</button>
+					  		<%= link_to "Leave", event_unsubscribe_path(:event_id => event.id), :method => :post, :class=>'btn btn-warning' %>
+						  	</div>
+						      </p>
+						</td>
+						<td><p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
+							created an Event named 
+						    	<p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
+							<p><label>Date: <%= link_to "#{event.time}", event_path(:event => event.id) %></label>
+							<p><label>Place: <%= link_to "#{event.place}", event_path(:event => event.id) %></label>
+						       	<p><label>Description: <%= link_to "#{event.description}", event_path(:event => event.id) %></label>	
+							
+						</td> 					
+					</table>
 			   </div>
 			   <hr class="bs-docs-separator">  
 			   <% end %>
 			</form>
 		     </div>
 		    </div>
-		
 		</p>
-              </div>
+	      </div>
+		<div class="tab-pane in active" id="newEvents">
+		 <p>
+		       <div class="row">
+			<div class="span6">
+			  <form class="form-inline">
+			   <% @newevents.each do |event| %>
+			   <div  id="activity_feed_item">
+					<table>
+						<td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200">
+							<p align="center">
+						        <div class="btn-group" align="center">
+								<%= link_to "Join", event_subscribe_path(:event_id => myEvent.id), :method => :post, :type => "button", :class => "btn btn-primary btn-mini" %>
+						  	</div>
+						      </p>
+						</td>
+						<td><p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
+							created an Event named 
+						    	<p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
+							<p><label>Date: <%= link_to "#{event.time}", event_path(:event => event.id) %></label>
+							<p><label>Place: <%= link_to "#{event.place}", event_path(:event => event.id) %></label>
+						       	<p><label>Description: <%= link_to "#{event.description}", event_path(:event => event.id) %></label>	
+							
+						</td> 					
+					</table>
+			   </div>
+			   <hr class="bs-docs-separator">  
+			   <% end %>
+			</form>
+		     </div>
+		    </div>
+		</p>
+		</div>
+              <div class="tab-pane in active" id="yourEvents">
+                <p>
+			       <div class="row">
+				<div class="span6">
+				  <form class="form-inline">
+				   <% @myEvents.each do |myEvent| %>
+				   	<div  id="activity_feed_item">
+						<table>						
+						    <td width="250" align="center"><img src=<%= myEvent.eventphoto.url%> class="img-polaroid" width="200">
+							 <% if current_user.event_subscribed?(myEvent) %>
+							<p align="center>
+						       		<div class="btn-group" align="center">
+									<%= link_to 'Edit', event_edit_path(myEvent), :method => :post, :class => "btn btn-mini"%>
+              								<button type="button" class="btn btn-primary btn-mini" disabled="disabled">Join</button>
+						  			<%= link_to "Leave", event_unsubscribe_path(:event_id => myEvent.id), :method => :post, :class => "btn btn-warning btn-mini" %>
+									<%= link_to 'Delete', event_destroy_path(myEvent), :method => :post, :class => "btn btn-danger btn-mini" %>
+								
+								</div>
+							</p>
+            						  <% else %>
+							<p align="center>
+								<div class="btn-group" align="center">
+									<%= link_to 'Edit', event_edit_path(myEvent), :method => :post, :class => "btn btn-mini"%>
+									<%= link_to "Join", event_subscribe_path(:event_id => myEvent.id), :method => :post, :type => "button", :class => "btn btn-primary btn-mini" %>
+									<button type="button" class="btn btn-warning btn-mini" disabled="disabled">Leave</button>
+									<%= link_to 'delete', event_destroy_path(myEvent), :method => :post, :type => "button", :class => "btn btn-danger btn-mini" %>
+								</div>
+						      </p>
+							<% end %>
+						    </td>
+						    <td><p><a href="#"><%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %></a>
+							created an Event named 
+						    	<p><a href="#"><%= link_to "#{myEvent.title}", event_path(:event => myEvent.id) %></a>
+							<p><label>Date: <%= link_to "#{myEvent.time}", event_path(:event => myEvent.id) %></label>
+							<p><label>Place: <%= link_to "#{myEvent.place}", event_path(:event => myEvent.id) %></label>
+						       	<p><label>Description: <%= link_to "#{myEvent.description}", event_path(:event => myEvent.id) %></label>
+						      	
+						    </td>  
+						</table>
+					</div>
+				   <hr class="bs-docs-separator">  
+				   <% end %>
+				</form>
+			     </div>
+			    </div>
+		</p>
+	      </div>
 	<div class="tab-pane" id="allEvents">
                 <p>
 			<div class="row">
 			 <div class="span6">
-			  <h2>All Events</h2>
 			   <form class="form-inline">
 			    <% @events.each do |event| %>
 			   <div  id="activity_feed_item">
-			    <a href="#">
-			     <%= link_to "#{event.title}", event_path(:event => event.id) %>
-			    </a> created an Event named 
-			    <a href="#">
-			     <%= link_to "#{event.title}", event_path(:event => event.id) %>
-			    </a>.
-			    <table>
-			     <tr>
-			      <td align="left">
-			       <label>Date: <%= link_to "#{event.time}", event_path(:event => event.id) %></label>
-			      </td> <td align="left"> 
-			     </tr>
-			     <tr>
-			      <td align="left">
-			       <label>Place: <%= link_to "#{event.place}", event_path(:event => event.id) %></label>
-			      </td> 
-			      <td align="left"> 
-			     </tr>
-			     <tr>
-			      <td align="left">
-			       <label>Description: <%= link_to "#{event.description}", event_path(:event => event.id) %></label>
-			      </td>
-			     </tr>
-			     <tr>
-			       <div class="btn-group" align="right">
-				<button class="btn">Join</button>
-		  		<button class="btn">Maybe</button>
-		  		<button class="btn">Invite</button>
-				<button class="btn dropdown-toggle" data-toggle="dropdown">
-				 <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-				  <!-- dropdown menu links -->
-				</ul>
-			       </div>
-			      </td>
-			     </tr>
-			    </table>
+				<table>
+					<td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200" >
+						<% if current_user.event_subscribed?(event) %>
+							<p align="center>
+						       		<div class="btn-group" align="center">
+              								<button type="button" class="btn btn-primary" disabled="disabled">Join</button>
+						  			<%= link_to "Leave", event_unsubscribe_path(:event_id => event.id), :method => :post, :class => "btn btn-warning" %>
+								
+								</div>
+							</p>
+            						  <% else %>
+							<p align="center>
+								<div class="btn-group" align="center">
+									<%= link_to "Join", event_subscribe_path(:event_id => event.id), :method => :post, :type => "button", :class => "btn btn-primary" %>
+									<button type="button" class="btn btn-warning" disabled="disabled">Leave</button>
+								</div>
+						      </p>
+							<% end %>
+					</td>
+					<td><p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a> created an Event named 
+			    		   <a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
+			   
+			     	  	<p><label>Date: <%= link_to "#{event.time}", event_path(:event => event.id) %></label>
+			      		<p><label>Place: <%= link_to "#{event.place}", event_path(:event => event.id) %></label>
+			       		<p><label>Description: <%= link_to "#{event.description}", event_path(:event => event.id) %></label>
+			      		</td>
+			    	</table>
 			   </div>
 			   <hr class="bs-docs-separator">  
 			   <% end %>

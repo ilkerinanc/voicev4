@@ -30,6 +30,18 @@
                 <% end %>
             </div>
         <% end %>
+	<% if @user == current_user and @user.events.count > 0%>
+            <div align="center">
+                <h4><%= link_to "Events (#{current_user.events.count})" %></h4>
+                 <% @user.events.each do |e| %>
+                        <%= link_to image_tag(e.eventphoto.url, :width => 100), event_path(:event =>e.id), :class => 'img-rounded' %>
+                <% end %>
+            </div>
+	  <% elsif @user.events.count == 0 %>
+	    <div align="center">
+                <h4><%= link_to "Event (#{current_user.events.count})" %></h4>
+            </div>
+        <% end %>
         <br>
         <div align="center">
             <h4><%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %></h4>

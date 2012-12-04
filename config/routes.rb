@@ -1,8 +1,8 @@
 Voicev4::Application.routes.draw do
 
-  get "subscription_events/create"
+  #get "subscription_events/create"
 
-  get "subscription_events/destroy"
+  #get "subscription_events/destroy"
 
   #get "survey_interests/index"
 
@@ -60,6 +60,8 @@ Voicev4::Application.routes.draw do
 
   resources :events
 
+  resources :subscription_events
+
   resources :event_interests
 
   resources :sessions
@@ -95,6 +97,7 @@ Voicev4::Application.routes.draw do
   match 'user/:user/contact' =>'users#contact', :as => :user_contact
   match 'user/:user/about' => 'users#about', :as => :user_about
   match 'user/:user/interests' => 'users#interests', :as => :user_interests
+  match 'user/:user/events' => 'users#events', :as => :user_events  
 
   match 'users' => 'users#index', :as => :users_index
 
@@ -103,6 +106,9 @@ Voicev4::Application.routes.draw do
 
   match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
+
+  match 'event_subscribe' => 'subscription_events#create', :as => :event_subscribe, :via => :post
+  match 'event_unsubscribe' => 'subscription_events#destroy', :as => :event_unsubscribe, :via => :post
 
   match "tags" => 'tags#index'
   
@@ -120,9 +126,10 @@ Voicev4::Application.routes.draw do
   match 'events' => 'events#index', :as => :events_index
   match 'events/:event' => 'events#show', :as => :event
   match 'events/:event/destroy' => 'events#destroy', :as => :event_destroy
-  # match 'events/:event/show' => 'events#show', :as => :event_show
+  match 'events/:event/show' => 'events#show', :as => :event_show
   match 'events/:event/edit' => 'events#edit', :as => :event_edit
   match 'friendships/destroy' => 'friendships#destroy', :as => :friendship_destroy, :via => :post
+  match 'events/:event/new_events' => 'events#new_events', :as => :event_new_events  
   
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion

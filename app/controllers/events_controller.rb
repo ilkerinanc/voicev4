@@ -4,6 +4,23 @@ class EventsController < ApplicationController
 	#@event = Event.new
   	@events = Event.all
   	@myEvents = Event.where(:creator_id => current_user.id)
+        @user = current_user
+    	@tempevents = Array.new
+    	@interests = @user.interests
+    	@interests.each do |i|
+		if i.events.count > 0
+			
+			#@tempevents = @tempevents + i.events
+			i.events.each do |e|
+				unless @user.events.include?(e) 
+                                      	unless @tempevents.include?(e)
+						@tempevents.push(e)
+					end
+				end
+			end
+		end
+	end
+    	@newevents = @tempevents
   end
 
   def new
@@ -21,18 +38,17 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
-    	@event.creator_id = current_user.id
-    	@event.in_trash = false
-    	if @event.save
-     	  redirect_to events_url, :notice => "Successfully created event."
-   	  else
-   	    render :action => 'new'
-	    end
+    @event.creator_id = current_user.id
+    @event.in_trash = false
+    if @event.save
+    	redirect_to events_url, :notice => "Successfully created event."
+    else
+   	render :action => 'new'		
+    end
   end
 
   def show
-	 # puts (params[:id])
-    @event = Event.find(params[:id])
+	@event = Event.find(params[:id])
   end
 
   def destroy
@@ -43,4 +59,5 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
   end
+
 end

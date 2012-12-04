@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   has_many :subscriptions, :foreign_key => "user_id", :dependent => :destroy
   has_many :interests, :through => :subscriptions, :source => :interest
 
+  has_many :subscription_events, :foreign_key => "user_id", :dependent => :destroy
+  has_many :events, :through => :subscription_events, :source => :event
+
+
   has_many :voices
 
   # new columns need to be added here to be writable through mass assignment

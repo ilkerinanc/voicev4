@@ -32,6 +32,8 @@ gem "nifty-generators", :group => :development
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'static'
 gem 'bootstrap-datepicker-rails'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
