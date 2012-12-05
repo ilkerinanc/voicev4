@@ -25,7 +25,7 @@
         <hr class="bs-docs-separator"></hr>
         <h3>Events</h3>
         <ul>
-            <% @events.each do |event| %>
+            <% @interest.events.each do |event| %>
                 <li>
                     <%= link_to "#{event.title}", event_path(:event => event.id) %>
                 </li>

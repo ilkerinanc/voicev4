@@ -1,0 +1,138 @@
+ <div class="row">
+    <!-- Sol kisim -->
+ 	<div class="span4">
+        <h2>
+            <%= link_to "#{@interest.name}", interest_path(:interest => @interest.id) %>
+            <% if @interest.creator_id == current_user.id %>
+                <%= link_to "Edit", interest_edit_path(:interest => @interest.id), :class=> 'btn btn-mini' %>
+            <% end %>
+        </h2>
+
+        <p class="muted"><small><%= @interest.description %></small></p>
+
+        <p><span class="label label-warning">Tags:</span>
+            <% @interest.tags.each do |t| %>
+                <span class="label label-success"><%= t.name %></span>
+            <% end %>
+        </p>
+        <hr class="bs-docs-separator"></hr>
+        <h3>Events</h3>
+        <ul>
+            <% @events.each do |event| %>
+                <li>
+                    <%= link_to "#{event.title}", event_path(:event => event.id) %>
+                </li>
+            <% end %>
+        </ul>
+        <hr class="bs-docs-separator"></hr>
+    </div>
+    <!-- Sag kisim -->
+	<div class="span8">
+        <h3><em>Activity Feed</em></h3>
+        <form class="form-inline">
+            <div class="input-append">
+                <input class="span6" id="appendedInputButton" size="16" type="text" placeholder="Raise Your Voice!"><button class="btn" type="button">Go!</button>
+            </div>
+        </form>
+
+
+
+
+        <div style="height: 75px" id="activity_feed_item">
+            <a href="#">
+                <img align="left" src="img/profile/chess.jpg" class="img-circle">
+                    </a>
+            <a href="#">Alp Kındıroğlu</a> created an Interest page named <a href="#">Satranc Sevenler</a>.
+        </div>
+        <hr class="bs-docs-separator">
+        <div style="height: 75px" id="activity_feed_item">
+            <p>
+            <a href="#">
+                <img align="left" src="img/profile/galatasaray.jpg" class="img-circle">
+                    </a>
+            <a href="#">Alp Kındıroğlu</a> posted something in <a href="#">Galatasaray Fanlari</a>.
+            </p>
+        </div>
+        <hr class="bs-docs-separator">
+        <div style="height: 75px" id="activity_feed_item">
+            <p>
+            <a href="#">
+                <img align="left" src="img/profile/voice.jpg" class="img-circle">
+                    </a>
+            <a href="#">Alp Kındıroğlu</a> raised his voice as " <strong>Iyi tatiller herkese</strong> :) ".
+            </p>
+        </div>
+        <hr class="bs-docs-separator">
+        <div style="height: 75px" id="activity_feed_item">
+            <p>
+            <a href="#">
+                <img align="left" src="http://im.rediff.com/us/pix/04image01.jpg" class="img-circle">
+                    </a>
+            <a href="#">Alp Kındıroğlu</a> created a connection with <a href="#">Johnie Walker</a>.
+            </p>
+        </div>
+        <hr class="bs-docs-separator">
+        <div style="height: 75px" id="activity_feed_item">
+            <a href="#">
+                <img align="left" src="img/profile/chess.jpg" class="img-circle">
+                    </a>
+            <a href="#">Alp Kındıroğlu</a> created an Interest page named <a href="#">Satranc Sevenler</a>.
+        </div>
+        <hr class="bs-docs-separator">
+        <div style="height: 75px" id="activity_feed_item">
+            <p>
+            <a href="#">
+                <img align="left" src="img/profile/galatasaray.jpg" class="img-circle">
+                    </a>
+            <a href="#">Alp Kındıroğlu</a> posted something in <a href="#">Galatasaray Fanlari</a>.
+            </p>
+        </div>
+        <hr class="bs-docs-separator">
+        <div style="height: 75px" id="activity_feed_item">
+            <p>
+            <a href="#">
+                <img align="left" src="img/profile/voice.jpg" class="img-circle">
+                    </a>
+            <a href="#">Alp Kındıroğlu</a> raised his voice as " <strong>Iyi tatiller herkese</strong> :) ".
+            </p>
+        </div>
+        <hr class="bs-docs-separator">
+        <div style="height: 75px" id="activity_feed_item">
+            <p>
+            <a href="#">
+                <img align="left" src="http://im.rediff.com/us/pix/04image01.jpg" class="img-circle">
+                    </a>
+            <a href="#">Alp Kındıroğlu</a> created a connection with <a href="#">Johnie Walker</a>.
+            </p>
+        </div>
+        <hr class="bs-docs-separator">
+    </div>
+</div>
+
+<div class="row">
+   
+    <!-- <div class="span4">
+        <h3><em>Social Feed</em></h3>
+            <ul class="thumbnails">
+                <li>
+                    <div class="thumbnail">
+                        <img src="img/profile/foursquare.jpg" alt="">
+                            <h4>Foursquare check-ins</h4>
+                            <p>Find out where Alp is.</p>
+                            </div>
+                </li>
+                <li>
+                    <div class="thumbnail">
+                        <img src="img/profile/instagram copy.jpg" alt="">
+                            <h4>Instagram Pictures</h4>
+                            </div>
+                </li>
+                <li>
+                    <div class="thumbnail">
+                        <img src="img/profile/twitter copy.jpg" alt="">
+                            <h4>Tweets</h4>
+                            </div>
+                </li>
+            </ul>
+    </div> -->
+</div>

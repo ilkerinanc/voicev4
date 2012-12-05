@@ -60,6 +60,11 @@ class UsersController < ApplicationController
     @friends = User.find(params[:user]).friends
   end
 
+  def events
+    @user = User.find(params[:user])
+    @events = User.find(params[:user]).events
+  end
+
   def interests
     @user = User.find(params[:user])
     @interests = User.find(params[:user]).interests

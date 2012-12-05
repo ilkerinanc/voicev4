@@ -1,15 +1,17 @@
 <div class="span4">
-        <h2><%= link_to "#{@event.title}", event_path(:event => @event.id) %></h2>
-
-        <p class="muted"><small><%= @event.description %></small></p>
-	<p class="muted"><small><%= @event.place %></small></p>
-	<p class="muted"><small><%= @event.time %></small></p>
-	<p class="muted"><small>
-	<% @events.interests.each do |interest| %>
+	
+        <p align="center"><h2><%= link_to "#{@event.title}", event_path(:event => @event.id) %></h2></p>
+	<p><img src=<%= @event.eventphoto.url%> class="img-polaroid" width="200"></p>
+        <p class="muted"><medium>Description	:<%= @event.description %></medium></p>
+	<p class="muted"><small>Place		:<%= @event.place %></small></p>	
+	<p class="muted"><small>Date		:<%= @event.date %></small></p>	
+	<p class="muted"><small>Time		:<%= @event.time %></small></p>
+	<p class="muted"><small>Interests	:<% @event.interests.each do |interest| %>
 		<%= link_to "#{interest.name}", interest_path(:interest => interest.id) %>	|
-	<%end%>	
+	<%end%>	</p>
 	<hr class="bs-docs-separator"></hr>
         <% if @event.creator_id == current_user.id %>
-            <%= link_to "Edit", event_edit_path(:event => @event.id), :class=> 'btn btn-mini' %>
+        	<%= link_to "Edit", event_edit_path(:event => @event.id), :class=> 'btn btn-mini' %>
+	 	<%= link_to "Delete", event_destroy_path(@event), :method => :post, :class=> 'btn btn-danger btn-mini' %>
         <% end %>
 </div>

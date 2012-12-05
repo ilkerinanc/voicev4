@@ -42,4 +42,23 @@ class SurveysController < ApplicationController
     @survey.destroy
     redirect_to surveys_url, :notice => "Successfully destroyed survey."
   end
+
+  def commit
+
+      #@survey = Survey.find_by_id(params[:id])
+      @survey = Survey.new
+      @surveyUser = SurveyUser.new
+      @surveyUser.answerId = Survey.find_by_id(params[:id])
+      @surveyUser.questionId = Survey.find_by_id(params[:id])
+      @surveyUser.surveyId = params[:surveyId]
+      @surveyUser.userId = current_user.id
+
+      if @surveyUser.save
+          redirect_to @survey, :notice  => "Successfully submitted Your Survey Answers."
+      else
+         redirect_to @survey, :notice  => "Error happens when you submit your Survey Answer"
+      end
+
+
+  end
 end

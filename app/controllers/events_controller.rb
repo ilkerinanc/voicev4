@@ -1,8 +1,25 @@
 # encoding: UTF-8
 class EventsController < ApplicationController
   def index
+	#@event = Event.new
   	@events = Event.all
   	@myEvents = Event.where(:creator_id => current_user.id)
+    @user = current_user
+  	@tempevents = Array.new
+  	@tempinterests = @user.interests
+  	@tempinterests.each do |i|
+		if i.events.count > 0
+			#@tempevents = @tempevents + i.events
+			i.events.each do |e|
+				unless @user.events.include?(e) 
+          unless @tempevents.include?(e)
+						@tempevents.push(e)
+					end
+				end
+			end
+		end
+	end
+    	@newevents = @tempevents
   end
 
   def new
@@ -19,8 +36,24 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event])
-    	@event.creator_id = current_user.id
+    #@event = Event.new(params[:event])
+    #@event.creator_id = current_user.id
+    #@event.in_trash = false
+    #if @event.save
+    #	redirect_to events_url, :notice => "Successfully created event."
+    #else
+    #	render :action => 'new'		
+    #end
+    ##Burası ilkerin
+    # @event = Event.new(params[:event])
+    # :interest_tokens
+      @event = Event.new
+      @event.description = params[:event][:description]
+      @event.place = params[:event][:place]
+      @event.title = params[:event][:title]
+      @event.time =  Date.parse('2012-11-23') + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
+      #@event.time =  Date.parse(params[:time]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
+      @event.creator_id = current_user.id
     	@event.in_trash = false
     	if @event.save
         UserActivity.create(
@@ -41,14 +74,13 @@ class EventsController < ApplicationController
         end
 
      	  redirect_to events_url, :notice => "Successfully created event."
-   	  else
+   	else
    	    render :action => 'new'
-	    end
+      end
   end
 
   def show
-	 # puts (params[:id])
-    @event = Event.find(params[:id])
+	@event = Event.find(params[:id])
   end
 
   def destroy
@@ -59,4 +91,5 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
   end
+
 end

@@ -1,0 +1,106 @@
+<% if logged_in? %>
+	<div class="row">
+        <div class="span6">
+          <h2>Activity Feed</h2>
+          	<!-- RAISE YOUR VOICE INPUT FIELD -->
+            <form class="form-inline">
+              <div class="input-append">
+                <input class="span4" id="appendedInputButton" size="16" type="text" placeholder="Raise Your Voice!"><button class="btn" type="button">Go!</button>
+              </div>
+            </form>
+            <% @activities.each do |activity| %>
+              <% activity_user = activity.user %>
+              <div class="row"  id="activity_feed_item">
+                  <div class="span1" align="center">
+                      <%= link_to image_tag("http://graph.facebook.com/#{activity_user.uid}/picture?type=square", :class => "img-circle"), user_show_path(:user => activity_user.id) %>
+                  </div>
+                  <div class="span5">
+                      <%= link_to "#{activity_user.name} #{activity_user.surname}" , user_show_path(:user => activity_user.id) %> 
+                      <% if activity.klass.constantize.column_names.include?("title") %>
+                        <%= activity.action %> <%= link_to "#{activity.klass.constantize.find(activity.klass_id).title}", activity.klass.constantize.find(activity.klass_id).get_show_url %> 
+                      <% elsif activity.klass == "User" %>
+                        <% user = User.find(activity.klass_id) %>
+                        <%= activity.action %> <%= link_to "#{user.name} #{user.surname}", User.find(user.id).get_show_url %>
+                      <% elsif activity.klass.constantize.column_names.include?("name") %>
+                        <%= activity.action %> <%= link_to "#{activity.klass.constantize.find(activity.klass_id).name}", activity.klass.constantize.find(activity.klass_id).get_show_url %> 
+                      <% end %>
+                      <p class="muted"><small><%= time_ago_in_words(activity.created_at) %> ago</small></p>
+                  </div>
+              </div>
+              <hr class="bs-docs-separator">
+            <% end %>
+        </div>
+        <div class="span3">
+          <div class="well">
+            <!-- <div clas="well"> -->
+              <h2>Interests</h2>
+              <ul>
+                <% @interests.each do |interest| %>
+                  <li> <%= link_to "#{interest.name}", interest_path(:interest => interest.id) %></li>
+                <% end %>
+            </ul>
+            <!-- </div> -->
+          </div>
+          <div class="well">
+            <h2>Occasions</h2>
+            <ul>
+                <% @occasions.each do |occasion| %>
+                  <li> <%= link_to "#{occasion.name}", occasion_path(:occasion => occasion.id) %></li>
+                <% end %>
+            </ul>
+          </div>
+          <div class="well">
+            <h2>Surveys</h2>
+            <ul>
+                <% @surveys.each do |survey| %>
+                  <li> <%= link_to "#{survey.name}", survey_path(:survey => survey.id) %></li>
+                <% end %>
+            </ul>
+          </div>
+       </div>
+
+        <div class="span3">
+          <div class="well">
+            <h2>Events</h2>
+            <ul>
+                <% @events.each do |event| %>
+                  <li> <%= link_to "#{event.title}", event_path(:event => event.id) %></li>
+                <% end %>
+            </ul>
+          </div>
+          <div class="well">
+            <h2>Discussions</h2>
+            <ul>
+                <% @discussions.each do |discussion| %>
+                  <li> <%= link_to "#{discussion.name}", discussion_path(:discussion => discussion.id) %></li>
+                <% end %>
+            </ul>
+          </div>
+          <div class="well">
+            <h2>Users</h2>
+            <ul>
+                <% @users.each do |user| %>
+                  <li> <%= link_to "#{user.name} #{user.surname}", user_show_path(:user => user.id) %></li>
+                <% end %>
+            </ul>
+          </div>
+          <!-- RECOMMENDATIONS GO HERE -->
+          <!-- <div class="well">
+            <h2>Recommendations</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p>
+          </div> -->
+       </div>
+      </div>
+<% else %>
+	<div class="center hero-unit">
+		<h1>Welcome to Voice.</h1>
+		<h2>
+			This is the home page for the
+			<a href="http://voice.com/">Voice Community</a>
+			.
+	    </h2>
+	    <%= link_to "Sign up now!", signup_path, :class => "btn btn-large btn-primary" %>
+       <%= link_to "Sign in with Facebook", "auth/facebook", :id => "sign_in" %>
+	  </div>
+<% end %>

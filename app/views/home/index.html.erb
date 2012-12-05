@@ -34,8 +34,11 @@
           <div class="well">
             <!-- <div clas="well"> -->
               <h2>Interests</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p>
+              <ul>
+                <% @interests.each do |interest| %>
+                  <li> <%= link_to "#{interest.name}", interest_path(:interest => interest.id) %></li>
+                <% end %>
+            </ul>
             <!-- </div> -->
           </div>
           <div class="well">
@@ -47,28 +50,46 @@
             </ul>
           </div>
           <div class="well">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p>
+            <h2>Surveys</h2>
+            <ul>
+                <% @surveys.each do |survey| %>
+                  <li> <%= link_to "#{survey.name}", survey_path(:survey => survey.id) %></li>
+                <% end %>
+            </ul>
           </div>
        </div>
 
         <div class="span3">
           <div class="well">
             <h2>Events</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p>
+            <ul>
+                <% @newevents.each do |event| %>
+                  <li> <%= link_to "#{event.title}", event_path(:event => event.id) %></li>
+                <% end %>
+            </ul>
           </div>
           <div class="well">
             <h2>Discussions</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p>
+            <ul>
+                <% @discussions.each do |discussion| %>
+                  <li> <%= link_to "#{discussion.name}", discussion_path(:discussion => discussion.id) %></li>
+                <% end %>
+            </ul>
           </div>
           <div class="well">
-            <h2>Heading</h2>
+            <h2>Users</h2>
+            <ul>
+                <% @users.each do |user| %>
+                  <li> <%= link_to "#{user.name} #{user.surname}", user_show_path(:user => user.id) %></li>
+                <% end %>
+            </ul>
+          </div>
+          <!-- RECOMMENDATIONS GO HERE -->
+          <!-- <div class="well">
+            <h2>Recommendations</h2>
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             <p>
-          </div>
+          </div> -->
        </div>
       </div>
 <% else %>
