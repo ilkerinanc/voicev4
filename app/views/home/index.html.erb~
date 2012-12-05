@@ -14,18 +14,7 @@
                   <div class="span1" align="center">
                       <%= link_to image_tag("http://graph.facebook.com/#{activity_user.uid}/picture?type=square", :class => "img-circle"), user_show_path(:user => activity_user.id) %>
                   </div>
-                  <div class="span5">
-                      <%= link_to "#{activity_user.name} #{activity_user.surname}" , user_show_path(:user => activity_user.id) %> 
-                      <% if activity.klass.constantize.column_names.include?("title") %>
-                        <%= activity.action %> <%= link_to "#{activity.klass.constantize.find(activity.klass_id).title}", activity.klass.constantize.find(activity.klass_id).get_show_url %> 
-                      <% elsif activity.klass == "User" %>
-                        <% user = User.find(activity.klass_id) %>
-                        <%= activity.action %> <%= link_to "#{user.name} #{user.surname}", User.find(user.id).get_show_url %>
-                      <% elsif activity.klass.constantize.column_names.include?("name") %>
-                        <%= activity.action %> <%= link_to "#{activity.klass.constantize.find(activity.klass_id).name}", activity.klass.constantize.find(activity.klass_id).get_show_url %> 
-                      <% end %>
-                      <p class="muted"><small><%= time_ago_in_words(activity.created_at) %> ago</small></p>
-                  </div>
+                  
               </div>
               <hr class="bs-docs-separator">
             <% end %>
@@ -63,7 +52,7 @@
           <div class="well">
             <h2>Events</h2>
             <ul>
-                <% @events.each do |event| %>
+                <% @newevents.each do |event| %>
                   <li> <%= link_to "#{event.title}", event_path(:event => event.id) %></li>
                 <% end %>
             </ul>

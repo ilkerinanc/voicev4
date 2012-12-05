@@ -37,7 +37,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    #@event = Event.new(params[:event])
+    @event = Event.new(params[:event])
     #@event.creator_id = current_user.id
     #@event.in_trash = false
     #if @event.save
@@ -48,13 +48,14 @@ class EventsController < ApplicationController
     ##Burası ilkerin
     # @event = Event.new(params[:event])
     # :interest_tokens
-      @event = Event.new
-      @event.description = params[:event][:description]
-      @event.place = params[:event][:place]
-      @event.title = params[:event][:title]
-      @event.time =  Date.parse('2012-11-23') + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
-      #@event.time =  Date.parse(params[:time]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
-      @event.creator_id = current_user.id
+      #@event = Event.new
+      #@event.description = params[:event][:description]
+      #@event.place = params[:event][:place]
+      #@event.title = params[:event][:title]
+	@event = Event.new(params[:event])
+      	@event.time =  Date.parse('2012-11-23') + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
+        #@event.time =  Date.parse(params[:time]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
+      	@event.creator_id = current_user.id
     	@event.in_trash = false
     	if @event.save
         UserActivity.create(
