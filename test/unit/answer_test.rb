@@ -10,6 +10,7 @@ class AnswerTest < ActiveSupport::TestCase
   end
 
 
+
   test "should not save answer without question_id" do
   		answer = Answer.new
   		answer.question_id = nil
