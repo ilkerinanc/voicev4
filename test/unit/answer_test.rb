@@ -5,6 +5,10 @@ class AnswerTest < ActiveSupport::TestCase
   #   assert true
   # end
 
+   def test_should_be_valid
+    assert !Answer.new.valid?
+  end
+
 
   test "should not save answer without question_id" do
   		answer = Answer.new
