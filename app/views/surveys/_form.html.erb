@@ -22,6 +22,10 @@
   <%= f.fields_for :questions do |builder| %>
     <%= render "question_fields", :f => builder %>
   <% end %>
-  <p><%= link_to_add_fields "Add Question", f, :questions %></p>
-  <p><%= f.submit "Submit" ,:class=>'btn btn-primary'%></p>
+  <p>
+    <%= link_to_add_fields "Add Question", f, :questions %>
+  </p>
+  <p>
+    <%= f.submit "Submit" ,:class=>'btn btn-primary'%>
+  </p>
 <% end %>
