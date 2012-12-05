@@ -1,6 +1,9 @@
 class Survey < ActiveRecord::Base
   attr_accessible :name, :questions_attributes, :answers_attributes, :start_time, :finish_time, :interest_tokens
   has_many :questions, :dependent => :destroy
+  validates :name, :presence => true 
+  validates :start_time, :presence => true
+  validates :finish_time,  :presence => true
   accepts_nested_attributes_for :questions, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
   has_many :survey_interests, :foreign_key => "survey_id", :dependent => :destroy
