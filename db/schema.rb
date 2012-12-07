@@ -138,8 +138,8 @@ ActiveRecord::Schema.define(:version => 20121204050335) do
     t.string   "name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.datetime "start_time"
     t.datetime "finish_time"
+    t.datetime "start_time"
   end
 
   create_table "taggings", :force => true do |t|
