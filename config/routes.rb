@@ -82,6 +82,8 @@ Voicev4::Application.routes.draw do
 
   resources :survey_interests
 
+  resources :survey_user
+
   resources :interest_posts
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user

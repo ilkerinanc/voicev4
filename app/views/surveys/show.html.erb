@@ -7,7 +7,7 @@
 
 <ol>
 <% for question in @survey.questions %>
-	<li><%=h question.content :as => :radio %></li>
+	<li><%=h question.content %></li>
 	<ol>
 	<% for answer in question.answers %>
 		<li><%=h answer.content %></li>
@@ -15,6 +15,29 @@
 	</ol>
 <%end %>
 </ol>
+
+
+<%= form_for @survey do |s| %>
+	<li>
+		<%=s.label :name %>
+		<%=s.text_field :name %>
+	</li>
+	
+	<%=s.fields_for :questions do |q| %>
+		
+		<li><%=h q.text_field :content %></li>
+
+		<%= q.fields_for :answers do |a| %>
+			<li><%=a.text_field :content %>
+			<%=a.check_box :content %>
+			</li>
+			
+ 		 <% end %>
+	 	 
+  <% end %>
+  <p>
+<% end %>
+
 
 <p>
   <%= link_to "Edit", edit_survey_path(@survey),:class=>'btn btn-info' %> |
