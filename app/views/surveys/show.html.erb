@@ -7,7 +7,7 @@
 
 <ol>
 <% for question in @survey.questions %>
-	<li><%=h question.content %></li>
+	<li><%=h question.content :as => :radio %></li>
 	<ol>
 	<% for answer in question.answers %>
 		<li><%=h answer.content %></li>
