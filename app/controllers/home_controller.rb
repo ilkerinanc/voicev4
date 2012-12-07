@@ -18,13 +18,12 @@ class HomeController < ApplicationController
         end
       end
       @newevents = @tempevents.last(5)
-  end
-  	end
+    end
   	@occasions = Occasion.last(5)
   	@interests = Interest.last(5)
   	@events = Event.last(5)
   	@surveys = Survey.last(5)
   	@discussions = Discussion.last(5)
-  	@users = User.last(5)
-	  
+  	@users = User.last(5)  
+  end
 end
