@@ -42,4 +42,8 @@ class SurveysController < ApplicationController
     @survey.destroy
     redirect_to surveys_url, :notice => "Successfully destroyed survey."
   end
+
+  def commit
+      @survey = Survey.find_by_id(params[:id])
+  end
 end
