@@ -47,12 +47,16 @@ class SurveysController < ApplicationController
 
       #@survey = Survey.find_by_id(params[:id])
       @survey = Survey.new
-      @surveyUser = SurveyUser.new(params[:surveyUser])
+      @surveyUser = SurveyUser.new
+      @surveyUser.answerId = Survey.find_by_id(params[:id])
+      @surveyUser.questionId = Survey.find_by_id(params[:id])
+      @surveyUser.surveyId = params[:surveyId]
+      @surveyUser.userId = current_user.id
 
       if @surveyUser.save
-          redirect_to @survey, :notice  => "Successfully  surveyUser."
+          redirect_to @survey, :notice  => "Successfully submitted Your Survey Answers."
       else
-         redirect_to @survey, :notice  => "Wrong  surveyUser."
+         redirect_to @survey, :notice  => "Error happens when you submit your Survey Answer"
       end
 
 
