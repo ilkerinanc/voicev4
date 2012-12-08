@@ -44,6 +44,17 @@ class SurveysController < ApplicationController
   end
 
   def commit
-      @survey = Survey.find_by_id(params[:id])
+
+      #@survey = Survey.find_by_id(params[:id])
+      @survey = Survey.new
+      @surveyUser = SurveyUser.new(params[:surveyUser])
+
+      if @surveyUser.save
+          redirect_to @survey, :notice  => "Successfully  surveyUser."
+      else
+         redirect_to @survey, :notice  => "Wrong  surveyUser."
+      end
+
+
   end
 end
