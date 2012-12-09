@@ -1,5 +1,5 @@
 <% title "Discussions" %>
-
+<%= link_to "New Discussion", new_discussion_path, :class=>'btn btn-primary' %>
 <table>
   <tr>
     <th>Name</th>
@@ -7,11 +7,10 @@
   <% for discussion in @discussions %>
     <tr>
       <td><%= discussion.name %></td>
-      <td><%= link_to "Show", discussion %></td>
-      <td><%= link_to "Edit", edit_discussion_path(discussion) %></td>
-      <td><%= link_to "Destroy", discussion, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Show", discussion,:class=>'btn btn-primary'%></td>
+      <td><%= link_to "Edit", edit_discussion_path(discussion),:class=>'btn btn-info'%></td>
+      <td><%= link_to "Destroy", discussion, :confirm => 'Are you sure?', :method => :delete,:class=>'btn btn-danger' %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Discussion", new_discussion_path %></p>
