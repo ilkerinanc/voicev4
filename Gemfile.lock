@@ -7,17 +7,6 @@ GIT
       actionpack (>= 3.1)
       railties (>= 3.1)
 
-GIT
-  remote: git://github.com/thoughtbot/paperclip.git
-  revision: 1544a7b2f054b53a52aa53a12f471d1a1bb36ca6
-  specs:
-    paperclip (3.3.1)
-      activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.4.0)
-      mime-types
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,7 +50,6 @@ GEM
       railties (>= 3.0)
     bouncy-castle-java (1.5.0146.1)
     builder (3.0.4)
-    cocaine (0.4.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -216,7 +204,6 @@ DEPENDENCIES
   mocha
   nifty-generators
   omniauth-facebook
-  paperclip!
   rails (= 3.2.8)
   recommendable
   redis

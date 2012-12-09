@@ -82,6 +82,8 @@ Voicev4::Application.routes.draw do
 
   resources :survey_interests
 
+  resources :survey_user
+
   resources :interest_posts
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
@@ -124,6 +126,8 @@ Voicev4::Application.routes.draw do
   match 'recommendations' => 'recommendations#index', :as => :recommendations
 
   match 'surveys/:survey' => 'surveys#show', :as => :survey
+  match 'committed_survey' => 'surveys#commit', :as => :committed_survey
+  match 'surveys/:survey/commit' => 'survey#commit', :as => :survey_commit
 
   match 'discussions/:discussion' => 'discussions#show', :as => :discussion
 

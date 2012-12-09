@@ -20,7 +20,7 @@
 			   <% @creator = User.find(event.creator_id) %>
 			   <div  id="activity_feed_item">
 					<table>
-						<td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200">
+						<td width="250" align="center"><img src=""class="img-polaroid" width="200">
 							<p align="center">
 						        <div class="btn-group" align="center">
 					  		<%= link_to "Leave", event_unsubscribe_path(:event_id => event.id), :method => :post, :class=>'btn btn-warning' %>	
@@ -31,7 +31,7 @@
 							created an Event named 
 						    	<p><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a>
 				<p><a id="example" data-trigger="hover" data-content= "#{event.title}" href="#" data-placement="bottom" data-original-title="Tooltip on Top" title="POP" rel="popover" >POPOVERS</a>
-				<p><%= link_to('Q', '#', :class => "popover-with-html", :title => "Quality", "data-content" => "#{link_to image_tag(event.eventphoto.url, :width => 150), event_path(:event =>event.id)}") %>
+				<p><%= link_to('Q', '#', :class => "popover-with-html", :title => "Quality", "data-content" => "#{link_to image_tag("", :width => 150), event_path(:event =>event.id)}") %>
 							<p><label>Date: <%= link_to "#{event.date}", event_path(:event => event.id) %></label>
 							<p><label>Time: <%= link_to "#{event.time}", event_path(:event => event.id) %></label>
 							<p><label>Place: <%= link_to "#{event.place}", event_path(:event => event.id) %></label>
@@ -57,7 +57,7 @@
 			   <% @creator = User.find(event.creator_id) %>
 			   <div  id="activity_feed_item">
 					<table>
-						<td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200">
+						<td width="250" align="center"><img src="" class="img-polaroid" width="200">
 							<p align="center">
 						        <div class="btn-group" align="center">
 								<%= link_to "Join", event_subscribe_path(:event_id => event.id), :method => :post, :type => "button", :class => "btn btn-primary btn-mini" %>
@@ -91,7 +91,7 @@
 				   <% @creator = User.find(event.creator_id) %>
 				   	<div  id="activity_feed_item">
 						<table>						
-						    <td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200">
+						    <td width="250" align="center"><img src="" class="img-polaroid" width="200">
 							 <% if current_user.event_subscribed?(event) %>
 							<p align="center>
 						       		<div class="btn-group" align="center">
@@ -138,7 +138,7 @@
 			    <% @creator = User.find(event.creator_id) %>
 			   <div  id="activity_feed_item">
 				<table>
-					<td width="250" align="center"><img src=<%= event.eventphoto.url%> class="img-polaroid" width="200" >
+					<td width="250" align="center"><img src='' class="img-polaroid" width="200" >
 					</td>
 					<td><p><a href="#"><%= link_to "#{@creator.name} #{@creator.surname}", user_show_path(:user => event.creator_id) %></a>
 						created an Event named 

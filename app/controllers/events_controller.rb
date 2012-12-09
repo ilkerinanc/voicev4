@@ -4,16 +4,15 @@ class EventsController < ApplicationController
 	#@event = Event.new
   	@events = Event.all
   	@myEvents = Event.where(:creator_id => current_user.id)
-        @user = current_user
-    	@tempevents = Array.new
-    	@tempinterests = @user.interests
-    	@tempinterests.each do |i|
+    @user = current_user
+  	@tempevents = Array.new
+  	@tempinterests = @user.interests
+  	@tempinterests.each do |i|
 		if i.events.count > 0
-			
 			#@tempevents = @tempevents + i.events
 			i.events.each do |e|
 				unless @user.events.include?(e) 
-                                      	unless @tempevents.include?(e)
+          unless @tempevents.include?(e)
 						@tempevents.push(e)
 					end
 				end

@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 	attr_accessible :creator_id, :description, :in_trash, :place, :time, :title, :interest_tokens, :eventphoto
 
-	has_attached_file :eventphoto
+	# has_attached_file :eventphoto
 	
 	has_many :event_interests, :foreign_key => "event_id", :dependent => :destroy
 	has_many :interests, :through => :event_interests, :source => :interest
