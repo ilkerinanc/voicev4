@@ -1,12 +1,14 @@
 <div class="span4">
 	
         <p align="center"><h2><%= link_to "#{@event.title}", event_path(:event => @event.id) %></h2></p>
-	<p><img src=<%= @event.eventphoto.url%> class="img-polaroid" width="200"></p>
-        <p class="muted"><medium>Description	:<%= @event.description %></medium></p>
-	<p class="muted"><small>Place		:<%= @event.place %></small></p>	
-	<p class="muted"><small>Date		:<%= @event.date %></small></p>	
-	<p class="muted"><small>Time		:<%= @event.time %></small></p>
-	<p class="muted"><small>Interests	:<% @event.interests.each do |interest| %>
+	<% if false %>	
+		<p><img src=<%= @event.eventphoto.url%> class="img-polaroid" width="200"></p>
+	<% end %>
+        <p class="muted"><medium>Description	: <%= @event.description %></medium></p>
+	<p class="muted"><small>Place		: <%= @event.place %></small></p>	
+	<p class="muted"><small>Date		: <%= @event.time.strftime("%d/%m/%Y") %></small></p>	
+	<p class="muted"><small>Time		: <%= @event.time.strftime("%H:%M") %></small></p>
+	<p class="muted"><small>Interests	: <% @event.interests.each do |interest| %>
 		<%= link_to "#{interest.name}", interest_path(:interest => interest.id) %>	|
 	<%end%>	</p>
 	<hr class="bs-docs-separator"></hr>
