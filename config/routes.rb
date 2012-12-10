@@ -102,6 +102,7 @@ Voicev4::Application.routes.draw do
   match 'user/:user/about' => 'users#about', :as => :user_about
   match 'user/:user/interests' => 'users#interests', :as => :user_interests
   match 'user/:user/events' => 'users#events', :as => :user_events  
+  match 'user/:user/settings' => 'users#settings', :as => :user_settings
 
   match 'users' => 'users#index', :as => :users_index
 

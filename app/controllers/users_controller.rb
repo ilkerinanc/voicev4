@@ -70,6 +70,10 @@ class UsersController < ApplicationController
     @interests = User.find(params[:user]).interests
   end
 
+  def settings
+    @user = User.find(params[:user])
+  end
+
   private
 
   def friendship_score

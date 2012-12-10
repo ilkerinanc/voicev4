@@ -80,10 +80,10 @@ Pending <% if current_user.requested_friendships.count > 0 %>
                         </ul>
                 </li>
                 <li class="dropdown" id="accountmenu">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account Settings<b class="caret"></b></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.name %> <%= current_user.surname %><b class="caret"></b></a>
 
                         <ul class="dropdown-menu">
-                            <%= current_user.name %> <%= current_user.surname %>
+                            <%= link_to "Settings", user_settings_path(:user => current_user.id)%>
                             <%= link_to "Log out", logout_path, :class => 'btn btn-mini' %>
 
                         </ul>
