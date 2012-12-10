@@ -1,0 +1,19 @@
+<%= form_for @message, :html => { :class => "form-horizontal"} do |f| %>
+  <div class="control-group">
+      <%= f.label "To:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :receiver_name, :data => {:autocomplete_source => message_receiver_index_path} %>
+      </div>
+  </div>
+  <div class="control-group">
+      <%= f.label :content, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :content, :rows => 3 %>
+      </div>
+  </div>
+  <div class="control-group">   
+    <div class="controls">
+      <%= f.submit :class => "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.fullname = "#{@user.name} #{@user.surname}"
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_url, :notice => "Thank you for signing up! You are now logged in."
@@ -68,6 +69,12 @@ class UsersController < ApplicationController
   def interests
     @user = User.find(params[:user])
     @interests = User.find(params[:user]).interests
+  end
+
+  def message_receiver_index
+    # @receivers = current_user.friends.order(:username).where("name like ?", "%#{params[:term]}%")
+    @receivers = current_user.friends
+    render :json => @receivers.map(&:username)
   end
 
   private

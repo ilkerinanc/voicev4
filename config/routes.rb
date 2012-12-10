@@ -1,5 +1,19 @@
 Voicev4::Application.routes.draw do
 
+  # get "messages/index"
+
+  # get "messages/show"
+
+  # get "messages/new"
+
+  # get "messages/create"
+
+  # get "messages/destroy"
+
+  # get "search/index"
+
+  # get "search/results"
+
   #get "subscription_events/create"
 
   #get "subscription_events/destroy"
@@ -86,6 +100,10 @@ Voicev4::Application.routes.draw do
 
   resources :interest_posts
 
+  resources :searches
+
+  resources :messages
+
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
@@ -141,7 +159,10 @@ Voicev4::Application.routes.draw do
   match 'events/:event/edit' => 'events#edit', :as => :event_edit
   match 'friendships/destroy' => 'friendships#destroy', :as => :friendship_destroy, :via => :post
   match 'events/:event/new_events' => 'events#new_events', :as => :event_new_events  
-  
+
+  match 'message_receiver_index' => 'users#message_receiver_index', :as => :message_receiver_index
+
+
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
 

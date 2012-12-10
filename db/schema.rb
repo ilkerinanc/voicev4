@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207183711) do
+ActiveRecord::Schema.define(:version => 20121209211803) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -96,6 +96,14 @@ ActiveRecord::Schema.define(:version => 20121207183711) do
     t.integer  "creator_id"
   end
 
+  create_table "messages", :force => true do |t|
+    t.string   "content"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "occasions", :force => true do |t|
     t.string   "name"
     t.integer  "creator_id"
@@ -109,6 +117,12 @@ ActiveRecord::Schema.define(:version => 20121207183711) do
   create_table "questions", :force => true do |t|
     t.integer  "survey_id"
     t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "searches", :force => true do |t|
+    t.string   "keywords"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -147,8 +161,8 @@ ActiveRecord::Schema.define(:version => 20121207183711) do
     t.string   "name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.datetime "start_time"
     t.datetime "finish_time"
+    t.datetime "start_time"
   end
 
   create_table "taggings", :force => true do |t|
@@ -191,6 +205,7 @@ ActiveRecord::Schema.define(:version => 20121207183711) do
     t.string   "uid"
     t.datetime "oauth_expires_at"
     t.string   "oauth_token"
+    t.string   "fullname"
   end
 
   create_table "voices", :force => true do |t|
