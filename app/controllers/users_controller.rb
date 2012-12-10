@@ -77,8 +77,9 @@ class UsersController < ApplicationController
     render :json => @receivers.map(&:username)
   end
 
-   def settings
+  def settings
     @user = User.find(params[:user])
+  end
 
   private
 
