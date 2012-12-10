@@ -22,17 +22,17 @@
 development:
   adapter: jdbcmysql
   username: root
-  password: 
+  password:
   host: localhost
   database: voicev4_development
 
 test:
   adapter: jdbcmysql
   username: root
-  password: 
+  password:
   host: localhost
   database: voicev4_test
-  
+
 production:
   adapter: jdbcmysql
   username: project4

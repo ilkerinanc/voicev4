@@ -8,27 +8,7 @@
                 <input class="span4" id="appendedInputButton" size="16" type="text" placeholder="Raise Your Voice!"><button class="btn" type="button">Go!</button>
               </div>
             </form>
-            <% @activities.each do |activity| %>
-              <% activity_user = activity.user %>
-              <div class="row"  id="activity_feed_item">
-                  <div class="span1" align="center">
-                      <%= link_to image_tag("http://graph.facebook.com/#{activity_user.uid}/picture?type=square", :class => "img-circle"), user_show_path(:user => activity_user.id) %>
-                  </div>
-                  <div class="span5">
-                      <%= link_to "#{activity_user.name} #{activity_user.surname}" , user_show_path(:user => activity_user.id) %> 
-                      <% if activity.klass.constantize.column_names.include?("title") %>
-                        <%= activity.action %> <%= link_to "#{activity.klass.constantize.find(activity.klass_id).title}", activity.klass.constantize.find(activity.klass_id).get_show_url %> 
-                      <% elsif activity.klass == "User" %>
-                        <% user = User.find(activity.klass_id) %>
-                        <%= activity.action %> <%= link_to "#{user.name} #{user.surname}", User.find(user.id).get_show_url %>
-                      <% elsif activity.klass.constantize.column_names.include?("name") %>
-                        <%= activity.action %> <%= link_to "#{activity.klass.constantize.find(activity.klass_id).name}", activity.klass.constantize.find(activity.klass_id).get_show_url %> 
-                      <% end %>
-                      <p class="muted"><small><%= time_ago_in_words(activity.created_at) %> ago</small></p>
-                  </div>
-              </div>
-              <hr class="bs-docs-separator">
-            <% end %>
+           
         </div>
         <div class="span3">
           <div class="well">
@@ -57,7 +37,7 @@
                 <% end %>
             </ul>
           </div>
-       </div>
+         </div>
 
         <div class="span3">
           <div class="well">
@@ -68,14 +48,7 @@
                 <% end %>
             </ul>
           </div>
-          <div class="well">
-            <h2>Discussions</h2>
-            <ul>
-                <% @discussions.each do |discussion| %>
-                  <li> <%= link_to "#{discussion.name}", discussion_path(:discussion => discussion.id) %></li>
-                <% end %>
-            </ul>
-          </div>
+
           <div class="well">
             <h2>Users</h2>
             <ul>

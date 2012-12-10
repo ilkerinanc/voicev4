@@ -1,14 +1,22 @@
 <% title "Discussion" %>
 
 <p>
-  <strong>Name:</strong>
-  <%=h @discussion.name %>
+	<strong>Name:</strong>
+	<%=h @discussion.name %>
 </p>
+
+<ol>
+<% for discussionpost in @discussion.discussionposts %>
+	<li><%=h discussionpost.content %></li>
+	<%end %>
+</ol>
 
 
 
 <p>
+|
+
   <%= link_to "Edit", edit_discussion_path(@discussion),:class=>'btn btn-info' %> |
   <%= link_to "Destroy", @discussion, :confirm => 'Are you sure?', :method => :delete ,:class=>'btn btn-danger'%> |
-  <%= link_to "View All", discussions_path ,:class=>'btn btn-primary'%>
-<% title "Discussion" %>
+  <%= link_to "View All", discussions_path ,:class=>'btn btn-primary'%> |
+  

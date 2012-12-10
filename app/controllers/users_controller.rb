@@ -77,6 +77,9 @@ class UsersController < ApplicationController
     render :json => @receivers.map(&:username)
   end
 
+   def settings
+    @user = User.find(params[:user])
+
   private
 
   def friendship_score

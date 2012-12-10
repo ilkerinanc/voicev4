@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -19,22 +20,23 @@ ActiveRecord::Schema.define(:version => 20121209211803) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "discussion_posts", :force => true do |t|
-    t.text     "content"
-    t.boolean  "in_trash"
+  create_table "conversations", :force => true do |t|
+    t.string   "subject",    :default => ""
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "discussionposts", :force => true do |t|
     t.integer  "discussion_id"
-    t.integer  "user_id"
+    t.string   "content"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
 
   create_table "discussions", :force => true do |t|
     t.string   "name"
-    t.text     "description"
-    t.boolean  "in_trash"
-    t.integer  "creator_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "event_interests", :force => true do |t|
@@ -51,12 +53,8 @@ ActiveRecord::Schema.define(:version => 20121209211803) do
     t.string   "place"
     t.integer  "creator_id"
     t.boolean  "in_trash"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.string   "eventphoto_file_name"
-    t.string   "eventphoto_content_type"
-    t.integer  "eventphoto_file_size"
-    t.datetime "eventphoto_updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.datetime "date"
   end
 
@@ -114,6 +112,13 @@ ActiveRecord::Schema.define(:version => 20121209211803) do
     t.datetime "time"
   end
 
+  create_table "posts", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "questions", :force => true do |t|
     t.integer  "survey_id"
     t.text     "content"
@@ -126,6 +131,20 @@ ActiveRecord::Schema.define(:version => 20121209211803) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "receipts", :force => true do |t|
+    t.integer  "receiver_id"
+    t.string   "receiver_type"
+    t.integer  "notification_id",                                  :null => false
+    t.boolean  "is_read",                       :default => false
+    t.boolean  "trashed",                       :default => false
+    t.boolean  "deleted",                       :default => false
+    t.string   "mailbox_type",    :limit => 25
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
+
+  add_index "receipts", ["notification_id"], :name => "index_receipts_on_notification_id"
 
   create_table "subscription_events", :force => true do |t|
     t.integer  "user_id"
