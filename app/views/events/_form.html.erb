@@ -1,9 +1,11 @@
-<%= form_for @event, :html => { :class => "form-horizontal", :multipart => :true} do |f| %>
+<%= form_for @event, :html => { :class => "form-horizontal", :multipart => "true" } do |f| %>
+  <% if false %>
   <div class="control-group">
       <div class="controls">
 	<%= f.file_field :eventphoto%>
       </div>
   </div>
+  <% end %>
   <div class="control-group">
       <%= f.label :title, :class => "control-label" %>
       <div class="controls">
@@ -33,7 +35,7 @@
   <div class="control-group">
    <%= f.label "Date", :class => "control-label"%>
       <div class="controls">
-      	<%= f.text_field :date, :class => "datepicker-default input-small"%>
+      	<%= f.text_field :time%>
       </div>
   </div class="control-group">
 

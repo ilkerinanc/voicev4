@@ -57,7 +57,7 @@ $(function() {
 });
 
 $(function() {
-  $("#event_date").datepicker({format: 'dd-mm-yyyy'});
+  $("#event_time").datepicker({format: 'dd-mm-yyyy'});
 });
 
 $(function() {

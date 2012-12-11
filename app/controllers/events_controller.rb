@@ -36,60 +36,58 @@ class EventsController < ApplicationController
   end
 
   def create
-    #@event = Event.new(params[:event])
-    #@event.creator_id = current_user.id
-    #@event.in_trash = false
-    #if @event.save
-    #	redirect_to events_url, :notice => "Successfully created event."
-    #else
-    #	render :action => 'new'		
-    #end
-    ##Burası ilkerin
+    ####################
     # @event = Event.new(params[:event])
     # :interest_tokens
-      @event = Event.new
-      @event.description = params[:event][:description]
-      @event.place = params[:event][:place]
-      @event.title = params[:event][:title]
-      @event.time =  Date.parse('2012-11-23') + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
-      #@event.time =  Date.parse(params[:time]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
-      @event.creator_id = current_user.id
-    	@event.in_trash = false
-    	if @event.save
-        UserActivity.create(
-          :user_id => current_user.id,
-          :klass => "Event",
-          :klass_id => @event.id,
-          :action => "created event"
-          )
+    #@event = Event.new
+    #@event.description = params[:event][:description]
+    #@event.place = params[:event][:place]
+    #@event.title = params[:event][:title]
+    #@event.time =  Date.parse('2012-11-23') + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
+    #@event.time =  Date.parse(params[:time]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
+		@event = Event.new(params[:event])
+    @event.creator_id = current_user.id
+    @event.in_trash = false
+	
+    if @event.save
+      UserActivity.create(
+        :user_id => current_user.id,
+        :klass => "Event",
+        :klass_id => @event.id,
+        :action => "created event"
+        )
 
-        @event.interests.each do |i|
-          InterestActivity.create(
-            :user_id => current_user.id,
-            :interest_id => i.id,
-            :klass => "Event",
-            :klass_id => @event.id,
-            :action => "created event"
-          )
-        end
+    	@event.interests.each do |i|
+    	InterestActivity.create(
+    		:user_id => current_user.id,
+     	 	:interest_id => i.id,
+   	   	:klass => "Event",
+ 	     	:klass_id => @event.id,
+     	 	:action => "created event"
+  	    )
+    	end
 
-     	  redirect_to events_url, :notice => "Successfully created event."
+    	redirect_to events_url, :notice => "Event was successfully created."
    	else
-   	    render :action => 'new'
-      end
+			
+    	flash[:error] = " " << @event.errors.full_messages.join("...  ")
+
+   	  render :action => 'new'
+    end
   end
 
   def show
-	@event = Event.find(params[:id])
+		@event = Event.find(params[:id])
   end
 
   def destroy
     Event.find(params[:event]).destroy
-    redirect_to events_url, :notice => "Event successfully deleted."
+    redirect_to events_url, :notice => "Event was successfully deleted."
   end
 
   def edit
     @event = Event.find(params[:id])
+		redirect_to events_url, :notice => "Event was successfully updated."
   end
 
 end
