@@ -10,7 +10,7 @@ class EventsControllerTest < ActionController::TestCase
   test "should get create" do
 		#Event.any_instance.stubs(:valid?).returns(false)
     post :create
-		assert_redirected_to events_url
+    assert_template 'new'
   end
 
   test "should get show" do
@@ -21,14 +21,14 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   test "should get destroy" do
-		#@controller.stubs(:current_user).returns(User.first)
-		#Event.any_instance.stubs(:valid?).returns(true)
+		@controller.stubs(:current_user).returns(User.first)
+		Event.any_instance.stubs(:valid?).returns(true)
     get :destroy, :id => "ignored"
     assert_response :success
   end
 
   test "should get edit" do
-		#@controller.stubs(:current_user).returns(User.first)
+		@controller.stubs(:current_user).returns(User.first)
     get :edit, :id => "ignored"
     assert_template 'edit'
   end
