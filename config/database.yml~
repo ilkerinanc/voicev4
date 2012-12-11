@@ -22,17 +22,25 @@
 development:
   adapter: jdbcmysql
   username: root
-  password: 2577
+<<<<<<< HEAD:config/database.yml
+  password: 
+=======
+  password:
+>>>>>>> 7191f39191199a0486f5e8e1b8868bd67f9ef3df:config/database.yml
   host: localhost
   database: voicev4_development
 
 test:
   adapter: jdbcmysql
   username: root
-  password: 2577
+<<<<<<< HEAD:config/database.yml
+  password: 
+=======
+  password:
+>>>>>>> 7191f39191199a0486f5e8e1b8868bd67f9ef3df:config/database.yml
   host: localhost
   database: voicev4_test
-  
+
 production:
   adapter: jdbcmysql
   username: project4

@@ -1,0 +1,43 @@
+<%= form_for @user, :html => { :class => "form-horizontal"} do |f| %>
+
+	<div class="control-group">
+	    <%= f.label "Receive Notifications?", :class => "control-label" %>
+	    <div class="controls">
+	    	<div class="btn-group" data-toggle="buttons-radio">
+				<button type="button" class="btn btn-info">Yes</button>
+			 	<button type="button" class="btn btn-info">No</button>
+			  	<script>
+			 		$('.nav-tabs').button()
+				</script>
+			</div>
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    <%= f.label "On homepage, view activities of ", :class => "control-label" %>
+	    <div class="controls">
+	    	<div class="btn-group" data-toggle="buttons-radio">
+				<button type="button" class="btn btn-info">My Connections</button>
+			 	<button type="button" class="btn btn-info">All members</button>
+			  	<script>
+			 		$('.nav-tabs').button()
+				</script>
+			</div>
+	    </div>
+	</div>
+
+	<div class="control-group">
+  		<%= f.label "Profile Visible By", :class => "control-label" %>
+  		<div class="controls">
+   			<%= select_tag :visibility, options_for_select([["Connections Only", "connections"],
+   											["Community Members Only", "members"],
+   											["Everyone", "everyone"]]) %>
+  		</div>
+	</div>
+
+	<div class="control-group">   
+    	<div class="controls">
+      		<%= f.submit "Save", :class => "btn btn-primary" %>
+    	</div>
+  	</div>
+<% end %>

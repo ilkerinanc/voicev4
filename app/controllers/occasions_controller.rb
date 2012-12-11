@@ -1,6 +1,7 @@
 class OccasionsController < ApplicationController
   def index
-  	@occasions = Occasion.where('time > ?', Date.today - 1.days).order('created_at DESC') #gecmis occasion degil ise
+  	@upcomingoccasions = Occasion.where('time > ?', Date.today - 1.days).order('created_at DESC') #gecmis occasion degil ise
+    @missedoccasions = Occasion.where('time < ?', Date.today - 1.days) #gecmis ise
   end
 
   def new

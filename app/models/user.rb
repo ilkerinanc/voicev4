@@ -15,8 +15,9 @@ class User < ActiveRecord::Base
   has_many :subscription_events, :foreign_key => "user_id", :dependent => :destroy
   has_many :events, :through => :subscription_events, :source => :event
 
+  has_many :messages, :dependent => :destroy
 
-  has_many :voices
+  has_many :voices, :dependent => :destroy
 
   # new columns need to be added here to be writable through mass assignment
   attr_accessible :username, :email, :password, :password_confirmation, :name, :surname, :description, :current_work

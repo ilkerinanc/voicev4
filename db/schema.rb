@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207183711) do
+ActiveRecord::Schema.define(:version => 20121209211803) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -20,22 +20,23 @@ ActiveRecord::Schema.define(:version => 20121207183711) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "discussion_posts", :force => true do |t|
-    t.text     "content"
-    t.boolean  "in_trash"
+  create_table "conversations", :force => true do |t|
+    t.string   "subject",    :default => ""
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "discussionposts", :force => true do |t|
     t.integer  "discussion_id"
-    t.integer  "user_id"
+    t.string   "content"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
 
   create_table "discussions", :force => true do |t|
     t.string   "name"
-    t.text     "description"
-    t.boolean  "in_trash"
-    t.integer  "creator_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "event_interests", :force => true do |t|
@@ -52,12 +53,8 @@ ActiveRecord::Schema.define(:version => 20121207183711) do
     t.string   "place"
     t.integer  "creator_id"
     t.boolean  "in_trash"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.string   "eventphoto_file_name"
-    t.string   "eventphoto_content_type"
-    t.integer  "eventphoto_file_size"
-    t.datetime "eventphoto_updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.datetime "date"
   end
 
@@ -97,6 +94,14 @@ ActiveRecord::Schema.define(:version => 20121207183711) do
     t.integer  "creator_id"
   end
 
+  create_table "messages", :force => true do |t|
+    t.string   "content"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "occasions", :force => true do |t|
     t.string   "name"
     t.integer  "creator_id"
@@ -107,12 +112,39 @@ ActiveRecord::Schema.define(:version => 20121207183711) do
     t.datetime "time"
   end
 
+  create_table "posts", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "questions", :force => true do |t|
     t.integer  "survey_id"
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "searches", :force => true do |t|
+    t.string   "keywords"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "receipts", :force => true do |t|
+    t.integer  "receiver_id"
+    t.string   "receiver_type"
+    t.integer  "notification_id",                                  :null => false
+    t.boolean  "is_read",                       :default => false
+    t.boolean  "trashed",                       :default => false
+    t.boolean  "deleted",                       :default => false
+    t.string   "mailbox_type",    :limit => 25
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
+
+  add_index "receipts", ["notification_id"], :name => "index_receipts_on_notification_id"
 
   create_table "subscription_events", :force => true do |t|
     t.integer  "user_id"
@@ -192,6 +224,7 @@ ActiveRecord::Schema.define(:version => 20121207183711) do
     t.string   "uid"
     t.datetime "oauth_expires_at"
     t.string   "oauth_token"
+    t.string   "fullname"
   end
 
   create_table "voices", :force => true do |t|

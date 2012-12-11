@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class DiscussionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def test_should_be_valid
+    assert Discussion.new.valid?
+  end
 end
