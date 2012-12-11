@@ -73,7 +73,9 @@ class UsersController < ApplicationController
 
   def message_receiver_index
     # @receivers = current_user.friends.order(:username).where("name like ?", "%#{params[:term]}%")
-    @receivers = current_user.friends
+    @friends = current_user.friends
+    # @receivers= current_user.friends
+    @receivers = User.where(:id => @friends.collect(&:id)).where("name like ?", "%#{params[:term]}%").order(:username)
     render :json => @receivers.map(&:username)
   end
 

@@ -1,75 +1,5 @@
 Voicev4::Application.routes.draw do
 
-  # get "messages/index"
-
-  # get "messages/show"
-
-  # get "messages/new"
-
-  # get "messages/create"
-
-  # get "messages/destroy"
-
-  # get "search/index"
-
-  # get "search/results"
-
-  #get "subscription_events/create"
-
-  #get "subscription_events/destroy"
-
-  #get "survey_interests/index"
-
-  #get "survey_interests/new"
-
-  #get "survey_interests/create"
-
-  #get "survey_interests/destroy"
-
-  #get "event_interests/create"
-
-  #get "event_interests/destroy"
-
-  #get "events/index"
-
-  #get "events/new"
-
-  #get "events/create"
-
-  #get "events/show"
-
-  #get "events/destroy"
-
-  #get "events/edit"
-
-  #get "discussions/index"
-
-  #get "discussions/new"
-
-  #get "discussions/create"
-
-  #get "discussions/update"
-
-  #get "discussions/destroy"
-
-  #get "discussions/show"
-
-  #get "discussions/edit"
-
-  #get "discussion_posts/create"
-
-  #get "discussion_posts/destroy"
-
-  # get "interest_posts/create"
-
-  # get "interest_posts/destroy"
-
-  # get "taggings/create"
-
-  # get "taggings/destroy"
-
-  # get "home/index"
-
   root :to => "home#index" 
 
   resources :events
@@ -102,7 +32,7 @@ Voicev4::Application.routes.draw do
 
   resources :searches
 
-  resources :messages
+  resources :messages, :except => [:show]
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -162,7 +92,7 @@ Voicev4::Application.routes.draw do
   match 'events/:event/new_events' => 'events#new_events', :as => :event_new_events  
 
   match 'message_receiver_index' => 'users#message_receiver_index', :as => :message_receiver_index
-
+  match 'messages/:user' => 'messages#feed', :as => :message_feed
 
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
