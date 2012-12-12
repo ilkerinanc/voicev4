@@ -12,7 +12,7 @@
 	<% for answer in question.answers %>
 		<li><%=h answer.content %></li>
 		<div>
-			<%= check_box_tag "question[answer.ids][]", "answer.id" %>
+			<%= check_box_tag "ques[]", "question.id" %>
 		</div>
 	<%end %>
 	</ol>
@@ -50,4 +50,4 @@
   <%= link_to "Edit", edit_survey_path(@survey),:class=>'btn btn-info' %> |
   <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete ,:class=>'btn btn-danger'%> |
   <%= link_to "View All", surveys_path ,:class=>'btn btn-primary'%> |
-  <%= link_to 'Commit', committed_survey_path(:surveyId => @survey.id), :class=>'btn btn-primary'%>
+  <%= link_to 'Commit',  committed_survey_path(:surveyId => @survey.id, :ques => ques), :class=>'btn btn-primary'%>

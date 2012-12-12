@@ -46,10 +46,11 @@ class SurveysController < ApplicationController
   def commit
 
       #@survey = Survey.find_by_id(params[:id])
+      raise
       @survey = Survey.new
       @surveyUser = SurveyUser.new
       @surveyUser.answerId = Survey.find_by_id(params[:id])
-      @surveyUser.questionId = Survey.find_by_id(params[:id])
+      @surveyUser.questionId = params[:ques]
       @surveyUser.surveyId = params[:surveyId]
       @surveyUser.userId = current_user.id
 
