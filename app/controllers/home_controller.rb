@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   	if logged_in?
   		@activities = UserActivity.where(:user_id => [current_user.friends.collect(&:id)]+ [current_user.id] ).order("created_at DESC")
       @user = current_user
+      
       @tempevents = Array.new
       @tempinterests = @user.interests
       @tempinterests.each do |i|
@@ -18,12 +19,15 @@ class HomeController < ApplicationController
         end
       end
       @newevents = @tempevents.last(5)
+
+      @occasions = Occasion.last(5)
+      @interests = Interest.last(5)
+      @events = Event.last(5)
+      @surveys = Survey.last(5)
+      #@discussions = Discussion.last(5)
+      @users = User.last(5)  
     end
-  	@occasions = Occasion.last(5)
-  	@interests = Interest.last(5)
-  	@events = Event.last(5)
-  	@surveys = Survey.last(5)
-  	#@discussions = Discussion.last(5)
-  	@users = User.last(5)  
+  	
+
   end
 end
