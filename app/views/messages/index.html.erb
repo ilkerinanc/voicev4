@@ -1,2 +1,29 @@
-<h1>Messages#index</h1>
-<p>Find me in app/views/messages/index.html.erb</p>
+<div class="span4">
+    <div class="row">
+       <div class="span4" align="center">
+		    <h2><%= link_to "#{current_user.name} #{current_user.surname}", user_show_path(:user => current_user.id) %></h2>
+		    <%= image_tag("http://graph.facebook.com/#{current_user.uid}/picture?type=large", :class => "img-polaroid") %>
+		</div>
+    </div>
+    <div class="row">
+        
+    </div>
+</div>
+
+<div class="span7">
+    <div class="row">
+        <h3><em>Messages</em></h3>
+        <!-- Display Messages -->
+        <% @conversation_users.each do |@user| %>
+            <div class="row"  id="activity_feed_item">
+                <div class="span1" align="center">
+                    <%= link_to image_tag("http://graph.facebook.com/#{@user.uid}/picture?type=square", :class => "img-circle"), message_feed_path(:user => @user) %>
+                </div>
+                <div class="span6">
+                    <%= link_to "#{@user.name} #{@user.surname}" , message_feed_path(:user => @user) %>
+                </div>
+            </div>
+            <hr class="bs-docs-separator">
+        <% end %>
+    </div>
+</div>
