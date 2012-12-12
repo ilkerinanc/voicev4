@@ -71,6 +71,12 @@ Voicev4::Application.routes.draw do
   match 'occasions/:occasion/destroy' => 'occasions#destroy', :as => :occasion_destroy
   # ----------------------------------------------------------------------------
 
+  # SEARCH RELATED PATHS -------------------------------------------------------
+  match 'search' => 'searches#new', :as => :search
+  match 'search/user_results' => 'searches#user_results', :as => :user_results
+  match 'search/interest_results' => 'searches#interest_results', :as => :interest_results
+  # ----------------------------------------------------------------------------
+
   match 'recommendations' => 'recommendations#index', :as => :recommendations
 
   match 'surveys/:survey' => 'surveys#show', :as => :survey

@@ -1,0 +1,33 @@
+<%= form_tag "/search/user_results" do %>
+
+<div class="control-group">
+      <%= label_tag :name, "Name", :class => "control-label" %>
+      <div class="controls">
+        <%= text_field_tag :name%>
+      </div>
+</div>
+
+<div class="control-group">
+      <%= label_tag :surname, "Surname", :class => "control-label" %>
+      <div class="controls">
+        <%= text_field_tag :surname%>
+      </div>
+</div>
+
+<div class="control-group">
+      <%= label_tag :title, "Title", :class => "control-label" %>
+      <div class="controls">
+        <%= text_field_tag :title%>
+      </div>
+</div>
+
+<div class="control-group">
+      <%= label_tag :email, "Email", :class => "control-label" %>
+      <div class="controls">
+        <%= text_field_tag :email%>
+      </div>
+</div>
+
+<%= submit_tag "Search" %>
+
+<% end %>

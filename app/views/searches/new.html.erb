@@ -1,10 +1,19 @@
 <h1>Advanced Search</h1>
 
-<%= form_for @search do |f| %>
-  <div class="field">
-    <%= f.label :keywords %><br />
-    <%= f.text_field :keywords %>
-  </div>
-  
-  <div class="actions"><%= f.submit "Search" %></div>
-<% end %>
+<div class="tabbable">
+<ul class="nav nav-tabs" id="myTab">
+ <li class="active"><a href="#user" data-toggle="tab">Search User</a></li>
+ <li><a href="#interest" data-toggle="tab">Search Interest</a></li>
+</ul>
+
+
+<div class="tab-content">
+    <div class="tab-pane in active" id="user">
+		<%= render 'user_form' %>
+	</div>
+
+
+    <div class="tab-pane" id="interest">
+		<%= render 'interest_form' %>
+	</div>
+</div>

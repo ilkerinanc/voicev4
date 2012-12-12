@@ -54,6 +54,9 @@ class OccasionsController < ApplicationController
     @occasion = Occasion.find(params[:id])
   end
 
+  def edit
+    @occasion = Occasion.find(params[:id])
+  end
   
 
 end
