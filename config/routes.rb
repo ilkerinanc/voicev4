@@ -50,7 +50,6 @@ Voicev4::Application.routes.draw do
   match 'user/:user/about' => 'users#about', :as => :user_about
   match 'user/:user/interests' => 'users#interests', :as => :user_interests
   match 'user/:user/events' => 'users#events', :as => :user_events  
-  match 'user/:user/settings' => 'users#settings', :as => :user_settings
 
   match 'users' => 'users#index', :as => :users_index
 
@@ -100,6 +99,7 @@ Voicev4::Application.routes.draw do
   match 'message_receiver_index' => 'users#message_receiver_index', :as => :message_receiver_index
   match 'messages/:user' => 'messages#feed', :as => :message_feed
 
+  match 'settings' => 'settings#index', :as => :settings
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
 
