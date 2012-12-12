@@ -32,6 +32,15 @@ $(function () {
   });
 });
 
+//this is for interest search
+$(function () {
+  $('#tag_tokens').tokenInput('/tags.json', { 
+    crossDomain: false,
+    prePopulate: $('#tag_tokens').data('load'),
+    theme: "facebook"
+  });
+});
+
 $(function () {
   $('#survey_interest_tokens').tokenInput('/interests.json', { 
     crossDomain: false,

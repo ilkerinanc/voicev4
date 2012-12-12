@@ -27,6 +27,8 @@ private
 		@conditions = []
 
 		@conditions << "interests.name LIKE '%#{name}%'" unless name.blank?
-		@conditions << @tags
+		#@conditions << @tags
+
+		Interest.where(@conditions.join(' AND '))
 	end
 end
