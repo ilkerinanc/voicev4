@@ -3,8 +3,12 @@ class SearchesController < ApplicationController
     	@search = Search.new
   	end
 
-  	def results
-  		@results = find_users(params[:name], params[:surname])
+  	def user_results
+  		@user_results = find_users(params[:name], params[:surname], params[:title], params[:email])
+  	end
+
+  	def interest_results
+  		@interest_results = find_interests(params[:name], params[:tag_tokens])
   	end
 
 
@@ -19,9 +23,10 @@ private
 	  	User.where(@conditions.join(' AND '))
 	end
 
-	def find_interests(name, tags)
+	def find_interests(name, tag_tokens)
 		@conditions = []
 
 		@conditions << "interests.name LIKE '%#{name}%'" unless name.blank?
 		@conditions << @tags
+	end
 end

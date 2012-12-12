@@ -74,7 +74,8 @@ Voicev4::Application.routes.draw do
 
   # SEARCH RELATED PATHS -------------------------------------------------------
   match 'search' => 'searches#new', :as => :search
-  match 'searchresults' => 'searches#results', :as => :searchresults
+  match 'search/user_results' => 'searches#user_results', :as => :user_results
+  match 'search/interest_results' => 'searches#interest_results', :as => :interest_results
   # ----------------------------------------------------------------------------
 
   match 'recommendations' => 'recommendations#index', :as => :recommendations
