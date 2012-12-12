@@ -57,19 +57,15 @@ $(function() {
 });
 
 $(function() {
-  $("#event_time").datepicker({format: 'dd-mm-yyyy'});
+  $("#date_classevent_datepicker").datepicker({format: 'dd-mm-yyyy'});
 });
 
-$(function() {
-  $("#occasion_time").timepicker();
-});
+// $(function() {
+//   $('.datepicker-default').datepicker()
+// });
 
 $(function() {
   $(".timepicker-default").timepicker();
-});
-
-$(function() {
-  $(".timepicker").timepicker({showMeridian: true});
 });
 
 function remove_fields(link){
