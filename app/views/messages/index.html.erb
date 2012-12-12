@@ -12,6 +12,9 @@
 
 <div class="span7">
     <div class="row">
+        <%= link_to "New Message", new_message_path, :class => 'btn btn-primary' %>
+    </div>
+    <div class="row">
         <h3><em>Messages</em></h3>
         <!-- Display Messages -->
         <% @conversation_users.each do |@user| %>
