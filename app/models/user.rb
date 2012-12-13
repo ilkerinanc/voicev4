@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  recommends :interests, :users
+  recommends :interests, :users, :events
 
   has_many :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
@@ -12,10 +12,17 @@ class User < ActiveRecord::Base
   has_many :subscriptions, :foreign_key => "user_id", :dependent => :destroy
   has_many :interests, :through => :subscriptions, :source => :interest
 
-  has_many :voices
+  has_many :subscription_events, :foreign_key => "user_id", :dependent => :destroy
+  has_many :events, :through => :subscription_events, :source => :event
+
+  has_many :messages, :dependent => :destroy
+
+  has_many :voices, :dependent => :destroy
+
+  has_one :setting, :dependent => :destroy
 
   # new columns need to be added here to be writable through mass assignment
-  attr_accessible :username, :email, :password, :password_confirmation, :name, :surname, :description, :current_work
+  attr_accessible :username, :email, :password, :password_confirmation, :name, :surname, :description, :current_work, :fullname
 
   attr_accessor :password
   before_save :prepare_password
@@ -92,6 +99,10 @@ class User < ActiveRecord::Base
     return self.interests.include?(interest)
   end
 
+  def event_subscribed?(event)
+    return self.events.include?(event)
+  end
+
   def friends_in_common(user)
     return self.friends & user.friends
   end
@@ -104,6 +115,10 @@ class User < ActiveRecord::Base
     return (self.friends_in_common(user).count / self.friends.count).to_f
   end
 
+  def get_show_url
+    Rails.application.routes.url_helpers.user_show_path(self.id)
+  end
+
   private
 
   def prepare_password
@@ -112,6 +127,4 @@ class User < ActiveRecord::Base
       self.password_hash = encrypt_password(password)
     end
   end
-
-  
 end

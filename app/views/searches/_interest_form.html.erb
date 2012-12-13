@@ -1,0 +1,19 @@
+<%= form_tag "/search/interest_results" do %>
+
+<div class="control-group">
+      <%= label_tag :name, "Name", :class => "control-label" %>
+      <div class="controls">
+        <%= text_field_tag :name%>
+      </div>
+</div>
+
+<div class="control-group">
+      <%= label_tag :tag_tokens, "Tags", :class => "control-label" %>
+      <div class="controls">
+        <%= text_field_tag :tag_tokens%>
+      </div>
+</div>
+
+<%= submit_tag "Search" %>
+
+<% end %>

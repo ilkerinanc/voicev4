@@ -4,9 +4,28 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
+  <p>
+    <%= f.label :start_time %><br />
+    <%= f.text_field :start_time %>
+  </p>
+  <p>
+    <%= f.label :finish_time %><br />
+    <%= f.text_field :finish_time%>
+  </p>
+
+  <div class="control-group">
+      <%= f.label :target_audiance, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :interest_tokens, :data => {:load => @survey.interests} %>
+      </div>
+  </div>
   <%= f.fields_for :questions do |builder| %>
     <%= render "question_fields", :f => builder %>
   <% end %>
-  <p><%= link_to_add_fields "Add Question", f, :questions %></p>
-  <p><%= f.submit "Submit" ,:class=>'btn btn-primary'%></p>
+  <p>
+    <%= link_to_add_fields "Add Question", f, :questions %>
+  </p>
+  <p>
+    <%= f.submit "Submit" ,:class=>'btn btn-primary'%>
+  </p>
 <% end %>

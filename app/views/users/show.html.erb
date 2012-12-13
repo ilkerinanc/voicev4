@@ -30,6 +30,19 @@
                 <% end %>
             </div>
         <% end %>
+	<% if @user == current_user and @user.events.count > 0%>
+            <div align="center">
+                <h4><%= link_to "Events (#{current_user.events.count})" %></h4>
+                 <% @user.events.each do |e| %>
+                        <% if false %> <%= link_to image_tag(e.eventphoto.url, :width => 100), event_path(:event =>e.id), :class => 'img-rounded' %> <% end %>
+			<%= link_to "(#{e.title})", event_path(:event =>e.id) %>
+                <% end %>
+            </div>
+	  <% elsif @user.events.count == 0 %>
+	    <div align="center">
+                <h4><%= link_to "Event (#{current_user.events.count})" %></h4>
+            </div>
+        <% end %>
         <br>
         <div align="center">
             <h4><%= link_to "Interests (#{@user.interests.count})", user_interests_path(:user => @user) %></h4>
@@ -73,14 +86,14 @@
                 </div>
             <% end %>
         <% end %>
-
+        <!-- Display Voices -->
         <% @voices.each do |v| %>
             <div class="row"  id="activity_feed_item">
                 <div class="span1" align="center">
-                    <%= link_to image_tag("http://graph.facebook.com/#{current_user.uid}/picture?type=square", :class => "img-circle"), user_show_path(:user =>v.user_id) %>
+                    <%= link_to image_tag("http://graph.facebook.com/#{@user.uid}/picture?type=square", :class => "img-circle"), user_show_path(:user => @user) %>
                 </div>
                 <div class="span6">
-                    <a href=<% user_show_path(:user => current_user) %>><%= "#{current_user.name} #{current_user.surname}" %></a> <%= v.content %>
+                    <a href=<% user_show_path(:user => @user) %>><%= "#{@user.name} #{@user.surname}" %></a> <%= v.content %>
                     <p class="muted"><small><%= time_ago_in_words(v.created_at) %> ago</small></p>
                 </div>
             </div>

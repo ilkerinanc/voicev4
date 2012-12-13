@@ -1,0 +1,57 @@
+require 'test_helper'
+
+class EventTest < ActiveSupport::TestCase
+   def new_event(attributes = {})
+    attributes[:title] ||= 'sample_event'
+    attributes[:description] ||= 'sample_description'
+    attributes[:time] ||= '01-01-2001 00:00'
+    attributes[:place] ||= 'sample_place'
+    event = Event.new(attributes)
+    event.valid? # run validations
+    event
+  end
+
+	test "should not save event without title" do
+  	event = new_event(:title => '')
+		assert_equal ["can't be blank"], event.errors[:title]
+  	assert !event.save, "cannot be saved the event without a time"
+	end
+
+	test "should not save event without time" do
+  	event = new_event(:time => '')
+		assert_equal ["can't be blank"], event.errors[:time]
+  	assert !event.save, "cannot be saved the event without a time"
+	end
+
+	test "should not save event without description" do
+  	event = new_event(:description => '')
+		assert_equal ["can't be blank"], event.errors[:description]
+  	assert !event.save, "cannot be saved the event without a description"
+	end	
+
+	test "should not save event without place" do
+  	event = new_event(:place => '')
+		assert_equal ["can't be blank"], event.errors[:place]
+  	assert !event.save, "cannot be saved the event without a place"
+	end
+
+	test "should not have events with the same title" do
+		event = new_event(:title => 'sample')
+		assert event.save
+		event1 = new_event(:title => 'sample')
+		assert_equal ["has already been taken"], event1.errors[:title]
+		assert !event1.save, "cannot be saved with the same title"
+	end
+
+	test "should not have title more than 25 characters" do
+		event = new_event(:title => '12345678901234567890123456')
+		assert_equal ["is too long (maximum is 25 characters)"], event.errors[:title]
+	end
+
+	test "should not have title less than 4 characters" do
+		event = new_event(:title => '123')
+		assert_equal ["is too short (minimum is 4 characters)"], event.errors[:title]
+	end
+
+
+end

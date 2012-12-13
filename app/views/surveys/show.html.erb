@@ -11,13 +11,43 @@
 	<ol>
 	<% for answer in question.answers %>
 		<li><%=h answer.content %></li>
+		<div>
+			<%= check_box_tag "ques[]", "question.id" %>
+		</div>
 	<%end %>
 	</ol>
 <%end %>
 </ol>
 
+
+<!--
+<%= form_for @survey do |s| %>
+	<li>
+		<%=s.label :name %>
+		<%=s.text_field :name %>
+	</li>
+	
+	<%=s.fields_for :questions do |q| %>
+		
+		<li><%=h q.text_field :content %></li>
+
+		<%= q.fields_for :answers do |a| %>
+			<li><%=a.text_field :content %>
+			<%=a.check_box :content %>
+			</li>
+			
+ 		 <% end %>
+	 	 
+  <% end %>
+  <p>
+<% end %>
+-->
+
+
 <p>
-  <%= link_to "Edit", edit_survey_path(@survey),:class=>'btn btn-primary' %> |
-  <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete ,:class=>'btn btn-primary'%> |
-  <%= link_to "View All", surveys_path ,:class=>'btn btn-primary'%>
-<% title "Survey" %>
+|
+
+  <%= link_to "Edit", edit_survey_path(@survey),:class=>'btn btn-info' %> |
+  <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete ,:class=>'btn btn-danger'%> |
+  <%= link_to "View All", surveys_path ,:class=>'btn btn-primary'%> |
+  <%= link_to 'Commit',  committed_survey_path(:surveyId => @survey.id, :ques => ques), :class=>'btn btn-primary'%>

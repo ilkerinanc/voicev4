@@ -1,5 +1,33 @@
 Voicev4::Application.routes.draw do
 
+  #get "subscription_events/create"
+
+  #get "subscription_events/destroy"
+
+  #get "survey_interests/index"
+
+  #get "survey_interests/new"
+
+  #get "survey_interests/create"
+
+  #get "survey_interests/destroy"
+
+  #get "event_interests/create"
+
+  #get "event_interests/destroy"
+
+  #get "events/index"
+
+  #get "events/new"
+
+  #get "events/create"
+
+  #get "events/show"
+
+  #get "events/destroy"
+
+  #get "events/edit"
+
   #get "discussions/index"
 
   #get "discussions/new"
@@ -30,6 +58,12 @@ Voicev4::Application.routes.draw do
 
   root :to => "home#index" 
 
+  resources :events
+
+  resources :subscription_events
+
+  resources :event_interests
+
   resources :sessions
 
   resources :users
@@ -39,6 +73,14 @@ Voicev4::Application.routes.draw do
   resources :friendships
 
   resources :occasions
+
+  resources :discussions
+  
+  resources :voices
+
+  resources :surveys
+
+  resources :survey_interests
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -55,6 +97,7 @@ Voicev4::Application.routes.draw do
   match 'user/:user/contact' =>'users#contact', :as => :user_contact
   match 'user/:user/about' => 'users#about', :as => :user_about
   match 'user/:user/interests' => 'users#interests', :as => :user_interests
+  match 'user/:user/events' => 'users#events', :as => :user_events  
 
   match 'users' => 'users#index', :as => :users_index
 
@@ -64,15 +107,29 @@ Voicev4::Application.routes.draw do
   match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
 
+  match 'event_subscribe' => 'subscription_events#create', :as => :event_subscribe, :via => :post
+  match 'event_unsubscribe' => 'subscription_events#destroy', :as => :event_unsubscribe, :via => :post
+
   match "tags" => 'tags#index'
   
   match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'recommendations' => 'recommendations#index', :as => :recommendations
 
+  match 'surveys/:survey' => 'surveys#show', :as => :survey
+
+  match 'discussions/:discussion' => 'discussions#show', :as => :discussion
+
   match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
   match 'auth/failure', :to => redirect('/')
 
+  match 'events' => 'events#index', :as => :events_index
+  match 'events/:event' => 'events#show', :as => :event
+  match 'events/:event/destroy' => 'events#destroy', :as => :event_destroy
+  match 'events/:event/show' => 'events#show', :as => :event_show
+  match 'events/:event/edit' => 'events#edit', :as => :event_edit
+  match 'friendships/destroy' => 'friendships#destroy', :as => :friendship_destroy, :via => :post
+  
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
 

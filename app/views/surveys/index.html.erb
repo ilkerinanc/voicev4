@@ -1,5 +1,5 @@
 <% title "Surveys" %>
-
+<%= link_to "New Survey", new_survey_path, :class=>'btn btn-primary' %>
 <table>
   <tr>
     <th>Name</th>
@@ -8,10 +8,9 @@
     <tr>
       <td><%= survey.name %></td>
       <td><%= link_to "Show", survey,:class=>'btn btn-primary'%></td>
-      <td><%= link_to "Edit", edit_survey_path(survey),:class=>'btn btn-primary'%></td>
-      <td><%= link_to "Destroy", survey, :confirm => 'Are you sure?', :method => :delete,:class=>'btn btn-primary' %></td>
+      <td><%= link_to "Edit", edit_survey_path(survey),:class=>'btn btn-info'%></td>
+      <td><%= link_to "Destroy", survey, :confirm => 'Are you sure?', :method => :delete,:class=>'btn btn-danger' %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to "New Survey", new_survey_path, :class=>'btn btn-primary' %>

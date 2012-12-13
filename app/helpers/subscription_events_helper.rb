@@ -1,0 +1,2 @@
+module SubscriptionEventsHelper
+end
