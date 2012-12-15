@@ -91,4 +91,8 @@ class UsersController < ApplicationController
     (f_ratio + i_ratio) / 2
   end
 
+   def help
+    @user = User.find(params[:user])
+  end
+
 end
