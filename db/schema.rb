@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,13 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212203439) do
+ActiveRecord::Schema.define(:version => 20121215175529) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
     t.string   "content"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "count"
+  end
+
+  create_table "discussion_posts", :force => true do |t|
+    t.text     "content"
+    t.boolean  "in_trash"
+    t.integer  "discussion_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "discussionposts", :force => true do |t|
@@ -29,8 +38,11 @@ ActiveRecord::Schema.define(:version => 20121212203439) do
 
   create_table "discussions", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.text     "description"
+    t.boolean  "in_trash"
+    t.integer  "creator_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "event_interests", :force => true do |t|
@@ -47,8 +59,12 @@ ActiveRecord::Schema.define(:version => 20121212203439) do
     t.string   "place"
     t.integer  "creator_id"
     t.boolean  "in_trash"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "eventphoto_file_name"
+    t.string   "eventphoto_content_type"
+    t.integer  "eventphoto_file_size"
+    t.datetime "eventphoto_updated_at"
     t.datetime "date"
   end
 
@@ -160,8 +176,10 @@ ActiveRecord::Schema.define(:version => 20121212203439) do
 
   create_table "surveys", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.datetime "start_time"
+    t.datetime "finish_time"
   end
 
   create_table "taggings", :force => true do |t|
