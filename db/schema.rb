@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -178,8 +179,8 @@ ActiveRecord::Schema.define(:version => 20121215175529) do
     t.string   "name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.datetime "start_time"
     t.datetime "finish_time"
+    t.datetime "start_time"
   end
 
   create_table "taggings", :force => true do |t|
