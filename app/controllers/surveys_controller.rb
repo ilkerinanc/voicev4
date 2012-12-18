@@ -51,9 +51,9 @@ class SurveysController < ApplicationController
       @survey = Survey.new
       @surveyUser = SurveyUser.new
       #@temp = params[:question][:a_id]
-      params[:question].each do |key, value|
-        @surveyUser.answerId = value
-      end
+      #params[:question][:a_id].each do |key,value|
+      #  @surveyUser.answerId = key
+      #end
       
       @surveyUser.questionId = nil
       @surveyUser.surveyId = Survey.find_by_id(params[:id])
