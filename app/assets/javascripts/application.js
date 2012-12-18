@@ -32,6 +32,15 @@ $(function () {
   });
 });
 
+//this is for interest search
+$(function () {
+  $('#tag_tokens').tokenInput('/tags.json', { 
+    crossDomain: false,
+    prePopulate: $('#tag_tokens').data('load'),
+    theme: "facebook"
+  });
+});
+
 $(function () {
   $('#survey_interest_tokens').tokenInput('/interests.json', { 
     crossDomain: false,
@@ -57,19 +66,15 @@ $(function() {
 });
 
 $(function() {
-  $("#event_time").datepicker({format: 'dd-mm-yyyy'});
+  $("#date_classevent_datepicker").datepicker({format: 'dd-mm-yyyy'});
 });
 
-$(function() {
-  $("#occasion_time").timepicker();
-});
+// $(function() {
+//   $('.datepicker-default').datepicker()
+// });
 
 $(function() {
   $(".timepicker-default").timepicker();
-});
-
-$(function() {
-  $(".timepicker").timepicker({showMeridian: true});
 });
 
 function remove_fields(link){

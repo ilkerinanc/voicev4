@@ -73,7 +73,9 @@ class UsersController < ApplicationController
 
   def message_receiver_index
     # @receivers = current_user.friends.order(:username).where("name like ?", "%#{params[:term]}%")
-    @receivers = current_user.friends
+    @friends = current_user.friends
+    # @receivers= current_user.friends
+    @receivers = User.where(:id => @friends.collect(&:id)).where("name like ?", "%#{params[:term]}%").order(:username)
     render :json => @receivers.map(&:username)
   end
 
@@ -87,6 +89,10 @@ class UsersController < ApplicationController
     f_ratio = (current_user.friends_in_common(@user).count.to_f / current_user.friends.count.to_f) * 10
     i_ratio = (current_user.interests_in_common(@user).count.to_f / current_user.interests.count.to_f) * 10
     (f_ratio + i_ratio) / 2
+  end
+
+   def help
+    @user = User.find(params[:user])
   end
 
 end

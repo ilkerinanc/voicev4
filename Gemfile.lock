@@ -205,6 +205,7 @@ DEPENDENCIES
   nifty-generators
   omniauth-facebook
   rails (= 3.2.8)
+  rake
   recommendable
   redis
   resque

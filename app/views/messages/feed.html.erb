@@ -1,0 +1,49 @@
+<div class="span4">
+    <div class="row">
+       <div class="span4" align="center">
+		    <h2><%= link_to "#{@conversation_user.name} #{@conversation_user.surname}", user_show_path(:user => @conversation_user.id) %></h2>
+		    <%= image_tag("http://graph.facebook.com/#{@conversation_user.uid}/picture?type=large", :class => "img-polaroid") %>
+		</div>
+    </div>
+    <div class="row">
+        
+    </div>
+</div>
+
+<div class="span7">
+    <div class="row">
+        <h3><em>Conversation with <%= "#{@conversation_user.name} #{@conversation_user.surname }" %></em></h3>
+        <!-- Display conversation -->
+        <% @messages.each do |m| %>
+        <% @user = User.find(m.sender_id) %>
+            <div class="row"  id="activity_feed_item">
+                <div class="span1" align="center">
+                    <%= link_to image_tag("http://graph.facebook.com/#{@user.uid}/picture?type=square", :class => "img-circle"), user_show_path(:user => @user) %>
+                </div>
+                <div class="span6">
+                    <%= link_to "#{@user.name} #{@user.surname}", user_show_path(:user => @user) %>
+                    <%= m.content %>
+                    <p class="muted"><small><%= time_ago_in_words(m.created_at) %> ago</small></p>
+                </div>
+            </div>
+            <hr class="bs-docs-separator">
+        <% end %>
+    </div>
+    <!-- New message form -->
+    <div class="row">
+        <%= form_for @message do |f| %>
+            <%= f.hidden_field :receiver_id %>
+            <div class="control-group">
+                <%= f.label "Reply", :class => "control-label" %>
+                <div class="controls">
+                    <%= f.text_area :content, :rows => 3 %>
+                </div>
+            </div>
+            <div class="control-group">   
+                <div class="controls">
+                    <%= f.submit :class => "btn btn-primary" %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

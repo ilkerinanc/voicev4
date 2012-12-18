@@ -1,75 +1,5 @@
 Voicev4::Application.routes.draw do
 
-  # get "messages/index"
-
-  # get "messages/show"
-
-  # get "messages/new"
-
-  # get "messages/create"
-
-  # get "messages/destroy"
-
-  # get "search/index"
-
-  # get "search/results"
-
-  #get "subscription_events/create"
-
-  #get "subscription_events/destroy"
-
-  #get "survey_interests/index"
-
-  #get "survey_interests/new"
-
-  #get "survey_interests/create"
-
-  #get "survey_interests/destroy"
-
-  #get "event_interests/create"
-
-  #get "event_interests/destroy"
-
-  #get "events/index"
-
-  #get "events/new"
-
-  #get "events/create"
-
-  #get "events/show"
-
-  #get "events/destroy"
-
-  #get "events/edit"
-
-  #get "discussions/index"
-
-  #get "discussions/new"
-
-  #get "discussions/create"
-
-  #get "discussions/update"
-
-  #get "discussions/destroy"
-
-  #get "discussions/show"
-
-  #get "discussions/edit"
-
-  #get "discussion_posts/create"
-
-  #get "discussion_posts/destroy"
-
-  # get "interest_posts/create"
-
-  # get "interest_posts/destroy"
-
-  # get "taggings/create"
-
-  # get "taggings/destroy"
-
-  # get "home/index"
-
   root :to => "home#index" 
 
   resources :events
@@ -102,7 +32,7 @@ Voicev4::Application.routes.draw do
 
   resources :searches
 
-  resources :messages
+  resources :messages, :except => [:show]
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
@@ -112,6 +42,8 @@ Voicev4::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
+  match 'help' => 'user#help', :as => :help
+
   match 'user/pending' => 'friendships#approve', :as => :user_pending_post, :via => :post
   match 'user/pending' => 'users#pending', :as => :user_pending
   match 'user/:user' => 'users#show', :as => :user_show
@@ -120,7 +52,6 @@ Voicev4::Application.routes.draw do
   match 'user/:user/about' => 'users#about', :as => :user_about
   match 'user/:user/interests' => 'users#interests', :as => :user_interests
   match 'user/:user/events' => 'users#events', :as => :user_events  
-  match 'user/:user/settings' => 'users#settings', :as => :user_settings
 
   match 'users' => 'users#index', :as => :users_index
 
@@ -139,6 +70,12 @@ Voicev4::Application.routes.draw do
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'occasions/:occasion/edit' => 'occasions#show', :as => :occasion_edit
   match 'occasions/:occasion/destroy' => 'occasions#destroy', :as => :occasion_destroy
+  # ----------------------------------------------------------------------------
+
+  # SEARCH RELATED PATHS -------------------------------------------------------
+  match 'search' => 'searches#new', :as => :search
+  match 'search/user_results' => 'searches#user_results', :as => :user_results
+  match 'search/interest_results' => 'searches#interest_results', :as => :interest_results
   # ----------------------------------------------------------------------------
 
   match 'recommendations' => 'recommendations#index', :as => :recommendations
@@ -165,7 +102,9 @@ Voicev4::Application.routes.draw do
 
   match 'message_receiver_index' => 'users#message_receiver_index', :as => :message_receiver_index
 	match 'friendships/destroy' => 'friendships#destroy', :as => :friendship_destroy, :via => :post
+  match 'messages/:user' => 'messages#feed', :as => :message_feed
 
+  match 'settings' => 'settings#index', :as => :settings
   # match 'occasions' => 'occasions#index', :as =>:occasions
   # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
 
