@@ -28,6 +28,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    params[:event][:time] =  Date.parse(params[:date][:classevent_datepicker]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
     if @event.update_attributes(params[:event])
       redirect_to event_path(:event => @event.id), :notice => "Event has been updated."
     else
@@ -39,7 +40,6 @@ class EventsController < ApplicationController
     # :interest_tokens
       @event = Event.new(params[:event])
       @event.time =  Date.parse(params[:date][:classevent_datepicker]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
-      #@event.time =  Date.parse(params[:time]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
       @event.creator_id = current_user.id
     	@event.in_trash = false
     	if @event.save
@@ -79,8 +79,12 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
-		redirect_to events_url, :notice => "Event was successfully updated."
+<<<<<<< HEAD:app/controllers/events_controller.rb
+    @event = Event.find_by_id(params[:id])
+=======
+    @event = Event.find(params[:event])
+		#redirect_to events_url, :notice => "Event was successfully updated."
+>>>>>>> 02ac10d2d7f562addc7ed3c45571019c87e3616f:app/controllers/events_controller.rb
   end
 
 end

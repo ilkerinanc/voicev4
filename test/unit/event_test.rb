@@ -10,7 +10,12 @@ class EventTest < ActiveSupport::TestCase
     event.valid? # run validations
     event
   end
-
+	
+	test "should save a valid event" do
+		event = new_event()
+		assert event.save, "can be saved the valid event"
+	end 
+	
 	test "should not save event without title" do
   	event = new_event(:title => '')
 		assert_equal ["can't be blank"], event.errors[:title]
