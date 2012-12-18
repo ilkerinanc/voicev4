@@ -28,6 +28,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    params[:event][:time] =  Date.parse(params[:date][:classevent_datepicker]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
     if @event.update_attributes(params[:event])
       redirect_to event_path(:event => @event.id), :notice => "Event has been updated."
     else
@@ -79,8 +80,8 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
-		redirect_to events_url, :notice => "Event was successfully updated."
+    @event = Event.find(params[:event])
+		#redirect_to events_url, :notice => "Event was successfully updated."
   end
 
 end
