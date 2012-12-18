@@ -44,24 +44,20 @@ class SurveysController < ApplicationController
   end
 
   def commit
-      @survey = Survey.new
-      @surveyUser = SurveyUser.new
+    params['results'].each do |key, value|
+      a = Answer.find(key.to_i)
+      a.count ||= 0
+      a.count += 1
+      a.save
+    end
+    s = SurveyUser.new
+    s.userId = current_user.id
+    s.surveyId = params['survey_id']
 
-      params[:question].each do |key, value|
-        @surveyUser.answerId = value
-      end
-      
-      @surveyUser.questionId = nil
-      @surveyUser.surveyId = Survey.find_by_id(params[:id])
-      @surveyUser.userId = current_user.id
-
-      if @surveyUser.save
-          redirect_to @survey, :notice  => "Successfully submitted Your Survey Answers."
-      else
-         redirect_to @survey, :notice  => "Error happens when you submit your Survey Answer"
-      end
-
-			redirect_to @survey, :notice  => "Successfully submitted Your Survey Answers."
-
+    if s.save   
+      redirect_to surveys_path, :notice  => "Successfully submitted Your Survey Answers."
+    else
+      redirect_to surveys_path :notice => "kaydolmadik!!!!!!!!!"
+    end
   end
 end
