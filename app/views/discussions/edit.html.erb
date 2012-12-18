@@ -2,6 +2,8 @@
 
 <%= render 'form' %>
 
+Creator: <%= link_to "#{@creator.name} #{@creator.surname}", user_show_path(:user => discussion.creator_id)%>
+
 <p>
   <%= link_to "Show", @discussion %> |
   <%= link_to "View All", discussions_path %>

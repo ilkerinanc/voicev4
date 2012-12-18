@@ -9,7 +9,6 @@ class Survey < ActiveRecord::Base
   has_many :survey_interests, :foreign_key => "survey_id", :dependent => :destroy
   has_many :interests, :through => :survey_interests, :source => :interest
 
-  has_many :survey_users, :dependent => :destroy, :foreign_key => 'surveyId'
 
   attr_reader :interest_tokens
 	

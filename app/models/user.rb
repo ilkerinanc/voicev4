@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   has_one :setting, :dependent => :destroy
 
+  has_many :survey_users, :dependent => :destroy, :foreign_key => 'userId'
+
   # new columns need to be added here to be writable through mass assignment
   attr_accessible :username, :email, :password, :password_confirmation, :name, :surname, :description, :current_work, :fullname
 

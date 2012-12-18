@@ -35,7 +35,7 @@ private
 			hash[ item ] += 1
 			hash}.sort_by{|k,v| v}.reverse
 
-		@filterbyname = @interest_occurence_hash.select{|key, hash| hash =~ "/*.#{name}.*/" }
+		@filterbyname = @interest_occurence_hash.select{|key, hash| hash =~ "/#{name}.*/" }
 		
 		puts 'INTEREST OCCURENCE HAAAAAASH'
 		puts @interest_occurence_hash

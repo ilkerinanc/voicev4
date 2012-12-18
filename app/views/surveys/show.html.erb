@@ -1,63 +1,16 @@
-<% title "Survey" %>
-<!--
-<p>
-	<strong>Name:</strong>
-	<%=h @survey.name %>
-</p>
+<% @survey.name %> <br>
 
-<ol>
-<% for question in @survey.questions %>
-	<li><%=h question.content %></li>
-	<ol>
-	<% for answer in question.answers %>
-		<li><%=h answer.content %></li>
-		<div>
-			<%= check_box_tag "ques[]", "question.id" %>
-		</div>
-	<%end %>
-	</ol>
-<%end %>
-</ol>
--->
-
-
-<%= form_for @survey, :url => { :action => "commit" } do |s| %>
-	<li>
-		<%=s.label :name %>
-		<%=s.text_field :name %>
-
-	</li>
-	
-	<%=s.fields_for :questions do |q| %>
-		
-
-		<li><%=h q.text_field :content %></li>
-
-		<%= q.fields_for :answers do |a| %>
-			<li>
-
-				<%=a.text_field :content %>
-				<%=a.text_field :id %>
-				
-				<%=check_box_tag "question[a_id][]", a.id %>
-				
-			</li>
-			
- 		 <% end %>
-	 	 
-  <% end %>
-  <p>
-
-  	 <p>
-    	<%= s.submit "Submit" ,:class=>'btn btn-primary'%>
-  	</p>
+<% if SurveyUser.where(:userId=> current_user.id, :surveyId=>@survey.id).exists? %>
+	Uzgunuz. Daha once cevapladiniz.
+<%else %>
+	<%= form_for(:results, :url => committed_survey_path) do |f| %>
+		<%= hidden_field_tag 'survey_id', params[:id]  %>
+		<% @survey.questions.each do |q| %>
+			Question: <%= q.content %> <br>
+			<% q.answers.each do |a| %>
+				<%= f.check_box "#{a.id}" %> <%= a.content %>
+			<% end %>
+		<% end %>
+		<%= f.submit %>
+	<% end %>
 <% end %>
-
-
-<p>
-|
-
-  <%= link_to "Edit", edit_survey_path(@survey),:class=>'btn btn-info' %> |
-  <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete ,:class=>'btn btn-danger'%> |
-  <%= link_to "View All", surveys_path ,:class=>'btn btn-primary'%> |
-  <!--<%= link_to 'Commit',  committed_survey_path(:surveyId => @survey.id), :class=>'btn btn-primary'%>-->
