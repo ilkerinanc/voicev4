@@ -38,8 +38,7 @@
 
 				<%=a.text_field :content %>
 				<%=a.text_field :id %>
-
-							
+				
 				<%=check_box_tag "question[a_id][]", a.id %>
 				
 			</li>

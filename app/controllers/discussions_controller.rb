@@ -10,7 +10,9 @@ class DiscussionsController < ApplicationController
   def new
     @discussion = Discussion.new
     1.times do
+      
       discussionpost= @discussion.discussionposts.build
+      discussionpost.creator_id= current_user.id
     end
   end
 
@@ -21,6 +23,7 @@ class DiscussionsController < ApplicationController
     else
       render :action => 'new'
     end
+
   end
 
   def edit
