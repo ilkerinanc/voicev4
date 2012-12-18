@@ -24,11 +24,29 @@ private
 	end
 
 	def find_interests(name, tag_tokens)
-		@conditions = []
+		@tags = []
 
-		@conditions << "interests.name LIKE '%#{name}%'" unless name.blank?
-		#@conditions << @tags
+		tag_tokens.each do |t|
+			@tags << "taggings.tag_id LIKE '#{t}' "
+		end
+		@taggings = Tagging.where(@tags.join(' AND '))
 
-		Interest.where(@conditions.join(' AND '))
+		@interests = []
+		@taggings.each do |i|
+			@interests << i.interest_id
+		end
+
+		# @conditions = []
+
+		# @conditions << "#{@tagged_interests.name} LIKE '#{name}'" unless name.blank?
+
+		# Interest.where(@conditions)
+
+		@result = []
+		@interests.each do |e|
+			@result << Interest.find(e)
+		end
+
+		return @result
 	end
 end

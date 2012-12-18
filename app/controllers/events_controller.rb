@@ -40,7 +40,6 @@ class EventsController < ApplicationController
     # :interest_tokens
       @event = Event.new(params[:event])
       @event.time =  Date.parse(params[:date][:classevent_datepicker]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
-      #@event.time =  Date.parse(params[:time]) + params[:event][:time][0..1].to_i.hour + params[:event][:time][3..4].to_i.minute
       @event.creator_id = current_user.id
     	@event.in_trash = false
     	if @event.save
