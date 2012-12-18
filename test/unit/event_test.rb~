@@ -40,7 +40,7 @@ class EventTest < ActiveSupport::TestCase
 		assert event.save
 		event1 = new_event(:title => 'sample')
 		assert_equal ["has already been taken"], event1.errors[:title]
-		assert !event.save, "cannot be saved with the same title"
+		assert !event1.save, "cannot be saved with the same title"
 	end
 
 	test "should not have title more than 25 characters" do

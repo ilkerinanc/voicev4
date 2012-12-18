@@ -63,9 +63,9 @@ class SurveysController < ApplicationController
 			@survey = Survey.find_by_id(params["surveyId"])	
 			#@questions = @survey.questions
 		
-			unless params[:question][:answers].nil?
+			unless params[:question][:answer_ids].nil?
 				puts "questiona girdi"	
-     		params[:question][:answers].each do |a|
+     		params[:question][:answer_ids].each do |a|
  #    			@surveyUser = SurveyUser.create(:answer_id => a, :question_id => q, :survey_id => params["surveyId"], :user_id => current_user.id)	
 	#				if @surveyUser.save
 		#			end
