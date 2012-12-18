@@ -1,3 +1,6 @@
-<% @interest_results.each do |interest| %>
-            <%= interest.name %>
+<h2>Search Results for Interests</h2>
+<% @interest_results.each do |id| %>
+            <h4><%= link_to "#{Interest.find(id).name}", interest_path(:interest => id) %></h4>
         <% end %>
+<hr class="bs-docs-separator"></hr>
+<small><%= link_to "Another Search", search_path%></small>

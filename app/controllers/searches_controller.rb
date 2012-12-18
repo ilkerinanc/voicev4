@@ -23,30 +23,31 @@ private
 	  	User.where(@conditions.join(' AND '))
 	end
 
+	#tag_tokens: array of tag_id's
 	def find_interests(name, tag_tokens)
-		@tags = []
+		
+		@interests = Tagging.where("tag_id IN (#{tag_tokens})").collect(&:interest_id)
 
-		tag_tokens.each do |t|
-			@tags << "taggings.tag_id LIKE '#{t}' "
-		end
-		@taggings = Tagging.where(@tags.join(' AND '))
+		puts 'INTEREEEEEEEEEST'
+		puts @interests
 
-		@interests = []
-		@taggings.each do |i|
-			@interests << i.interest_id
-		end
+		@interest_occurence_hash = @interests.inject(Hash.new(0)) { |hash, item|
+			hash[ item ] += 1
+			hash}.sort_by{|k,v| v}.reverse
 
-		# @conditions = []
-
-		# @conditions << "#{@tagged_interests.name} LIKE '#{name}'" unless name.blank?
-
-		# Interest.where(@conditions)
-
-		@result = []
-		@interests.each do |e|
-			@result << Interest.find(e)
+		@filterbyname = @interest_occurence_hash.select{|key, hash| hash =~ "/*.#{name}.*/" }
+		
+		puts 'INTEREST OCCURENCE HAAAAAASH'
+		puts @interest_occurence_hash
+		
+		@results = []
+		@filterbyname.each do |hash|
+			@results << hash[0]
 		end
 
-		return @result
+		puts 'HEEEEEEEEEEEEEEEEEEY'
+		puts @results
+
+		return @results
 	end
 end

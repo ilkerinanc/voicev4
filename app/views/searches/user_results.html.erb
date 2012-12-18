@@ -1,3 +1,6 @@
+<h2>Search Results for Users</h2>
 <% @user_results.each do |user| %>
-            <%= user.fullname %>
+            <h4><%= link_to "#{user.fullname}", user_show_path(:user => user.id) %></h4>
         <% end %>
+<hr class="bs-docs-separator"></hr>
+<small><%= link_to "Another Search", search_path%></small>
