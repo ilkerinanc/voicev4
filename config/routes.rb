@@ -42,7 +42,7 @@ Voicev4::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-  match 'help' => 'user#help', :as => :help
+  match 'help' => 'help#help', :as => :help
 
   match 'user/pending' => 'friendships#approve', :as => :user_pending_post, :via => :post
   match 'user/pending' => 'users#pending', :as => :user_pending
@@ -66,7 +66,7 @@ Voicev4::Application.routes.draw do
   match "tags" => 'tags#index'
   
   # OCCASIONS RELATED PATHS ----------------------------------------------------
-  match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
+  # match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'occasions/:occasion/edit' => 'occasions#show', :as => :occasion_edit
   match 'occasions/:occasion/destroy' => 'occasions#destroy', :as => :occasion_destroy
