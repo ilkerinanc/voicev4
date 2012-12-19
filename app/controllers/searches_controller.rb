@@ -23,31 +23,27 @@ private
 	  	User.where(@conditions.join(' AND '))
 	end
 
+	#name: the string to be matched when searching for interest name
 	#tag_tokens: array of tag_id's
+	#the search results are listed in an order so that the interests
+	#which contain the 'name' pattern in their names with the highest 
+	#number of tag matches are at the top
 	def find_interests(name, tag_tokens)
 		
 		@interests = Tagging.where("tag_id IN (#{tag_tokens})").collect(&:interest_id)
 
-		puts 'INTEREEEEEEEEEST'
-		puts @interests
-
+		#an array of arrays of the form {{interest_id, number_of_occurences},...} in reverse
+		#order with respect to number of occurences
 		@interest_occurence_hash = @interests.inject(Hash.new(0)) { |hash, item|
 			hash[ item ] += 1
 			hash}.sort_by{|k,v| v}.reverse
 
-		@filterbyname = @interest_occurence_hash.select{|key, hash| hash =~ "/#{name}.*/" }
-		
-		puts 'INTEREST OCCURENCE HAAAAAASH'
-		puts @interest_occurence_hash
-		
 		@results = []
-		@filterbyname.each do |hash|
-			@results << hash[0]
+		@interest_occurence_hash.each do |hash|
+			if (Interest.find(hash[0]).name =~ /.*#{name}.*/) #REGEX
+				@results << hash[0]
+			end
 		end
-
-		puts 'HEEEEEEEEEEEEEEEEEEY'
-		puts @results
-
 		return @results
 	end
 end
