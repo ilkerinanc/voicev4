@@ -27,7 +27,8 @@ class HomeController < ApplicationController
       #@discussions = Discussion.last(5)
       @users = User.last(5)  
     end
-  	
+  end
 
+  def help
   end
 end

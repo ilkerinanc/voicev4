@@ -42,7 +42,7 @@ Voicev4::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-  match 'help' => 'help#help', :as => :help
+  match 'help' => 'home#help', :as => :help
 
   match 'user/pending' => 'friendships#approve', :as => :user_pending_post, :via => :post
   match 'user/pending' => 'users#pending', :as => :user_pending

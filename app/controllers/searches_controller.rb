@@ -11,7 +11,6 @@ class SearchesController < ApplicationController
   		@interest_results = find_interests(params[:name], params[:tag_tokens])
   	end
 
-
 private
   	def find_users(name, surname, title, email)
   		@conditions = []
