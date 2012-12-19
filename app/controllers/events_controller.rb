@@ -79,12 +79,9 @@ class EventsController < ApplicationController
   end
 
   def edit
-<<<<<<< HEAD:app/controllers/events_controller.rb
-    @event = Event.find_by_id(params[:id])
-=======
+
     @event = Event.find(params[:event])
 		#redirect_to events_url, :notice => "Event was successfully updated."
->>>>>>> 02ac10d2d7f562addc7ed3c45571019c87e3616f:app/controllers/events_controller.rb
   end
 
 end

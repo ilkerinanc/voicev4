@@ -8,8 +8,9 @@
     <tr>
       <td><%= survey.name %></td>
       <td><%= link_to "Show", survey,:class=>'btn btn-primary'%></td>
-      <td><%= link_to "Edit", edit_survey_path(survey),:class=>'btn btn-info'%></td>
-      <td><%= link_to "Destroy", survey, :confirm => 'Are you sure?', :method => :delete,:class=>'btn btn-danger' %></td>
+      <!--<td><%= link_to "Edit", edit_survey_path(survey),:class=>'btn btn-info'%></td>-->
+      
+      <% end %>
     </tr>
   <% end %>
 </table>

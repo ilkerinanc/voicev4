@@ -29,6 +29,7 @@ class SurveysController < ApplicationController
   end
 
   def update
+
     @survey = Survey.find(params[:id])
     if @survey.update_attributes(params[:survey])
       redirect_to @survey, :notice  => "Successfully updated survey."
@@ -57,7 +58,8 @@ class SurveysController < ApplicationController
     if s.save   
       redirect_to surveys_path, :notice  => "Successfully submitted Your Survey Answers."
     else
-      redirect_to surveys_path :notice => "kaydolmadik!!!!!!!!!"
+      redirect_to surveys_path :notice => "Sorry! Error happened when submitting your survey answer. Please 
+                                          try again or contact the Voice Developers"
     end
   end
 end

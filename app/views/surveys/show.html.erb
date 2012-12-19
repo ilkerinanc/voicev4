@@ -1,7 +1,8 @@
 <% @survey.name %> <br>
 
 <% if SurveyUser.where(:userId=> current_user.id, :surveyId=>@survey.id).exists? %>
-	Uzgunuz. Daha once cevapladiniz.
+
+	  Oops. You already answered this survey!
 <%else %>
 	<%= form_for(:results, :url => committed_survey_path) do |f| %>
 		<%= hidden_field_tag 'survey_id', params[:id]  %>
@@ -10,6 +11,7 @@
 			<% q.answers.each do |a| %>
 				<%= f.check_box "#{a.id}" %> <%= a.content %>
 			<% end %>
+			<br>
 		<% end %>
 		<%= f.submit %>
 	<% end %>
