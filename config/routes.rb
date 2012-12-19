@@ -61,8 +61,6 @@ Voicev4::Application.routes.draw do
   match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
 
-  
-
   match "tags" => 'tags#index'
   
   # OCCASIONS RELATED PATHS ----------------------------------------------------
@@ -80,9 +78,11 @@ Voicev4::Application.routes.draw do
 
   match 'recommendations' => 'recommendations#index', :as => :recommendations
 
+  # SURVEYS RELATED PATHS -------------------------------------------------------
   match 'surveys/:survey' => 'surveys#show', :as => :survey
   match 'committed_survey' => 'surveys#commit', :as => :committed_survey
   match 'surveys/:survey/commit' => 'survey#commit', :as => :survey_commit
+  # ----------------------------------------------------------------------------
 
   match 'discussions/:discussion' => 'discussions#show', :as => :discussion
 
@@ -105,9 +105,6 @@ Voicev4::Application.routes.draw do
   match 'messages/:user' => 'messages#feed', :as => :message_feed
 
   match 'settings' => 'settings#index', :as => :settings
-  # match 'occasions' => 'occasions#index', :as =>:occasions
-  # match 'occasions/new' => 'occasions#new', :as =>:new_occasion
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

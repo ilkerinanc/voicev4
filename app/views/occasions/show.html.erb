@@ -7,10 +7,10 @@
               <dd><%= @occasion.time.strftime("%d/%m/%Y") %></dd>  
               <dt><h4>Time:</h4></dt>
               <dd><%= @occasion.time.strftime("%H:%M") %></dd>      
-    </dl>
-    <% if @occasion.creator_id == current_user.id %>
+  </dl>
+  <% if @occasion.creator_id == current_user.id %>
         <%= link_to "Edit", occasion_edit_path(:occasion => @occasion.id), :class=> 'btn btn-mini' %>
-        <%= link_to "Delete", occasion_destroy_path(:occasion => @occasion.id), :class=> 'btn btn-mini' %>
-    <% end %>
-    <p><%= link_to 'See other occasions', occasions_path%></p>
+        <%= link_to "Delete", occasion_destroy_path(:occasion => @occasion.id), :class=> 'btn btn-danger btn-mini' %>
+  <% end %>
+  <p><%= link_to 'See other occasions', occasions_path%></p>
 </div>
