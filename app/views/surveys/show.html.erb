@@ -1,8 +1,13 @@
 <% @survey.name %> <br>
 
 <% if SurveyUser.where(:userId=> current_user.id, :surveyId=>@survey.id).exists? %>
+<<<<<<< HEAD
 
 	  Oops. You already answered this survey!
+=======
+	We are sorry, you already answered for this survey.
+	<!-- Warning messages only in English at this stage -->
+>>>>>>> 2905ee1742d259058da3b07e12a20cb572b18077
 <%else %>
 	<%= form_for(:results, :url => committed_survey_path) do |f| %>
 		<%= hidden_field_tag 'survey_id', params[:id]  %>

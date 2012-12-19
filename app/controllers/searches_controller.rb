@@ -11,7 +11,6 @@ class SearchesController < ApplicationController
   		@interest_results = find_interests(params[:name], params[:tag_tokens])
   	end
 
-
 private
   	def find_users(name, surname, title, email)
   		@conditions = []
@@ -23,30 +22,27 @@ private
 	  	User.where(@conditions.join(' AND '))
 	end
 
+	#name: the string to be matched when searching for interest name
+	#tag_tokens: array of tag_id's
+	#the search results are listed in an order so that the interests
+	#which contain the 'name' pattern in their names with the highest 
+	#number of tag matches are at the top
 	def find_interests(name, tag_tokens)
-		@tags = []
+		
+		@interests = Tagging.where("tag_id IN (#{tag_tokens})").collect(&:interest_id)
 
-		tag_tokens.each do |t|
-			@tags << "taggings.tag_id LIKE '#{t}' "
+		#an array of arrays of the form {{interest_id, number_of_occurences},...} in reverse
+		#order with respect to number of occurences
+		@interest_occurence_hash = @interests.inject(Hash.new(0)) { |hash, item|
+			hash[ item ] += 1
+			hash}.sort_by{|k,v| v}.reverse
+
+		@results = []
+		@interest_occurence_hash.each do |hash|
+			if (Interest.find(hash[0]).name =~ /.*#{name}.*/) #REGEX
+				@results << hash[0]
+			end
 		end
-		@taggings = Tagging.where(@tags.join(' AND '))
-
-		@interests = []
-		@taggings.each do |i|
-			@interests << i.interest_id
-		end
-
-		# @conditions = []
-
-		# @conditions << "#{@tagged_interests.name} LIKE '#{name}'" unless name.blank?
-
-		# Interest.where(@conditions)
-
-		@result = []
-		@interests.each do |e|
-			@result << Interest.find(e)
-		end
-
-		return @result
+		return @results
 	end
 end

@@ -79,9 +79,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-
     @event = Event.find(params[:event])
-		#redirect_to events_url, :notice => "Event was successfully updated."
   end
 
 end
