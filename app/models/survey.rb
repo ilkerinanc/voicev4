@@ -1,5 +1,5 @@
 class Survey < ActiveRecord::Base
-  attr_accessible :name, :questions_attributes, :answers_attributes, :start_time, :finish_time, :interest_tokens
+  attr_accessible :name, :questions_attributes, :answers_attributes, :start_time, :finish_time, :interest_tokens, :creator_id
   has_many :questions, :dependent => :destroy
   validates :name, :presence => true 
   validates :start_time, :presence => true
