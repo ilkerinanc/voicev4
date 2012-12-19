@@ -23,6 +23,10 @@ class Event < ActiveRecord::Base
   	end
 
   	def get_show_url
-  		Rails.application.routes.url_helpers.event_path(self.id)
+  		if ENV['RAILS_ENV'] == 'production'
+  			"voicev4/#{Rails.application.routes.url_helpers.event_path(self.id)}"
+  		else
+  			Rails.application.routes.url_helpers.event_path(self.id)
+  		end
   	end
 end

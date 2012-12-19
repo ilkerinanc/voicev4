@@ -60,12 +60,8 @@ ActiveRecord::Schema.define(:version => 20121222062044) do
     t.string   "place"
     t.integer  "creator_id"
     t.boolean  "in_trash"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.string   "eventphoto_file_name"
-    t.string   "eventphoto_content_type"
-    t.integer  "eventphoto_file_size"
-    t.datetime "eventphoto_updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.datetime "date"
   end
 

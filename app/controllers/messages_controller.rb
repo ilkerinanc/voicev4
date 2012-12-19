@@ -18,7 +18,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    
     @message = Message.new(params[:message])
     @message.sender_id = current_user.id
     
@@ -27,7 +26,6 @@ class MessagesController < ApplicationController
     else
       render :action => 'new'
     end
-
   end
 
   def destroy
