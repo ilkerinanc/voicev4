@@ -1,14 +1,11 @@
 <% title "Surveys" %>
 <%= link_to "New Survey", new_survey_path, :class=>'btn btn-primary' %>
-
 <p></p>
-
 <div class="tabbable">
 <ul class="nav nav-tabs" id="myTab">
  <li class="active"><a href="#activeSurveys" data-toggle="tab">Active Surveys</a></li>
  <li><a href="#finishedSurveys" data-toggle="tab">Finished Surveys</a></li>
 </ul>
-
 
  <div class="tab-content">
     <div class="tab-pane in active" id="activeSurveys">
@@ -18,7 +15,7 @@
               <caption></caption>
               <thead>
                 <tr>
-                  <th>Name</th>
+                  <th>Survey Name</th>
                 </tr>
               </thead>
               <tbody>
@@ -33,7 +30,7 @@
           </div>
         </div>
     </div>
-    <div class="tab-pane " id="finishedSurveys">
+<div class="tab-pane " id="finishedSurveys">
         <div class="row">
           <div class="span10">
             <table class="table table-hover">
@@ -47,8 +44,8 @@
                 <% @finishedSurveys.each do |survey| %>
                 <tr>
                      <td><%= survey.name %></td>
-                      <td><%= link_to "Show Results", show_results_path(:survey => survey.id) , :class=>'btn btn-primary'%></td>
-                 </tr>        
+                      <td><%= link_to "Show", survey,:class=>'btn btn-primary'%></td>
+                 </tr>
                 <% end %>
               </tbody>
             </table>
@@ -58,5 +55,4 @@
 </div>
   </div>
 </ul>
-
 

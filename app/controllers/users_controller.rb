@@ -40,6 +40,8 @@ class UsersController < ApplicationController
     @friendship_score = friendship_score
     @voice  = current_user.voices.build
     @voices = @user.voices.order("created_at DESC")
+    @friendship = Friendship.find_by_user_id_and_friend_id(@user.id,current_user.id) || Friendship.find_by_user_id_and_friend_id(current_user.id,@user.id) 
+
   end
 
   def contact
