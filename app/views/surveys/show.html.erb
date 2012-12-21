@@ -1,17 +1,33 @@
 <% @survey.name %> <br>
 
 <% if SurveyUser.where(:userId=> current_user.id, :surveyId=>@survey.id).exists? %>
-	  Oops. You already answered this survey!
+<div class="alert alert-block">
+	<strong>
+	  Oops! You already answered this survey!
+	</strong>
+</div>
 <%else %>
 	<%= form_for(:results, :url => committed_survey_path) do |f| %>
 		<%= hidden_field_tag 'survey_id', params[:id]  %>
 		<% @survey.questions.each do |q| %>
+			<strong>
+			<p class="lead">
 			Question: <%= q.content %> <br>
+			</strong>
+			</p>
 			<% q.answers.each do |a| %>
-				<%= f.check_box "#{a.id}" %> <%= a.content %>
+				
+				<blockquote>
+					<%= f.check_box "#{a.id}" %> <%= a.content %>
+				</blockquote>
 			<% end %>
 			<br>
 		<% end %>
-		<%= f.submit %>
+		<%= f.submit "Submit" ,:class=>'btn btn-primary'%>
 	<% end %>
 <% end %>
+
+<p>
+	<%= link_to "Back to List", surveys_path %>
+</p>
+

@@ -1,0 +1,40 @@
+<div class="tab-pane " id="finishedSurveys">
+        <div class="row">
+          <div class="span10">
+            <table class="table table-hover">
+              <caption></caption>
+
+              <tbody>
+                <% @finishedSurveys.each do |survey| %>
+                <strong>
+                <h3>Survey Name: <%= survey.name%></h3></br>
+                </strong>
+                <% survey.questions.each do |q| %>
+                      <strong>
+                      Question: <%= q.content %> <br>
+                      </strong>
+                      <% q.answers.each do |a| %>
+
+                      <span class="badge badge-inverse">
+                        <%= a.count %>
+                        </span>
+                        
+                        <blockquote>
+                        <%= a.content %> 
+                  
+                        <div class="progress progress-info">
+                          <div class="bar" style="width: <%= a.count %>%"></div>
+                        </div>
+                        </blockquote>
+                      <% end %>
+                      <br>
+                    <% end %>
+
+                      <!-- <td><%= link_to "Show Results", show_results_path , :surveyId => survey.id,:class=>'btn btn-primary'%></td>-->
+                 </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
