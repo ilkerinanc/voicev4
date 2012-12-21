@@ -1,6 +1,8 @@
 <% title "Surveys" %>
 <%= link_to "New Survey", new_survey_path, :class=>'btn btn-primary' %>
-
 <p></p>
-
-
+<div class="tabbable">
+<ul class="nav nav-tabs" id="myTab">
+ <li class="active"><a href="#activeSurveys" data-toggle="tab">Active Surveys</a></li>
+ <li><a href="#finishedSurveys" data-toggle="tab">Finished Survey</a></li>
+</ul>
