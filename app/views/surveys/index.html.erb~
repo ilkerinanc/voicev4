@@ -15,7 +15,7 @@
               <caption></caption>
               <thead>
                 <tr>
-                  <th>Name</th>
+                  <th>Survey Name</th>
                 </tr>
               </thead>
               <tbody>
@@ -24,7 +24,6 @@
                      <td><%= survey.name %></td>
                       <td><%= link_to "Show", survey,:class=>'btn btn-primary'%></td>
                  </tr>
-
                 <% end %>
               </tbody>
             </table>
@@ -41,7 +40,14 @@
                   <th>Name</th>
                 </tr>
               </thead>
-             
+              <tbody>
+                <% @finishedSurveys.each do |survey| %>
+                <tr>
+                     <td><%= survey.name %></td>
+                      <td><%= link_to "Show", survey,:class=>'btn btn-primary'%></td>
+                 </tr>
+                <% end %>
+              </tbody>
             </table>
           </div>
         </div>
