@@ -18,7 +18,17 @@
                   <th>Name</th>
                 </tr>
               </thead>
+              <tbody>
+                <% @activeSurveys.each do |survey| %>
+                  <tr>
+                     <td><%= survey.name %></td>
+                      <td><%= link_to "Show", survey,:class=>'btn btn-primary'%></td>
+                 </tr>
+
+                <% end %>
+              </tbody>
             </table>
           </div>
         </div>
     </div>
+
