@@ -22,14 +22,30 @@
 development:
   adapter: jdbcmysql
   username: root
+<<<<<<< HEAD
   password: 123
+=======
+<<<<<<< HEAD:config/database.yml
+  password: 
+=======
+  password:
+>>>>>>> 02ac10d2d7f562addc7ed3c45571019c87e3616f:config/database.yml
+>>>>>>> d6d514bfb0367137a236f070e44c4dc1514bc08b
   host: localhost
   database: voicev4_development
 
 test:
   adapter: jdbcmysql
   username: root
+<<<<<<< HEAD
   password: 123
+=======
+<<<<<<< HEAD:config/database.yml
+  password: 
+=======
+  password:
+>>>>>>> 02ac10d2d7f562addc7ed3c45571019c87e3616f:config/database.yml
+>>>>>>> d6d514bfb0367137a236f070e44c4dc1514bc08b
   host: localhost
   database: voicev4_test
 

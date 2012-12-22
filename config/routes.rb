@@ -42,7 +42,7 @@ Voicev4::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-  match 'help' => 'user#help', :as => :help
+  match 'help' => 'help#help', :as => :help
 
   match 'user/pending' => 'friendships#approve', :as => :user_pending_post, :via => :post
   match 'user/pending' => 'users#pending', :as => :user_pending
@@ -61,13 +61,12 @@ Voicev4::Application.routes.draw do
   match 'subscribe' => 'subscriptions#create', :as => :subscribe, :via => :post
   match 'unsubscribe' => 'subscriptions#destroy', :as => :unsubscribe, :via => :post
 
-  match 'event_subscribe' => 'subscription_events#create', :as => :event_subscribe, :via => :post
-  match 'event_unsubscribe' => 'subscription_events#destroy', :as => :event_unsubscribe, :via => :post
+  
 
   match "tags" => 'tags#index'
   
   # OCCASIONS RELATED PATHS ----------------------------------------------------
-  match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
+  # match 'missed_occasions' => 'occasions#missed', :as => :missed_occasions
   match 'occasions/:occasion' => 'occasions#show', :as => :occasion
   match 'occasions/:occasion/edit' => 'occasions#show', :as => :occasion_edit
   match 'occasions/:occasion/destroy' => 'occasions#destroy', :as => :occasion_destroy
@@ -90,15 +89,19 @@ Voicev4::Application.routes.draw do
   match 'auth/:provider/callback', :to => 'sessions#create_with_fb'
   match 'auth/failure', :to => redirect('/')
 
+	# EVENTS RELATED PATHS ----------------------------------------------------
   match 'events' => 'events#index', :as => :events_index
   match 'events/:event' => 'events#show', :as => :event
   match 'events/:event/destroy' => 'events#destroy', :as => :event_destroy
   match 'events/:event/show' => 'events#show', :as => :event_show
   match 'events/:event/edit' => 'events#edit', :as => :event_edit
-  match 'friendships/destroy' => 'friendships#destroy', :as => :friendship_destroy, :via => :post
   match 'events/:event/new_events' => 'events#new_events', :as => :event_new_events  
+	match 'event_subscribe' => 'subscription_events#create', :as => :event_subscribe, :via => :post
+  match 'event_unsubscribe' => 'subscription_events#destroy', :as => :event_unsubscribe, :via => :post
+	# ----------------------------------------------------------------------------
 
   match 'message_receiver_index' => 'users#message_receiver_index', :as => :message_receiver_index
+	match 'friendships/destroy' => 'friendships#destroy', :as => :friendship_destroy, :via => :post
   match 'messages/:user' => 'messages#feed', :as => :message_feed
 
   match 'settings' => 'settings#index', :as => :settings

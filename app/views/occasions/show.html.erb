@@ -1,10 +1,16 @@
-
-         <h2><%= @occasion.name %></h2>
-         <table>
-              <p>Description: <%= @occasion.description %></p>
-              <p>Time: <%= @occasion.time %></p>
-              <% if @occasion.creator_id == current_user.id %>
-                <%= link_to "Edit", occasion_edit_path(:occasion => @occasion.id), :class=> 'btn btn-mini' %>
-                <%= link_to "Delete", occasion_destroy_path(:occasion => @occasion.id), :class=> 'btn btn-mini' %>
-            <% end %>
-          </table>
+<div class="row">
+	<h2><%= link_to "#{@occasion.name}", occasion_path(:occasion => @occasion.id) %></h2>
+	<dl ><!--class="dl-horizontal"-->
+              <dt><h4>Description:</h4></dt>
+              <dd><%= @occasion.description %></dd>
+              <dt><h4>Date:</h4></dt>
+              <dd><%= @occasion.time.strftime("%d/%m/%Y") %></dd>  
+              <dt><h4>Time:</h4></dt>
+              <dd><%= @occasion.time.strftime("%H:%M") %></dd>      
+    </dl>
+    <% if @occasion.creator_id == current_user.id %>
+        <%= link_to "Edit", occasion_edit_path(:occasion => @occasion.id), :class=> 'btn btn-mini' %>
+        <%= link_to "Delete", occasion_destroy_path(:occasion => @occasion.id), :class=> 'btn btn-mini' %>
+    <% end %>
+    <p><%= link_to 'See other occasions', occasions_path%></p>
+</div>

@@ -1,14 +1,14 @@
 <% title "Discussion" %>
 
 <p>
-	<strong>Name:</strong>
-	<%=h @discussion.name %>
+<strong>Name:</strong>
+<%=h @discussion.name %>
 </p>
 
 <ol>
-<% for post in @discussion.discussionposts %>
-	<li><%=h post.content %></li>
-	<%end %>
+<% for selam in @discussion.discussionposts %>
+<li><%=h selam.content %></li>
+<%end %>
 </ol>
 
 
