@@ -6,8 +6,8 @@
 </p>
 
 <ol>
-<% for discussionpost in @discussion.discussionposts %>
-	<li><%=h discussionpost.content %></li>
+<% for post in @discussion.discussionposts %>
+	<li><%=h post.content %></li>
 	<%end %>
 </ol>
 
