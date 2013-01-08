@@ -17,13 +17,13 @@
     <div class="row">
         <h3><em>Messages</em></h3>
         <!-- Display Messages -->
-        <% @conversation_users.each do |@user| %>
+        <% @conversation_users.each do |user| %>
             <div class="row"  id="activity_feed_item">
                 <div class="span1" align="center">
-                    <%= link_to image_tag("http://graph.facebook.com/#{@user.uid}/picture?type=square", :class => "img-circle"), message_feed_path(:user => @user) %>
+                    <%= link_to image_tag("http://graph.facebook.com/#{user.uid}/picture?type=square", :class => "img-circle"), message_feed_path(:user => user) %>
                 </div>
                 <div class="span6">
-                    <%= link_to "#{@user.name} #{@user.surname}" , message_feed_path(:user => @user) %>
+                    <%= link_to "#{user.name} #{user.surname}" , message_feed_path(:user => user) %>
                 </div>
             </div>
             <hr class="bs-docs-separator">
