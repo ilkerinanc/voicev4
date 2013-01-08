@@ -1,0 +1,47 @@
+<% @survey = Survey.find(params[:survey])%>
+
+
+<div class="tab-pane " id="finishedSurveys">
+        <div class="row">
+          <div class="span10">
+            <table class="table table-hover">
+              <caption></caption>
+
+             
+                <strong>
+                <h3>Survey Name: <%= @survey.name%></h3></br>
+              
+                </strong>
+                <% @survey.questions.each do |q| %>
+                      <strong>
+                      <h4>Question: <%= q.content %></h4> <br>
+                      </strong>
+                      <% q.answers.each do |a| %>
+
+                        <blockquote>                 
+                          <%= a.content %>                   
+                          <div class="progress progress-info">
+                            <div class="bar" style="width: <%= a.count %>%"></div>
+                             <span class="badge badge-inverse">
+                          <%= a.count %>
+                          </span>  
+                          </div>
+
+                        </blockquote>
+                       
+                      <% end %>
+                      <br>
+
+                    
+                      
+                 </tr>
+                <% end %>
+              
+            </table>
+          </div>
+        </div>
+    </div>
+
+    <p>
+        <%= link_to "Back to List", surveys_path %>
+    </p>

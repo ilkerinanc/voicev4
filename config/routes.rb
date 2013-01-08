@@ -82,6 +82,7 @@ Voicev4::Application.routes.draw do
   match 'surveys/:survey' => 'surveys#show', :as => :survey
   match 'committed_survey' => 'surveys#commit', :as => :committed_survey
   match 'surveys/:survey/commit' => 'survey#commit', :as => :survey_commit
+  match 'show_results' => 'surveys#surveyResults', :as => :show_results
   # ----------------------------------------------------------------------------
 
   match 'discussions/:discussion' => 'discussions#show', :as => :discussion

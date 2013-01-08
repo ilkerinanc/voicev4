@@ -1,6 +1,8 @@
 class SurveysController < ApplicationController
   def index
     @surveys = Survey.all
+    @activeSurveys = Survey.where('finish_time > ?', Date.today).order('created_at DESC') 
+    @finishedSurveys = Survey.where('finish_time < ?', Date.today)
   end
 
   def show
@@ -63,4 +65,7 @@ class SurveysController < ApplicationController
                                           try again or contact the Voice Developers"
     end
   end
+
+
+
 end
