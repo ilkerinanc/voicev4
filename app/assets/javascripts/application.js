@@ -17,7 +17,7 @@
 //= require bootstrap-datepicker
 
 $(function () {
-  $('#interest_tag_tokens').tokenInput('voicev4/tags.json', { 
+  $('#interest_tag_tokens').tokenInput('/tags.json', { 
     crossDomain: false,
     prePopulate: $('#interest_tag_tokens').data('load'),
     theme: "facebook"
@@ -25,7 +25,7 @@ $(function () {
 });
 
 $(function () {
-  $('#event_interest_tokens').tokenInput('voicev4/interests.json', { 
+  $('#event_interest_tokens').tokenInput('/interests.json', { 
     crossDomain: false,
     prePopulate: $('#event_interest_tokens').data('load'),
     theme: "facebook"
@@ -34,7 +34,7 @@ $(function () {
 
 //this is for interest search
 $(function () {
-  $('#tag_tokens').tokenInput('voicev4/tags.json', { 
+  $('#tag_tokens').tokenInput('/tags.json', { 
     crossDomain: false,
     prePopulate: $('#tag_tokens').data('load'),
     theme: "facebook"
@@ -42,7 +42,7 @@ $(function () {
 });
 
 $(function () {
-  $('#survey_interest_tokens').tokenInput('voicev4/interests.json', { 
+  $('#survey_interest_tokens').tokenInput('/interests.json', { 
     crossDomain: false,
     prePopulate: $('#survey_interest_tokens').data('load'),
     theme: "facebook"
@@ -77,13 +77,13 @@ $(function() {
   $(".timepicker-default").timepicker();
 });
 
-function remove_fields(link){
-	$(link).previous("input[type=hidden]").value = "1";
-	$(link).up(".fields").hide();
-}
+// function remove_fields(link){
+// 	$(link).previous("input[type=hidden]").value = "1";
+// 	$(link).up(".fields").hide();
+// }
 
-function add_fields(link, association, content) {
-  var new_id = new Date().getTime();
-  var regexp = new RegExp("new_" + association, "g")
-  $(link).parent().before(content.replace(regexp, new_id));
-}
+// function add_fields(link, association, content) {
+//   var new_id = new Date().getTime();
+//   var regexp = new RegExp("new_" + association, "g")
+//   $(link).parent().before(content.replace(regexp, new_id));
+// }
