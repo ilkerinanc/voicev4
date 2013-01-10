@@ -98,7 +98,7 @@
 						    	<p align="center"><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a></p>					
 						    	<td width="250" align="center"><img src="" class="img-polaroid" width="200">
 							 <% if current_user.event_subscribed?(event) %>
-							<p align="center>
+							<p align="center">
 						       		<div class="btn-group" align="center">
 									<%= link_to 'Edit', event_edit_path(event), :method => :post, :class => "btn btn-mini"%>
 						  			<%= link_to "Leave", event_unsubscribe_path(:event_id => event.id), :method => :post, :class => "btn btn-warning btn-mini" %>
@@ -107,7 +107,7 @@
 								</div>
 							</p>
             						  <% else %>
-							<p align="center>
+							<p align="center">
 								<div class="btn-group" align="center">
 									<%= link_to 'Edit', event_edit_path(event), :method => :post, :class => "btn btn-mini"%>
 									<%= link_to "Join", event_subscribe_path(:event_id => event.id), :method => :post, :type => "button", :class => "btn btn-primary btn-mini" %>
@@ -143,6 +143,24 @@
 				<table>
 					<p align="center"><a href="#"><%= link_to "#{event.title}", event_path(:event => event.id) %></a></p>
 					<td width="250" align="center"><img src='' class="img-polaroid" width="200" >
+							 <% if current_user.event_subscribed?(event) %>
+							<p align="center">
+						       		<div class="btn-group" align="center">
+									<%= link_to 'Edit', event_edit_path(event), :method => :post, :class => "btn btn-mini"%>
+						  			<%= link_to "Leave", event_unsubscribe_path(:event_id => event.id), :method => :post, :class => "btn btn-warning btn-mini" %>
+									<%= link_to 'Delete', event_destroy_path(event), :method => :post, :class => "btn btn-danger btn-mini" %>
+								
+								</div>
+							</p>
+            						  <% else %>
+							<p align="center">
+								<div class="btn-group" align="center">
+									<%= link_to 'Edit', event_edit_path(event), :method => :post, :class => "btn btn-mini"%>
+									<%= link_to "Join", event_subscribe_path(:event_id => event.id), :method => :post, :type => "button", :class => "btn btn-primary btn-mini" %>
+									<%= link_to 'delete', event_destroy_path(event), :method => :post, :type => "button", :class => "btn btn-danger btn-mini" %>
+								</div>
+						      </p>
+							<% end %>
 					</td>
 					<td><p><label>Creator: <%= link_to "#{@creator.name} #{@creator.surname}", user_show_path(:user => event.creator_id) %></label>
 			     	  		<p><label>Date: <%= event.time.strftime("%d/%m/%Y") %></label>
