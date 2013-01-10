@@ -13,8 +13,15 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require_tree .
 //= require bootstrap-datepicker
+//= require jquery.tokeninput
+//= require bootstrap-timepicker
+//= require bootstrap-tooltip
+//= require bootstrap-popover
+//= require bootstrap-modal
+//= require bootstrap-dropdown
+//= require bootstrap-tab
+//= require_tree .
 
 $(function () {
   $('#interest_tag_tokens').tokenInput('/tags.json', { 
